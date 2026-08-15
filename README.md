@@ -11,18 +11,18 @@ A collection of portable [Agent Skills](https://agentskills.io) for Codex, Claud
 
 ## Installation
 
-The community [`skills` CLI](https://github.com/vercel-labs/skills) installs into the current project by default. In the examples below, replace `OWNER/REPO` with this repository's GitHub slug.
+The community [`skills` CLI](https://github.com/vercel-labs/skills) installs into the current project by default.
 
 ### Install one skill
 
 ```bash
-npx skills add OWNER/REPO --skill craft-goal-driven-prompts
+npx skills add rofyray/agent-skill-kit --skill craft-goal-driven-prompts
 ```
 
 Choose specific clients when needed:
 
 ```bash
-npx skills add OWNER/REPO --skill craft-goal-driven-prompts -a codex -a claude-code -a cursor
+npx skills add rofyray/agent-skill-kit --skill craft-goal-driven-prompts -a codex -a claude-code -a cursor
 ```
 
 Add `-g` to install a skill for the current user instead of the current project.
@@ -30,7 +30,7 @@ Add `-g` to install a skill for the current user instead of the current project.
 ### Install the whole collection
 
 ```bash
-npx skills add OWNER/REPO --skill '*' -a codex -a claude-code -a cursor
+npx skills add rofyray/agent-skill-kit --skill '*' -a codex -a claude-code -a cursor
 ```
 
 Use `--all` to install every skill for every agent supported by the CLI without interactive selection.
