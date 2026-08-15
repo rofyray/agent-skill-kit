@@ -1,0 +1,43 @@
+{
+  "skill": "write-agent-briefs",
+  "cases": [
+    {
+      "id": "draft-deck-brief",
+      "request": "Write a brief for an agent to make our Q3 board deck from the metrics file and last quarter's deck.",
+      "expect": [
+        "Requests or preserves exact material locations rather than inventing them",
+        "Captures audience and the decision or narrative the deck supports",
+        "Requires rendering and inspecting every slide",
+        "Defines the deck and supporting summary composition",
+        "Uses a placeholder or proposed filename instead of inventing an output path"
+      ]
+    },
+    {
+      "id": "improve-code-task",
+      "request": "Improve this agent prompt: Fix the checkout total bug.",
+      "expect": [
+        "Adds defect evidence, relevant code and test locations as required inputs",
+        "Defines a reproducible failing test and regression checks",
+        "Preserves public behavior and approval boundaries",
+        "Returns the improved brief without attempting the code change"
+      ]
+    },
+    {
+      "id": "audit-research-prompt",
+      "request": "Audit this brief: Research our competitors and tell me what to do.",
+      "expect": [
+        "Identifies missing candidates, decision context, criteria, and source requirements",
+        "Replaces generic anti-hallucination language with claim-level verification",
+        "Defines a decision-ready comparison composition",
+        "Separates blocking questions from safe assumptions"
+      ]
+    },
+    {
+      "id": "non-trigger-direct-question",
+      "request": "What is the capital of Portugal?",
+      "expect": [
+        "Answers directly without converting the question into an agent brief"
+      ]
+    }
+  ]
+}

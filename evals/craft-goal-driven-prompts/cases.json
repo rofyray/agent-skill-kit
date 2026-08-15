@@ -1,0 +1,47 @@
+{
+  "skill": "craft-goal-driven-prompts",
+  "cases": [
+    {
+      "id": "draft-from-vague-goal",
+      "request": "Help me write a prompt for an agent to redesign our onboarding so it feels polished and converts better.",
+      "mode": "draft",
+      "expect": [
+        "Produces a ready-to-use prompt instead of redesigning the product",
+        "Turns polished and converts better into proposed observable criteria",
+        "Separates hard rules from assumptions",
+        "Asks only questions whose answers materially change the prompt"
+      ]
+    },
+    {
+      "id": "loop-ready-creative",
+      "request": "Turn my goal of making a photorealistic product render into a detailed prompt and add a loop that keeps improving it until it matches the reference.",
+      "mode": "loop-ready",
+      "expect": [
+        "Defines comparison evidence and an explicit pass bar",
+        "Adds an observe-grade-prioritize-improve-retest cycle",
+        "Uses independent grading conditionally rather than assuming a specific client feature",
+        "Names non-success stop conditions",
+        "Does not invent a fixed iteration cap that weakens until-done persistence"
+      ]
+    },
+    {
+      "id": "execute-explicitly",
+      "request": "Use this prompt to improve the local page and keep iterating until the acceptance tests pass.",
+      "mode": "execute",
+      "expect": [
+        "Executes only within the available local project and stated authority",
+        "Evaluates the actual artifact on every cycle",
+        "Does not claim completion until required tests pass",
+        "Reports a blocker instead of broadening authority"
+      ]
+    },
+    {
+      "id": "non-trigger-direct-task",
+      "request": "Fix the typo in README.md.",
+      "mode": "should-not-trigger",
+      "expect": [
+        "Handles the direct edit without turning it into a prompt-design exercise"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Write Agent Briefs"
+  short_description: "Write complete, verifiable briefs for AI agents"
+  default_prompt: "Use $write-agent-briefs to turn my task into a complete agent brief with context, verification, and an exact deliverable format."
