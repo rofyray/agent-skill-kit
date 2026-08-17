@@ -6,6 +6,7 @@ A collection of portable [Agent Skills](https://agentskills.io) for Codex, Claud
 
 | Skill | Description |
 | --- | --- |
+| [`create-and-edit-images`](skills/create-and-edit-images/) | Create photorealistic images or make precise, physically believable edits while preserving every unrequested detail. |
 | [`craft-goal-driven-prompts`](skills/craft-goal-driven-prompts/) | Turn a goal into a structured agent prompt with measurable completion criteria and an optional evidence-driven improvement loop. |
 | [`write-agent-briefs`](skills/write-agent-briefs/) | Create, improve, or audit an executable AI-agent brief with clear context, constraints, verification, and deliverables. |
 

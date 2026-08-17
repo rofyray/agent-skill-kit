@@ -1,0 +1,4 @@
+interface:
+  display_name: "Create and Edit Images"
+  short_description: "Create or precisely edit photorealistic images"
+  default_prompt: "Create or edit an image while preserving every unrequested detail."

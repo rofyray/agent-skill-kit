@@ -1,0 +1,92 @@
+{
+  "skill": "create-and-edit-images",
+  "cases": [
+    {
+      "id": "create-editorial-portrait",
+      "request": "Create a photorealistic editorial portrait of a ceramic artist in her sunlit studio, with room on the left for a magazine headline.",
+      "expect": [
+        "Uses an available image-generation capability rather than returning only a prompt",
+        "Builds a coherent subject, setting, composition, lighting, and photographic treatment",
+        "Reserves the requested negative space without inventing headline text",
+        "Inspects the result when the host supports visual verification"
+      ]
+    },
+    {
+      "id": "single-edit-preservation",
+      "request": "In the uploaded portrait, change only the blue sweater to a dark green wool sweater. Keep everything else exactly the same.",
+      "expect": [
+        "Inspects the source image before editing",
+        "Uses a strict change contract and preserves identity, pose, hands, framing, background, and lighting",
+        "Specifies believable wool texture, fit, folds, occlusion, and contact shadows",
+        "Keeps the original aspect ratio and crop"
+      ]
+    },
+    {
+      "id": "remove-background-object",
+      "request": "Remove only the orange traffic cone behind the bicycle and reconstruct the sidewalk.",
+      "expect": [
+        "Identifies the exact removal target and location",
+        "Reconstructs the revealed sidewalk with matching perspective, texture, shadows, and depth of field",
+        "Preserves the bicycle and all adjacent scene details",
+        "Adds no replacement object"
+      ]
+    },
+    {
+      "id": "two-image-composite",
+      "request": "Place the table lamp from Image 2 on the right side of the desk in Image 1.",
+      "expect": [
+        "Treats Image 1 as the base scene and Image 2 as the element reference",
+        "Matches scale, perspective, lighting, contact shadow, reflections, focus, and grain",
+        "Preserves all existing content in the base scene",
+        "Requests missing images only if they are not actually available"
+      ]
+    },
+    {
+      "id": "product-brand-preservation",
+      "request": "Turn this bottle photo into a premium white-background ecommerce image without changing the bottle, label, logo, or packaging text.",
+      "expect": [
+        "Preserves product geometry, material, color, label, logo, and legible text",
+        "Uses clean studio lighting, clean edges, and a grounded contact shadow",
+        "Does not invent branding or product claims",
+        "Verifies text visually or discloses when it is too small to confirm"
+      ]
+    },
+    {
+      "id": "correct-drifted-result",
+      "request": "The outfit is right, but the last edit changed her face and crop. Restore the original face and framing while keeping the outfit.",
+      "expect": [
+        "Anchors face and framing to the original source and the accepted outfit to the current result",
+        "Changes only the drifted identity and framing properties",
+        "Uses all required references when the host supports them",
+        "Re-verifies both the restoration and retained outfit"
+      ]
+    },
+    {
+      "id": "exact-text-correction",
+      "request": "Keep the poster design unchanged. Correct only the title to: \"SUMMER MARKET\".",
+      "expect": [
+        "Quotes the exact replacement text and identifies the text region",
+        "Preserves typography, layout, perspective, texture, and all other design elements",
+        "Checks the rendered text character by character",
+        "Does not claim exactness without visual verification"
+      ]
+    },
+    {
+      "id": "prompt-only-fallback",
+      "request": "Write me a prompt for another image model to turn my sketch into a photorealistic oak dining room.",
+      "expect": [
+        "Returns a ready-to-run prompt rather than claiming to generate an image",
+        "Preserves sketch composition, object count, placement, silhouette, and perspective",
+        "Adds only logically implied material, construction, lighting, and texture detail",
+        "Does not introduce new design features or writing"
+      ]
+    },
+    {
+      "id": "non-trigger-image-analysis",
+      "request": "Describe the chart in this screenshot and summarize its trend.",
+      "expect": [
+        "Handles the analysis directly without invoking an image creation or editing workflow"
+      ]
+    }
+  ]
+}
