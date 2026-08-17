@@ -20,6 +20,11 @@ class ValidateSkillsTests(unittest.TestCase):
         self.temp_dir = tempfile.TemporaryDirectory()
         self.root = Path(self.temp_dir.name)
         (self.root / "skills").mkdir()
+        (self.root / "evals").mkdir()
+        (self.root / "README.md").write_text(
+            "[focused-task](skills/focused-task/)\n",
+            encoding="utf-8",
+        )
 
     def tearDown(self) -> None:
         self.temp_dir.cleanup()
@@ -39,6 +44,22 @@ class ValidateSkillsTests(unittest.TestCase):
             "2. Produce and verify the result.\n"
         )
         (skill_dir / "SKILL.md").write_text(content, encoding="utf-8")
+        agents_dir = skill_dir / "agents"
+        agents_dir.mkdir()
+        (agents_dir / "openai.yaml").write_text(
+            'interface:\n'
+            '  display_name: "Focused Task"\n'
+            '  short_description: "Perform and verify a focused task"\n'
+            '  default_prompt: "Perform this focused task and verify the result."\n',
+            encoding="utf-8",
+        )
+        eval_dir = self.root / "evals" / directory
+        eval_dir.mkdir()
+        (eval_dir / "cases.json").write_text(
+            '{"skill": "' + directory + '", "cases": '
+            '[{"request": "Do the task", "expect": ["Verified result"]}]}\n',
+            encoding="utf-8",
+        )
         return skill_dir
 
     def test_valid_skill(self) -> None:
@@ -54,6 +75,46 @@ class ValidateSkillsTests(unittest.TestCase):
         self.write_skill("focused-task", extra="compatibility: Requires git\n")
         messages = [issue.message for issue in validate_skills.validate_root(self.root)]
         self.assertTrue(any("may contain only name and description" in message for message in messages))
+
+    def test_rejects_description_over_claude_desktop_limit(self) -> None:
+        skill_dir = self.write_skill("focused-task")
+        long_description = "Use when " + "x" * 193
+        (skill_dir / "SKILL.md").write_text(
+            f"---\nname: focused-task\ndescription: {long_description}\n---\n\n# Focused Task\n",
+            encoding="utf-8",
+        )
+        messages = [issue.message for issue in validate_skills.validate_root(self.root)]
+        self.assertTrue(any("at most 200 characters" in message for message in messages))
+
+    def test_requires_openai_metadata(self) -> None:
+        skill_dir = self.write_skill("focused-task")
+        (skill_dir / "agents" / "openai.yaml").unlink()
+        messages = [issue.message for issue in validate_skills.validate_root(self.root)]
+        self.assertTrue(any("missing agents/openai.yaml" in message for message in messages))
+
+    def test_rejects_client_specific_default_prompt(self) -> None:
+        skill_dir = self.write_skill("focused-task")
+        (skill_dir / "agents" / "openai.yaml").write_text(
+            'interface:\n'
+            '  display_name: "Focused Task"\n'
+            '  short_description: "Perform and verify a focused task"\n'
+            '  default_prompt: "Use $focused-task to do this work."\n',
+            encoding="utf-8",
+        )
+        messages = [issue.message for issue in validate_skills.validate_root(self.root)]
+        self.assertTrue(any("invocation-neutral" in message for message in messages))
+
+    def test_requires_matching_eval_cases(self) -> None:
+        self.write_skill("focused-task")
+        (self.root / "evals" / "focused-task" / "cases.json").unlink()
+        messages = [issue.message for issue in validate_skills.validate_root(self.root)]
+        self.assertTrue(any("missing evaluation cases" in message for message in messages))
+
+    def test_requires_readme_catalog_entry(self) -> None:
+        self.write_skill("focused-task")
+        (self.root / "README.md").write_text("# Catalog\n", encoding="utf-8")
+        messages = [issue.message for issue in validate_skills.validate_root(self.root)]
+        self.assertTrue(any("missing skill directory entry" in message for message in messages))
 
 
 if __name__ == "__main__":

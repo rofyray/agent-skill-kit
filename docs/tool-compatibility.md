@@ -1,51 +1,61 @@
 # Tool compatibility
 
-## Shared baseline
+Every skill in this repository targets Codex, Claude Code, Cursor, Claude Desktop/Cowork, and ChatGPT Desktop/Work from one canonical folder under `skills/`.
 
-All supported clients consume a directory with a `SKILL.md` entrypoint. The portable baseline is:
+## Shared contract
 
-```yaml
----
-name: prepare-release
-description: Prepare and validate a safe software release. Use when the user asks to plan, check, or execute a release workflow.
----
-```
+Each skill must:
 
-Use standard Markdown and relative paths in the body. Treat client-specific fields as extensions, not part of the shared contract.
+- contain a portable `SKILL.md` with only `name` and `description` in its YAML frontmatter;
+- use a lowercase hyphenated name of at most 64 characters;
+- keep its description at 200 characters or fewer, state both capability and trigger boundary, and front-load the main use case;
+- use host-neutral instructions, relative paths, and progressive disclosure;
+- include `agents/openai.yaml` with concise UI metadata and an invocation-neutral default prompt;
+- avoid assuming shell, network, local-file, browser, connector, or app-control access;
+- fail gracefully or state requirements when an optional script needs unavailable capabilities; and
+- include matching evaluation cases under `evals/<skill-name>/`.
 
-## Discovery locations
+## Availability and installation
 
-| Client | Project scope | User scope | Notes |
-| --- | --- | --- | --- |
-| Codex | `.agents/skills/<name>/` | `~/.agents/skills/<name>/` | Scans from the working directory to the repository root and follows skill-directory symlinks. |
-| Claude Code | `.claude/skills/<name>/` | `~/.claude/skills/<name>/` | Supports project, personal, managed, and plugin scopes; follows symlinks for normal skill directories. |
-| Cursor | `.agents/skills/<name>/` or `.cursor/skills/<name>/` | `~/.agents/skills/<name>/` or `~/.cursor/skills/<name>/` | Also recognizes Claude and Codex directories for compatibility. |
+| Surface | Standalone skill availability | Installation or discovery |
+| --- | --- | --- |
+| Codex CLI / IDE | Yes | `.agents/skills/<name>/` at project or user scope |
+| Claude Code | Yes | `.claude/skills/<name>/` at project or user scope |
+| Cursor | Yes | `.agents/skills/<name>/` or `.cursor/skills/<name>/` |
+| Claude Desktop / Cowork | Yes | Upload a single rooted ZIP through **Customize > Skills**; code execution and file creation must be enabled |
+| ChatGPT Desktop / Work | Yes in the desktop app | Open **Skills** in the sidebar; an existing Claude Code, Cowork, or Cursor skill can be brought in through **Settings > Import** |
 
-For a project that uses all three, one copy under `.agents/skills/` serves Codex and Cursor. Claude Code still needs the selected skill under `.claude/skills/`, typically as a symlink or copy.
+The community `npx skills` installer targets coding-agent discovery directories. It is not an account-level installer for Claude Desktop/Cowork or ChatGPT Desktop/Work.
 
-## Client extensions
+## Invocation
 
-Codex can use optional `agents/openai.yaml` metadata for presentation and dependencies. Generate it from the finished skill so display text and the default prompt remain aligned with `SKILL.md`.
+- ChatGPT uses `@` for explicit skill selection.
+- Codex uses `$` or `/skills`.
+- Claude can select an enabled skill automatically; users can also ask for it by name.
+- Cursor and Claude Code can select skills through their client UI or by name.
 
-Claude Code supports extra frontmatter and runtime features such as invocation controls, arguments, subagent context, and dynamic command injection. Do not place those features in a portable skill. If needed, publish an explicit Claude-only variant or plugin that wraps the portable workflow.
+Descriptions remain the common implicit-routing mechanism, so they must work without client-specific syntax.
 
-Cursor supports additional frontmatter and can install skills from GitHub through its UI. Keep Cursor-specific hooks, path scoping, and invocation controls out of the portable core unless the skill is intentionally Cursor-only.
+## Execution boundaries
 
-## Distribution policy
+Skills provide instructions and resources, not permissions. Hosts decide whether a task can use files, a shell, the network, connectors, browser control, or desktop apps. A portable workflow must inspect available capabilities, request approval when required, and offer a non-executing fallback when practical.
 
-Use GitHub as the canonical distribution source. Until this repository adopts and tests a particular third-party installer, document native client installation and dependency-free copy or symlink workflows.
+For ChatGPT Work, local execution is appropriate when the task needs files or apps on the user's computer. Cloud execution is appropriate for background work using uploaded files and approved remote tools. Claude skills require code execution and file creation to be enabled even when the skill itself contains no scripts.
 
-Do not claim that Anthropic officially documents `npx skills add`; its current first-party skill documentation describes project skills, plugins, and managed distribution instead. A community installer may be added later as an optional convenience after its behavior, security model, and monorepo selection semantics are verified.
+## Distribution and plugin readiness
 
-Do not duplicate every skill into tool-specific directory trees inside this repository. Generate adapters only when a client requires behavior that cannot be represented by the portable core.
+GitHub is the canonical source. Tagged releases produce one deterministic ZIP per skill for Claude's upload flow; coding agents can install from the repository or copy a skill folder directly.
 
-## Release compatibility checks
+The shallow `skills/<name>/` layout, portable frontmatter, OpenAI metadata, self-contained resources, and deterministic archives keep the catalog ready for future ChatGPT or Claude plugin manifests without moving or duplicating skill content. No plugin package or whole-collection desktop installer is included yet.
 
-Before calling a skill cross-tool compatible:
+Do not duplicate the catalog into client-specific trees. Add a client adapter only when a capability cannot be expressed in the portable core, and clearly label any client-specific behavior.
 
-1. Validate its portable structure.
-2. Inspect scripts for shell and platform assumptions.
-3. Run the same trigger and workflow cases in fresh Codex, Claude Code, and Cursor sessions.
-4. Record meaningful behavior differences under `evals/<skill-name>/`.
-5. Mark a skill client-specific if equivalent behavior depends on a proprietary extension.
+## Release checks
 
+Before calling a skill cross-client compatible:
+
+1. Run the repository validator and unit tests.
+2. Build its ZIP and inspect the archive root and contents.
+3. Inspect scripts for operating-system, shell, package, network, and permission assumptions.
+4. Test trigger, non-trigger, primary workflow, and degraded-capability cases in fresh sessions.
+5. Exercise the skill on every available target surface and record meaningful differences in its evals.

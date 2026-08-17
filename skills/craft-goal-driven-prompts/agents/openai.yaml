@@ -1,4 +1,4 @@
 interface:
   display_name: "Craft Goal-Driven Prompts"
   short_description: "Craft prompts with measurable completion loops"
-  default_prompt: "Use $craft-goal-driven-prompts to turn my goal into a structured prompt and, if I choose, an evidence-driven execution loop."
+  default_prompt: "Turn my goal into a structured prompt and, if requested, an evidence-driven improvement loop."

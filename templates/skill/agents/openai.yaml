@@ -1,0 +1,4 @@
+interface:
+  display_name: "Replace with display name"
+  short_description: "Replace with a 25-64 character summary"
+  default_prompt: "Replace with an invocation-neutral example request."

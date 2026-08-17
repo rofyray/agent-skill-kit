@@ -1,6 +1,6 @@
 ---
 name: craft-goal-driven-prompts
-description: Transform a user's objective into a detailed, ready-to-run agent prompt built around the goal, context, non-negotiable house rules, measurable definition of done, verification evidence, autonomy boundaries, and an optional evaluate-improve loop. Use when the user asks to write, improve, structure, or operationalize a prompt; define completion criteria; create a loop-until-done workflow; or have an agent execute iteratively until an evidence-based bar is met.
+description: Turn a goal into a structured agent prompt with constraints, measurable completion criteria, verification, and an optional improvement loop. Use when drafting or strengthening an agent prompt.
 ---
 
 # Craft Goal-Driven Prompts

@@ -1,6 +1,6 @@
 ---
 name: write-agent-briefs
-description: "Create, improve, or audit task briefs for autonomous AI agents using context, constraints, and composition: supply the situation and working materials, encode verification as stopping conditions, and define the deliverable's exact shape. Use when the user asks to write, rewrite, audit, or strengthen a prompt or brief for an agent that will act on files, code, research, data, documents, browsers, or other real work, especially when a short request needs enough detail for reliable delegation. Do not use for ordinary one-turn questions or direct tasks that do not involve drafting an agent brief."
+description: "Create, improve, or audit executable AI-agent briefs with context, constraints, verification, and exact deliverables. Use when work must be delegated clearly without hidden assumptions."
 ---
 
 # Write Agent Briefs

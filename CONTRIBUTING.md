@@ -1,69 +1,68 @@
 # Contributing
 
+Every skill must work from one source folder across Codex, Claude Code, Cursor, Claude Desktop/Cowork, and ChatGPT Desktop/Work.
+
 ## Add a skill
 
-1. Start with concrete requests that should and should not trigger the skill.
-2. Choose a short, outcome-focused, hyphenated name under 64 characters.
-3. Copy `templates/skill/` to `skills/<skill-name>/` or use the active client's official skill creator.
-4. Keep only `name` and `description` in portable `SKILL.md` frontmatter.
-5. Write the essential workflow in imperative form.
-6. Add reusable resources only when they improve reliability or reduce repeated context.
-7. Validate the catalog and test the skill in fresh sessions.
+1. Define concrete requests that should and should not trigger it.
+2. Copy `templates/skill/` to `skills/<skill-name>/`.
+3. Use a lowercase, outcome-focused, hyphenated name of at most 64 characters.
+4. Keep only `name` and `description` in `SKILL.md` frontmatter. The description must be 200 characters or fewer and explain what the skill does and when to use it.
+5. Write the core workflow in imperative, host-neutral language.
+6. Add `agents/openai.yaml` with a 25–64 character `short_description` and an invocation-neutral `default_prompt`—do not hard-code `@`, `$`, or a client picker.
+7. Add trigger and workflow cases under `evals/<skill-name>/`.
+8. Update the README skill directory.
 
-## Split content by how it is consumed
+## Structure for efficient loading
 
-- Put routing, decision points, and the core workflow in `SKILL.md`.
+- Keep routing, decision points, and the essential workflow in `SKILL.md`.
 - Put detailed policies, schemas, variants, and longer examples in focused files under `references/`.
 - Put deterministic or fragile repeated operations in tested files under `scripts/`.
 - Put templates, images, boilerplate, and other output inputs under `assets/`.
-- Put Codex presentation or dependency metadata in `agents/openai.yaml` when useful.
+- Put ChatGPT/Codex presentation or dependency metadata in `agents/openai.yaml`.
 - Put evaluation prompts, fixtures, and grading criteria under `evals/<skill-name>/`.
 
-Do not create a per-skill README, changelog, installation guide, or quick-reference file. Repository-level documentation owns those concerns.
-
-## Progressive disclosure rules
-
-- Keep `SKILL.md` under 500 lines and preferably below 5,000 tokens.
-- Reference supporting files directly from `SKILL.md`; avoid reference-to-reference routing.
-- State the condition for reading each reference.
-- Add a table of contents to reference files longer than 100 lines.
-- Avoid repeating the same guidance in `SKILL.md` and a reference file.
-- Prefer several focused references over one large catch-all document.
+Do not add per-skill READMEs, changelogs, installation guides, or quick-reference files. Repository-level documentation owns those concerns.
 
 ## Portability rules
 
+- Keep `SKILL.md` under 500 lines and preferably below 5,000 tokens.
+- Link supporting files directly from `SKILL.md`, state when to read them, and avoid reference-to-reference routing.
 - Use relative paths from the skill root.
-- Do not rely on Claude-only frontmatter, dynamic `!` command injection, or client-specific variables in a portable skill.
-- Do not assume a specific shell, package manager, network connection, or installed CLI without checking it or documenting the requirement in the instructions.
-- Put client-specific enhancements in client-owned metadata or an explicitly client-specific skill.
-- Treat scripts as untrusted code during review; inspect them before execution and avoid secrets in arguments or output.
+- Do not rely on client-specific frontmatter, invocation syntax, variables, or command interpolation in the portable core.
+- Do not assume shell, package-manager, network, local-file, browser, connector, or desktop-control access.
+- When optional scripts require capabilities or dependencies, check them, explain the requirement, and fail gracefully.
+- Treat scripts as untrusted code during review; avoid secrets in arguments or output.
+- Keep the skill self-contained so a future plugin can reference `skills/<name>/` without relocating content. Do not add a plugin manifest until the collection is intentionally packaged as a plugin.
 
-## Validation and evaluation
+## Validate and package
 
 Run:
 
 ```bash
 python3 scripts/validate_skills.py
-python3 -m unittest discover -s tests
+python3 -m unittest discover -s tests -v
+python3 scripts/package_skills.py
 ```
 
-For each non-trivial skill, test at least:
+Inspect each generated archive in `dist/skills/`. It must contain one top-level folder whose name matches the skill and must exclude development files, evals, caches, and repository documentation.
 
-- requests that should trigger it;
-- nearby requests that should not trigger it;
-- the main successful workflow;
-- missing dependency, missing input, and permission failure paths;
-- behavior in fresh sessions with and without the skill.
+For each non-trivial skill, test:
 
-Evaluate invocation and output quality separately. A skill can trigger correctly and still produce a poor result.
+- requests that should and should not trigger it;
+- the primary successful workflow;
+- missing input, dependency, capability, and permission paths;
+- fresh sessions with and without the skill; and
+- Codex, Claude Code, Cursor, Claude Desktop/Cowork, and ChatGPT Desktop/Work where those clients are available.
+
+Evaluate routing and output quality separately. Record meaningful client differences in the skill's eval cases or fixtures.
 
 ## Review checklist
 
-- The name is narrow, clear, and matches its directory.
-- The description explains both capability and triggering boundary.
-- The core workflow is complete without unnecessary background.
-- Optional resources have an explicit consumer and are linked from `SKILL.md`.
-- Scripts are deterministic where practical and have been executed on representative inputs.
-- No client-specific behavior leaks into the portable core unintentionally.
-- Validation and relevant evaluations pass.
-
+- Name, directory, frontmatter, eval directory, and OpenAI metadata agree.
+- Description is concise enough for every client and has a clear trigger boundary.
+- Core instructions are complete without unnecessary background.
+- Supporting resources are focused, directly linked, and loaded only when needed.
+- Scripts are deterministic where practical and degrade safely when execution is unavailable.
+- No client-specific behavior leaks into the portable core.
+- Validation, tests, packaging, and relevant forward evaluations pass.
