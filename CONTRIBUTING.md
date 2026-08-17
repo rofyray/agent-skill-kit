@@ -57,6 +57,16 @@ For each non-trivial skill, test:
 
 Evaluate routing and output quality separately. Record meaningful client differences in the skill's eval cases or fixtures.
 
+## Release versioning
+
+Create releases from a clean, validated `main` branch using annotated tags in `vMAJOR.MINOR.PATCH` format. Follow semantic versioning for this catalog:
+
+- `v0.1.1`: fixes to skills, documentation, or packaging;
+- `v0.2.0`: new skills or meaningful capabilities; and
+- `v1.0.0`: the collection and compatibility contract are considered stable.
+
+Before pushing a release tag, run the validation, tests, and packaging commands above. Pushing a `v*` tag triggers the release workflow, which publishes one ZIP per skill plus checksums.
+
 ## Review checklist
 
 - Name, directory, frontmatter, eval directory, and OpenAI metadata agree.
