@@ -5,6 +5,7 @@ This vault is a persistent, source-grounded knowledge wiki. Obsidian is an optio
 ## Vault preferences
 
 - Knowledge scope: {{KNOWLEDGE_SCOPE}}
+- Domains: {{DOMAINS}}
 - Writing voice: {{WRITING_VOICE}}
 - Review mode: {{REVIEW_MODE}}
 - Created: {{CREATED_DATE}}
@@ -14,6 +15,7 @@ This vault is a persistent, source-grounded knowledge wiki. Obsidian is an optio
 ## Structure
 
 - `raw/`: immutable sources and locally captured assets.
+- `raw/scheduled/`: immutable timestamped captures from approved recurring sources.
 - `wiki/`: agent-maintained pages derived from sources.
 - `index.md`: content-oriented catalog of every wiki page.
 - `log.md`: append-only history of setup, ingests, queries, lint passes, reviews, and migrations.
@@ -22,6 +24,7 @@ This vault is a persistent, source-grounded knowledge wiki. Obsidian is an optio
 - `automation/`: durable prompts for recurring maintenance.
 - `automation/second_brain.py`: deterministic setup, raw-integrity, and structural scan helper.
 - `.second-brain/`: configuration and recorded raw-source hashes.
+- `.second-brain/ingest-schedules.json`: approved recurring-source definitions and successful checkpoints; never store credentials.
 
 ## Non-negotiable rules
 
@@ -98,9 +101,11 @@ When asked to lint:
 
 1. Check raw integrity, required metadata, broken links, index drift, orphans, and duplicate filenames.
 2. Inspect semantic contradictions, stale claims, weak provenance, missing concepts, misleading summaries, and unsupported conclusions.
-3. Write a dated report in `reports/lint/` with evidence and proposed fixes ordered by impact and risk.
+3. Write a collision-safe timestamped report in `reports/lint/` with evidence, a maintenance-run identifier, and proposed fixes ordered by impact and risk. Never overwrite an existing report.
 4. Do not apply semantic fixes or delete content unless separately approved.
 5. Append a `lint` event to `log.md`.
+
+Ignore fenced examples, inline code, schema instructions, and format demonstrations when identifying unfinished placeholders or knowledge claims. An empty wiki is valid. Do not classify the first real wiki page as an orphan solely because no second page exists yet.
 
 ## REVIEW
 
@@ -109,6 +114,6 @@ For the configured period, defaulting to seven days:
 1. Read the relevant log entries and changed pages.
 2. Identify the three most important ideas, new connections, emerging hubs, recurring interests, conflicts, gaps, and provisional work.
 3. Recommend a short next-exploration queue and explain how it deepens existing threads.
-4. Save a dated report in `reports/reviews/` and append a `review` event to `log.md`.
+4. Save a collision-safe timestamped report in `reports/reviews/` and append a `review` event to `log.md`.
 
 Recommendations are not facts and should not be ingested as evidence.

@@ -1,6 +1,6 @@
 # Operating procedures
 
-Use the matching procedure for every ingest, query, lint, or review.
+Use the matching procedure for every ingest, recurring ingest, query, lint, or review.
 
 ## Ingest one source
 
@@ -50,6 +50,27 @@ Create or update a `source-summary` page when it improves navigation. A summary 
 4. Run the structural scan and verify recorded raw hashes.
 5. Report key takeaways, pages changed, connections made, conflicts surfaced, and anything not processed.
 
+## Run recurring ingestion
+
+Use recurring ingestion only for sources the user explicitly approved in `.second-brain/ingest-schedules.json`.
+
+1. Confirm the scheduled runtime can reach both the destination vault and the source. Supported source shapes include:
+   - a chat or conversation available to the scheduled account/session;
+   - a stable URL the runtime can fetch lawfully;
+   - a file or connected document with a version, modified time, or content hash;
+   - an exact local or connected directory whose approved boundary can be enforced.
+2. Enforce the configured per-run item and byte limits before reading content. For a directory, resolve the configured root to one canonical path, reject a symlinked root or ancestor, and require the source root and destination vault to be disjoint—neither may contain the other. Inventory all candidate regular files first, reject symlinks and any resolved path outside that root, then apply the caps to the complete inventory. Stop for an unexpected volume increase, sensitive material, authentication request, ambiguous identity, or scope change.
+3. Compare the last successful checkpoint:
+   - conversation: last ingested stable message or export identifier;
+   - URL: final canonical URL plus the configured normalization strategy/version, normalized-content hash, exact capture hash, response status, retrieval time, and ETag or Last-Modified when available;
+   - file/document: provider version or content hash;
+   - directory: relative path plus content hash for each approved regular file.
+4. Form a stable ingestion identity from `(source-id, provider-version-or-exact-content-hash)`. Search recorded captures and recent log events for that identity before creating anything. If the identity is already complete, emit a no-op. If a prior run captured it but stopped later, reuse the existing verified capture and resume the incomplete transaction instead of duplicating it.
+5. For each genuinely new identity, create an immutable, collision-safe snapshot and metadata sidecar under `raw/scheduled/<source-id>/`. Retain the ingestion identity, original locator, author or owner when known, capture timestamp with timezone, and version/checkpoint metadata. For local files, hash before copying and hash the captured bytes afterward; accept only an exact stable match, otherwise defer the changing file. Never overwrite a prior snapshot or store access credentials.
+6. Record only the new snapshots with the helper, then follow the normal ingest transaction one source at a time. A schedule's prior authorization covers only the configured source, limits, and write policy; new sensitive or consequential decisions still require review.
+7. Read the starting checkpoint and digest with `python3 automation/second_brain.py ingest-checkpoint show <vault> <source-id> --json`. Only after the raw capture, wiki edits, index update, append-only log event, and scan succeed, atomically update it with `ingest-checkpoint update`, the starting digest, and the new checkpoint JSON. Exit code 3 means another run advanced the checkpoint; stop for reconciliation. Configure the scheduler to prevent overlapping instances for the same source. On partial failure, keep the old checkpoint so the next run reuses the stable ingestion identity and resumes rather than skips or duplicates material.
+8. Report checkpoint transitions, no-ops, captures, pages changed, limits reached, deferred material, and errors in the scheduler output. Inspect the first three runs and a deliberate unchanged rerun.
+
 ## Query the vault
 
 1. Clarify the question only if its scope would materially change the search.
@@ -86,7 +107,9 @@ Then perform semantic checks that code cannot decide reliably:
 - conclusions stated more strongly than their evidence;
 - sensitive information that may not belong in derived pages.
 
-Write `reports/lint/YYYY-MM-DD-wiki-health.md` with these sections:
+Treat fenced examples, inline code, schema instructions, template guidance, and format demonstrations as non-content unless the surrounding page explicitly presents them as a knowledge claim. Do not flag tokens such as `YYYY-MM-DD`, `N sources`, or example wikilinks merely because they appear in instructions. An empty wiki is healthy, and a one-page wiki has no possible internal inbound link; do not call the first real page an orphan solely for being first.
+
+Create a collision-safe local timestamp such as `YYYY-MM-DD-HHMMSS` and a maintenance-run identifier. Write `reports/lint/YYYY-MM-DD-HHMMSS-wiki-health.md`; if that filename exists, add a numeric suffix rather than overwriting it. Record the run identifier and `status: success` in both the report and the appended lint event. Use these sections:
 
 1. Summary and scope
 2. Raw integrity
@@ -113,4 +136,4 @@ Use the configured period, defaulting to the seven calendar days ending today.
 6. List unresolved contradictions, gaps, and provisional pages.
 7. Recommend a short next-exploration queue, including why each source or question would deepen an existing thread.
 
-Write `reports/reviews/YYYY-MM-DD-weekly-review.md` and append a review event to `log.md`. Do not ingest the recommendations themselves as facts.
+For a scheduled review, first find the latest successful lint event from the same maintenance window—normally the lint scheduled immediately before this review, not merely any report with today's date. Stop with a clear message if it is missing. Write a collision-safe `reports/reviews/YYYY-MM-DD-HHMMSS-weekly-review.md`, carry the lint maintenance-run identifier into the report and review event, and append the event to `log.md`. Do not ingest the recommendations themselves as facts.
