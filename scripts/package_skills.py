@@ -11,6 +11,8 @@ from pathlib import Path
 
 
 PACKAGE_ENTRIES = {"SKILL.md", "agents", "scripts", "references", "assets"}
+IGNORED_DIRECTORY_NAMES = {"__pycache__"}
+IGNORED_FILE_SUFFIXES = {".pyc", ".pyo"}
 ZIP_TIMESTAMP = (1980, 1, 1, 0, 0, 0)
 
 
@@ -25,7 +27,12 @@ def package_files(skill_dir: Path) -> list[Path]:
         files.extend(
             path
             for path in sorted(entry.rglob("*"))
-            if path.is_file() and not any(part.startswith(".") for part in path.relative_to(skill_dir).parts)
+            if path.is_file()
+            and not any(
+                part.startswith(".") or part in IGNORED_DIRECTORY_NAMES
+                for part in path.relative_to(skill_dir).parts
+            )
+            and path.suffix not in IGNORED_FILE_SUFFIXES
         )
     return files
 

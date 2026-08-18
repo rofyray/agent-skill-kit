@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build and Maintain a Second Brain"
+  short_description: "Set up and maintain a compounding knowledge wiki"
+  default_prompt: "Set up or operate my Obsidian-compatible second brain while preserving sources, provenance, links, and review safeguards."

@@ -41,6 +41,10 @@ GEMINI.md
 .windsurfrules
 .github/copilot-instructions.md
 
+# Installable templates intentionally shipped by the second-brain skill
+!skills/build-and-maintain-a-second-brain/assets/vault-template/AGENTS.md
+!skills/build-and-maintain-a-second-brain/assets/vault-template/CLAUDE.md
+
 # Secrets and local configuration
 .env
 .env.*

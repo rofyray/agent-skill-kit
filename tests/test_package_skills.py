@@ -21,10 +21,13 @@ class PackageSkillsTests(unittest.TestCase):
             skill_dir = root / "example-skill"
             (skill_dir / "references").mkdir(parents=True)
             (skill_dir / "agents").mkdir()
+            (skill_dir / "scripts" / "__pycache__").mkdir(parents=True)
             (skill_dir / "SKILL.md").write_text("skill\n", encoding="utf-8")
             (skill_dir / "references" / "guide.md").write_text("guide\n", encoding="utf-8")
             (skill_dir / "agents" / "openai.yaml").write_text("interface:\n", encoding="utf-8")
             (skill_dir / ".DS_Store").write_text("ignored\n", encoding="utf-8")
+            (skill_dir / "scripts" / "helper.pyc").write_bytes(b"bytecode")
+            (skill_dir / "scripts" / "__pycache__" / "helper.pyc").write_bytes(b"bytecode")
 
             first = package_skills.package_skill(skill_dir, root / "first")
             second = package_skills.package_skill(skill_dir, root / "second")
@@ -40,6 +43,7 @@ class PackageSkillsTests(unittest.TestCase):
                     ],
                 )
                 self.assertNotIn(".DS_Store", "\n".join(archive.namelist()))
+                self.assertNotIn(".pyc", "\n".join(archive.namelist()))
 
 
 if __name__ == "__main__":

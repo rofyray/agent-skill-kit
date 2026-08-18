@@ -1,6 +1,6 @@
 # Contributing
 
-Every skill must work from one source folder across Codex, Claude Code, Cursor, Claude Desktop/Cowork, ChatGPT Web, and ChatGPT Desktop/Work where standalone skills or the future plugin are available.
+Every skill must work from one source folder across Codex, Claude Code, Cursor, Claude Web/Desktop/Cowork, ChatGPT Web, and ChatGPT Desktop/Work where standalone skills or the future plugin are available.
 
 ## Add a skill
 
@@ -55,7 +55,7 @@ For each non-trivial skill, test:
 - the primary successful workflow;
 - missing input, dependency, capability, and permission paths;
 - fresh sessions with and without the skill; and
-- Codex, Claude Code, Cursor, Claude Desktop/Cowork, ChatGPT Web, and ChatGPT Desktop/Work where those clients are available.
+- Codex, Claude Code, Cursor, Claude Web/Desktop/Cowork, ChatGPT Web, and ChatGPT Desktop/Work where those clients are available.
 
 Evaluate routing and output quality separately. Record meaningful client differences in the skill's eval cases or fixtures.
 

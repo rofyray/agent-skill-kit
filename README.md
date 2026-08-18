@@ -1,11 +1,12 @@
 # Agent Skill Kit
 
-A collection of portable [Agent Skills](https://agentskills.io) for Codex, Claude Code, Cursor, Claude Desktop/Cowork, and ChatGPT. Current distribution supports coding-agent installs and individual skill ZIP uploads in Claude and ChatGPT Web. A whole-collection ChatGPT plugin is planned.
+A collection of portable [Agent Skills](https://agentskills.io) for Codex, Claude Code, Cursor, Claude Web/Desktop/Cowork, and ChatGPT. Current distribution supports coding-agent installs and individual skill ZIP uploads in Claude and ChatGPT Web. A whole-collection ChatGPT plugin is planned.
 
 ## Skills
 
 | Skill | Description |
 | --- | --- |
+| [`build-and-maintain-a-second-brain`](skills/build-and-maintain-a-second-brain/) | Set up and operate a source-grounded Obsidian-compatible knowledge wiki with ingestion, querying, health checks, and recurring reviews. |
 | [`create-and-edit-images`](skills/create-and-edit-images/) | Create photorealistic images or make precise, physically believable edits while preserving every unrequested detail. |
 | [`craft-goal-driven-prompts`](skills/craft-goal-driven-prompts/) | Turn a goal into a structured agent prompt with measurable completion criteria and an optional evidence-driven improvement loop. |
 | [`write-agent-briefs`](skills/write-agent-briefs/) | Create, improve, or audit an executable AI-agent brief with clear context, constraints, verification, and deliverables. |
@@ -49,7 +50,7 @@ Clone the repository, then copy or symlink the desired folder from [`skills/`](s
 
 The installed folder must retain `SKILL.md` and every referenced resource.
 
-### Claude Desktop / Cowork
+### Claude Web / Desktop / Cowork
 
 1. Enable **Code execution and file creation** in **Settings > Capabilities**. Team and Enterprise owners must also enable Skills for the organization. See Anthropic's [skills setup guide](https://support.claude.com/en/articles/12512180-use-skills-in-claude).
 2. Download the ZIP for the individual skill from [GitHub Releases](https://github.com/rofyray/agent-skill-kit/releases).
@@ -78,7 +79,7 @@ Agent Skill Kit is not yet publicly available as a plugin, so there is no suppor
 | --- | --- |
 | ChatGPT Web | Type `@`, select the skill, then describe the task. |
 | Codex CLI / IDE | Type `$` and select the skill, or run `/skills`. |
-| Claude Desktop / Cowork | Enable the skill and ask Claude to use it by name. |
+| Claude Web / Desktop / Cowork | Enable the skill and ask Claude to use it by name. |
 | Claude Code / Cursor | Select or mention the skill by name using the client's skill UI. |
 
 Supported hosts may also select a skill automatically when the request matches its description.
