@@ -17,14 +17,29 @@ Desktop.ini
 *.swo
 *~
 
-# Local agent and tool state
-/.agents/
-/.claude/
-/.codex/
-/.cursor/
-/.workbench/
-/.continue/
-/.aider*
+# Local agent and AI-assistant state
+.agents/
+.claude/
+.codex/
+.cursor/
+.workbench/
+.continue/
+.aider*
+.amazonq/
+.augment/
+.copilot/
+.kilocode/
+.mcp/
+.mcp.json
+.roo/
+.windsurf/
+AGENTS.md
+CLAUDE.md
+CODEX.md
+GEMINI.md
+.cursorrules
+.windsurfrules
+.github/copilot-instructions.md
 
 # Secrets and local configuration
 .env
@@ -68,17 +83,37 @@ node_modules/
 build/
 dist/
 out/
+output/
 site/
+artifacts/
+scratch/
 .cache/
 .tmp/
 tmp/
 temp/
+.history/
 *.log
 *.tmp
 *.bak
+*.orig
+*.rej
+codex-clipboard-*
+pasted-text*.txt
 
 # Local test and evaluation output
 test-results/
 coverage/
 eval-results/
 eval-output/
+
+# Local planning and working notes
+/docs/openai-plugin-roadmap.md
+/docs/internal/
+/docs/private/
+/DEV_NOTES.md
+/NOTES.md
+/PLAN.md
+/ROADMAP.private.md
+/TODO.md
+/.plans/
+/.tasks/

@@ -1,6 +1,6 @@
 # Tool compatibility
 
-Every skill in this repository targets Codex, Claude Code, Cursor, Claude Desktop/Cowork, and ChatGPT Desktop/Work from one canonical folder under `skills/`.
+Every skill in this repository targets Codex, Claude Code, Cursor, Claude Desktop/Cowork, and ChatGPT from one canonical folder under `skills/`.
 
 ## Shared contract
 
@@ -23,13 +23,14 @@ Each skill must:
 | Claude Code | Yes | `.claude/skills/<name>/` at project or user scope |
 | Cursor | Yes | `.agents/skills/<name>/` or `.cursor/skills/<name>/` |
 | Claude Desktop / Cowork | Yes | Upload a single rooted ZIP through **Customize > Skills**; code execution and file creation must be enabled |
-| ChatGPT Desktop / Work | Yes in the desktop app | Open **Skills** in the sidebar; an existing Claude Code, Cowork, or Cursor skill can be brought in through **Settings > Import** |
+| ChatGPT Web | Yes where the Skills upload UI is available | Upload an individual ZIP through **Plugins > Skills > + > Upload from your computer** |
+| ChatGPT Desktop / Work | OpenAI documents standalone desktop skills, but web-upload synchronization is not currently documented or verified here | No public Agent Skill Kit plugin yet; use ChatGPT Web for the currently verified individual upload flow |
 
-The community `npx skills` installer targets coding-agent discovery directories. It is not an account-level installer for Claude Desktop/Cowork or ChatGPT Desktop/Work.
+The community `npx skills` installer targets coding-agent discovery directories. It is not an account-level installer for Claude Desktop/Cowork or ChatGPT.
 
 ## Invocation
 
-- ChatGPT uses `@` for explicit skill selection.
+- ChatGPT uses `@` for explicit skill selection when the skill is available on that surface.
 - Codex uses `$` or `/skills`.
 - Claude can select an enabled skill automatically; users can also ask for it by name.
 - Cursor and Claude Code can select skills through their client UI or by name.
@@ -44,9 +45,9 @@ For ChatGPT Work, local execution is appropriate when the task needs files or ap
 
 ## Distribution and plugin readiness
 
-GitHub is the canonical source. Tagged releases produce one deterministic ZIP per skill for Claude's upload flow; coding agents can install from the repository or copy a skill folder directly.
+GitHub is the canonical source. Tagged releases produce one deterministic ZIP per skill for Claude and ChatGPT Web upload flows; coding agents can install from the repository or copy a skill folder directly.
 
-The shallow `skills/<name>/` layout, portable frontmatter, OpenAI metadata, self-contained resources, and deterministic archives keep the catalog ready for future ChatGPT or Claude plugin manifests without moving or duplicating skill content. No plugin package or whole-collection desktop installer is included yet.
+The shallow `skills/<name>/` layout, portable frontmatter, OpenAI metadata, self-contained resources, and deterministic archives keep the catalog ready for a future whole-collection plugin without moving or duplicating skill content. No plugin package or whole-collection ChatGPT installer is included yet.
 
 Do not duplicate the catalog into client-specific trees. Add a client adapter only when a capability cannot be expressed in the portable core, and clearly label any client-specific behavior.
 

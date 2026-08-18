@@ -1,6 +1,6 @@
 # Contributing
 
-Every skill must work from one source folder across Codex, Claude Code, Cursor, Claude Desktop/Cowork, and ChatGPT Desktop/Work.
+Every skill must work from one source folder across Codex, Claude Code, Cursor, Claude Desktop/Cowork, ChatGPT Web, and ChatGPT Desktop/Work where standalone skills or the future plugin are available.
 
 ## Add a skill
 
@@ -35,6 +35,8 @@ Do not add per-skill READMEs, changelogs, installation guides, or quick-referenc
 - Treat scripts as untrusted code during review; avoid secrets in arguments or output.
 - Keep the skill self-contained so a future plugin can reference `skills/<name>/` without relocating content. Do not add a plugin manifest until the collection is intentionally packaged as a plugin.
 
+The planned distribution model is one skills-only plugin containing every canonical skill in this repository. Plugin packaging and publication are deferred until that work is intentionally started.
+
 ## Validate and package
 
 Run:
@@ -53,7 +55,7 @@ For each non-trivial skill, test:
 - the primary successful workflow;
 - missing input, dependency, capability, and permission paths;
 - fresh sessions with and without the skill; and
-- Codex, Claude Code, Cursor, Claude Desktop/Cowork, and ChatGPT Desktop/Work where those clients are available.
+- Codex, Claude Code, Cursor, Claude Desktop/Cowork, ChatGPT Web, and ChatGPT Desktop/Work where those clients are available.
 
 Evaluate routing and output quality separately. Record meaningful client differences in the skill's eval cases or fixtures.
 
