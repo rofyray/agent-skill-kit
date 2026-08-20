@@ -1,0 +1,105 @@
+{
+  "skill": "understand-before-coding",
+  "cases": [
+    {
+      "id": "plan-reusable-export-feature",
+      "request": "Plan an audit-log export feature. Find whether the repository already has an export pattern, show the architecture, keep the change isolated from billing, and tell me whether the approach can later support scheduled exports.",
+      "expect": [
+        "Inspects existing code, sibling features, callers, tests, and repository instructions before recommending a design",
+        "Tests reuse against responsibility and contract rather than superficial similarity",
+        "Describes the affected boundaries, data flow, isolation seam, errors, and permissions",
+        "Evaluates scheduled exports as a concrete future variation without building speculative infrastructure",
+        "Remains read-only and returns a decision-ready plan"
+      ]
+    },
+    {
+      "id": "implement-minimal-idempotency-fix",
+      "request": "Implement the smallest fix for duplicate webhook processing. Defer the queue redesign; prioritize idempotency and preserving current API behavior.",
+      "expect": [
+        "Inspects the webhook path, storage or transaction behavior, callers, and existing patterns before editing",
+        "Makes a minimal change without opportunistic refactoring or queue infrastructure",
+        "Preserves public behavior and verifies duplicate, retry, and concurrency-relevant paths",
+        "Records the queue redesign as deferred while still surfacing critical risks",
+        "Reports the completed behavior, verification evidence, and downstream implications"
+      ]
+    },
+    {
+      "id": "explain-function-and-callers",
+      "request": "What does resolvePolicy do, how many callers does it have, and how are its errors propagated?",
+      "expect": [
+        "Explains purpose, inputs, outputs, side effects, dependencies, and error behavior using code evidence",
+        "Searches direct references and relevant registration, configuration, generated, or framework paths",
+        "Qualifies the caller count by distinguishing confirmed static call sites from indirect or external callers",
+        "States search or access limitations instead of treating absent results as proof",
+        "Does not modify code"
+      ]
+    },
+    {
+      "id": "review-permissions-and-coverage",
+      "request": "Review this admin endpoint change. Focus on object-level permissions, error propagation, edge cases, and whether the tests and comments match the functional logic.",
+      "expect": [
+        "Inspects the diff, surrounding authorization boundary, callers, tests, and comments",
+        "Leads with prioritized actionable findings supported by tight evidence and triggering conditions",
+        "Checks object ownership and deny behavior rather than only route-level role checks",
+        "Compares test assertions and comments to actual behavior",
+        "Avoids speculative style findings and remains read-only"
+      ]
+    },
+    {
+      "id": "document-pr-impact-and-owners",
+      "request": "Write the PR description for these changes. Include product implications, downstream consumers, the architecture change, and which engineers should be informed.",
+      "expect": [
+        "Grounds the description in the actual diff, callers, tests, and existing documentation",
+        "Separates technical changes from user and downstream effects",
+        "Updates or describes only material architecture relationships",
+        "Uses CODEOWNERS or repository evidence and labels recent contributors as candidates rather than definitive owners",
+        "Returns a ready-to-use PR description without contacting anyone"
+      ]
+    },
+    {
+      "id": "vague-feature-defaults-read-only",
+      "request": "Help me with adding team invitations to this project.",
+      "expect": [
+        "Defaults to read-only understanding or planning rather than immediately editing code",
+        "Inspects the existing authentication, membership, email, permission, and persistence patterns",
+        "Asks only questions whose answers materially affect scope or architecture",
+        "Keeps the inquiry focused instead of auditing the entire repository"
+      ]
+    },
+    {
+      "id": "defer-noncritical-but-surface-security",
+      "request": "Review the upload flow. Ignore backend cleanup for now and focus on the new progress UI.",
+      "expect": [
+        "Prioritizes the progress UI and records backend cleanup as deferred",
+        "Does not expand into an unsolicited backend refactor",
+        "Still surfaces any critical upload authorization, path, data-loss, or privacy issue supported by evidence",
+        "Distinguishes material findings from optional improvements"
+      ]
+    },
+    {
+      "id": "limited-repository-access",
+      "request": "Describe the architecture of the checkout flow, but you only have this controller file.",
+      "expect": [
+        "Explains what the supplied file verifies and labels broader architecture as inference or unknown",
+        "Does not invent services, callers, data stores, or runtime behavior",
+        "Identifies the exact additional artifacts needed for a stronger conclusion",
+        "Provides useful narrow analysis despite the access limitation"
+      ]
+    },
+    {
+      "id": "non-trigger-mechanical-edit",
+      "request": "Sort the imports in this file.",
+      "expect": [
+        "Performs or describes the routine mechanical edit without forcing an architecture investigation or full understanding workflow"
+      ]
+    },
+    {
+      "id": "non-trigger-prompt-drafting",
+      "request": "Turn this product goal into a detailed prompt for another coding agent.",
+      "expect": [
+        "Does not replace the prompt-drafting workflow with repository analysis",
+        "Routes to or behaves consistently with the goal-driven prompt skill"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Understand Before Coding"
+  short_description: "Reason about code before and during changes"
+  default_prompt: "Build evidence-backed understanding of this code question or change before acting."
