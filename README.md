@@ -14,6 +14,25 @@ A collection of portable [Agent Skills](https://agentskills.io) for Codex, Claud
 
 ## Install
 
+### Claude Web / Desktop / Cowork
+
+1. Enable **Code execution and file creation** in **Settings > Capabilities**. Team and Enterprise owners must also enable Skills for the organization. See Anthropic's [skills setup guide](https://support.claude.com/en/articles/12512180-use-skills-in-claude).
+2. Download the ZIP for the individual skill from [GitHub Releases](https://github.com/rofyray/agent-skill-kit/releases).
+3. In Claude, open **Customize > Skills**, click **+**, choose **Create skill > Upload a skill**, and select the downloaded ZIP.
+4. Toggle the skill on if it is not already enabled. Claude can select it automatically, or you can ask for it by name.
+
+Tagged releases publish one ZIP per skill. Each archive contains exactly one correctly rooted skill folder for Claude's uploader.
+
+### ChatGPT Web
+
+1. Download the ZIP for the individual skill from [GitHub Releases](https://github.com/rofyray/agent-skill-kit/releases).
+2. Open ChatGPT in a web browser and select **Plugins** in the sidebar.
+3. Open the **Skills** tab, click **+**, and choose **Upload from your computer**.
+4. Select or drag in the individual skill ZIP.
+5. In ChatGPT or Work, type `@` and select the skill, or let ChatGPT choose it from your request.
+
+This is the currently verified manual-upload path. OpenAI's [skills documentation](https://learn.chatgpt.com/docs/build-skills) also describes standalone skills in the desktop app, but it does not currently document whether skills uploaded on the web sync to desktop. If the uploaded skill does not appear there, use it in the web app.
+
 ### Coding agents
 
 The community [`skills` CLI](https://github.com/vercel-labs/skills) installs skills into coding-agent discovery directories. It does not install skills into a Claude or ChatGPT account.
@@ -51,25 +70,6 @@ Clone the repository, then copy or symlink the desired folder from [`skills/`](s
 
 The installed folder must retain `SKILL.md` and every referenced resource.
 
-### Claude Web / Desktop / Cowork
-
-1. Enable **Code execution and file creation** in **Settings > Capabilities**. Team and Enterprise owners must also enable Skills for the organization. See Anthropic's [skills setup guide](https://support.claude.com/en/articles/12512180-use-skills-in-claude).
-2. Download the ZIP for the individual skill from [GitHub Releases](https://github.com/rofyray/agent-skill-kit/releases).
-3. In Claude, open **Customize > Skills**, click **+**, choose **Create skill > Upload a skill**, and select the downloaded ZIP.
-4. Toggle the skill on if it is not already enabled. Claude can select it automatically, or you can ask for it by name.
-
-Tagged releases publish one ZIP per skill. Each archive contains exactly one correctly rooted skill folder for Claude's uploader.
-
-### ChatGPT Web
-
-1. Download the ZIP for the individual skill from [GitHub Releases](https://github.com/rofyray/agent-skill-kit/releases).
-2. Open ChatGPT in a web browser and select **Plugins** in the sidebar.
-3. Open the **Skills** tab, click **+**, and choose **Upload from your computer**.
-4. Select or drag in the individual skill ZIP.
-5. In ChatGPT or Work, type `@` and select the skill, or let ChatGPT choose it from your request.
-
-This is the currently verified manual-upload path. OpenAI's [skills documentation](https://learn.chatgpt.com/docs/build-skills) also describes standalone skills in the desktop app, but it does not currently document whether skills uploaded on the web sync to desktop. If the uploaded skill does not appear there, use it in the web app.
-
 ### ChatGPT Desktop / Work
 
 Agent Skill Kit is not yet publicly available as a plugin, so there is no supported whole-collection installation for ChatGPT Desktop/Work. Importing a Claude Code or Cursor setup is not an account-level skill installer and is no longer recommended here. A single plugin containing the full collection is planned; until it is published, use the individual [ChatGPT Web](#chatgpt-web) upload flow above.
@@ -84,6 +84,16 @@ Agent Skill Kit is not yet publicly available as a plugin, so there is no suppor
 | Claude Code / Cursor | Select or mention the skill by name using the client's skill UI. |
 
 Supported hosts may also select a skill automatically when the request matches its description.
+
+### Simple starters
+
+After loading or selecting a skill, replace the bracketed text and send the matching starter:
+
+- **Build and maintain a second brain:** `Set up a source-grounded second brain in [folder or location] and guide me through the required choices.`
+- **Create and edit images:** `Help me create or edit [describe the image], asking only for details that materially affect the result.`
+- **Craft goal-driven prompts:** `Turn this goal into a detailed, ready-to-use prompt: [goal].`
+- **Understand before coding:** `Before changing code, inspect [feature or request] and explain the existing patterns, affected paths, and smallest safe approach.`
+- **Write agent briefs:** `Turn this task into a complete, executable agent brief: [task].`
 
 ## Permissions and safety
 
