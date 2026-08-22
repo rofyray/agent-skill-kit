@@ -1,0 +1,22 @@
+CREDITS
+
+This skill is an original Agent Skill Kit implementation based on and extending
+the LLM Wiki pattern described by Andrej Karpathy, with additional practical
+setup inspiration from Kirill (@kirillk_web3):
+
+Andrej Karpathy, "LLM Wiki"
+https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f
+https://x.com/karpathy/status/2039805659525644595
+
+Kirill (@kirillk_web3), practical second-brain walkthrough
+https://x.com/kirillk_web3/status/2074905017983607081?s=12
+
+Karpathy's pattern supplied the conceptual foundation: immutable raw sources,
+an agent-maintained markdown wiki, a governing schema, and the ingest, query,
+and lint loop. The vault contract, deterministic helper, provenance controls,
+cross-platform capability routing, scheduling safeguards, review workflow, and
+host adapters in this package were independently designed and implemented for
+Agent Skill Kit.
+
+No affiliation with or endorsement by either source author is implied. No
+third-party code or assets are bundled in this skill.

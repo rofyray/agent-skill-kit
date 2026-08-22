@@ -21,10 +21,12 @@ class PackageSkillsTests(unittest.TestCase):
             skill_dir = root / "example-skill"
             (skill_dir / "references").mkdir(parents=True)
             (skill_dir / "agents").mkdir()
+            (skill_dir / "assets").mkdir()
             (skill_dir / "scripts" / "__pycache__").mkdir(parents=True)
             (skill_dir / "SKILL.md").write_text("skill\n", encoding="utf-8")
             (skill_dir / "references" / "guide.md").write_text("guide\n", encoding="utf-8")
             (skill_dir / "agents" / "openai.yaml").write_text("interface:\n", encoding="utf-8")
+            (skill_dir / "assets" / "CREDITS.txt").write_text("credits\n", encoding="utf-8")
             (skill_dir / ".DS_Store").write_text("ignored\n", encoding="utf-8")
             (skill_dir / "scripts" / "helper.pyc").write_bytes(b"bytecode")
             (skill_dir / "scripts" / "__pycache__" / "helper.pyc").write_bytes(b"bytecode")
@@ -39,6 +41,7 @@ class PackageSkillsTests(unittest.TestCase):
                     [
                         "example-skill/SKILL.md",
                         "example-skill/agents/openai.yaml",
+                        "example-skill/assets/CREDITS.txt",
                         "example-skill/references/guide.md",
                     ],
                 )

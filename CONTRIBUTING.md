@@ -24,6 +24,14 @@ Every skill must work from one source folder across Codex, Claude Code, Cursor, 
 
 Do not add per-skill READMEs, changelogs, installation guides, or quick-reference files. Repository-level documentation owns those concerns.
 
+## Credit sources and preserve licenses
+
+- Distinguish learning from a public source from copying its protected expression. Public availability alone is not permission to copy.
+- Add `assets/CREDITS.txt` when a skill is recognizably inspired by a named article, post, talk, podcast, methodology, or author. Identify the author, title or description, and canonical URL; describe the conceptual influence without implying endorsement.
+- Add `assets/THIRD_PARTY_NOTICES.txt` when the package copies or adapts licensed code, templates, instructions, examples, or assets. Preserve every copyright and license notice required by the source license.
+- Verify reuse rights before including third-party code or assets. Attribution does not replace permission or compliance with a source license.
+- Do not add a credits file merely for general knowledge or independently developed ideas. Keep notices factual, concise, and outside agent instructions so they ship in the ZIP without consuming runtime context.
+
 ## Portability rules
 
 - Keep `SKILL.md` under 500 lines and preferably below 5,000 tokens.
@@ -76,5 +84,6 @@ Before pushing a release tag, run the validation, tests, and packaging commands 
 - Core instructions are complete without unnecessary background.
 - Supporting resources are focused, directly linked, and loaded only when needed.
 - Scripts are deterministic where practical and degrade safely when execution is unavailable.
+- Source credits and third-party license notices are accurate, complete, and included in the installable package when applicable.
 - No client-specific behavior leaks into the portable core.
 - Validation, tests, packaging, and relevant forward evaluations pass.

@@ -1,0 +1,15 @@
+CREDITS
+
+This skill is an original Agent Skill Kit implementation informed by:
+
+Matt Shumer, "How I Prompt Fable"
+https://workbench.md/pub/IbaCrTjLJT?key=uQOQ2NPO3TTUSXyYDjyLf
+
+The article inspired the skill's emphasis on giving an agent the goal rather
+than over-prescribing the method, setting non-negotiable house rules, defining
+an observable completion bar, using fresh-context evaluation, and iterating
+until that bar is met. The portable workflow, schemas, safety boundaries, and
+examples in this package were independently adapted for Agent Skill Kit.
+
+No affiliation with or endorsement by the source author is implied. No
+third-party code or assets are bundled in this skill.

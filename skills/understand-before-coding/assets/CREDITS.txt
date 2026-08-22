@@ -1,0 +1,15 @@
+CREDITS
+
+This skill is an original Agent Skill Kit implementation informed by:
+
+Jim Yagmin, "Code is the Byproduct"
+https://yagmin.com/blog/code-is-the-byproduct/
+
+The article inspired the skill's understanding-first framing and its planning,
+implementation, code-reading, review, and documentation inquiry lenses. The
+portable workflow, evidence rules, action boundaries, reference structure, and
+verification guidance in this package were independently adapted for Agent
+Skill Kit.
+
+No affiliation with or endorsement by the source author is implied. No
+third-party code or assets are bundled in this skill.

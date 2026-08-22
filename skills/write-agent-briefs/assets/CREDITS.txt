@@ -1,0 +1,15 @@
+CREDITS
+
+This skill is an original Agent Skill Kit implementation informed by:
+
+Matt Shumer, "The Ultimate Guide to Prompting AI Agents"
+https://www.linkedin.com/pulse/ultimate-guide-prompting-ai-agents-matt-shumer-vttwe
+
+The article introduced the "3 C's" framework—context, constraints, and
+composition—and the first-day-intern analogy that inspired this skill's brief
+design. The portable workflow, verification guidance, safety boundaries,
+templates, and examples in this package were independently adapted for Agent
+Skill Kit.
+
+No affiliation with or endorsement by the source author is implied. No
+third-party code or assets are bundled in this skill.
