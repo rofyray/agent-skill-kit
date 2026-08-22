@@ -1,0 +1,4 @@
+interface:
+  display_name: "Interview Coach"
+  short_description: "Adaptive interview prep and performance coaching"
+  default_prompt: "Coach me for my next interview using my role, timeline, and available materials."

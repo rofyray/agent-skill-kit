@@ -7,6 +7,12 @@ description: Build and maintain an Obsidian-compatible second brain. Use when se
 
 Create and operate a persistent, source-grounded markdown wiki that compounds as sources and useful analyses are added. Use Obsidian as an optional interface; the markdown vault remains the system of record.
 
+## Help mode
+
+When the user sends `help`, `show help`, `what can this skill do?`, or `how do I use this skill?` after selecting or naming this skill, read [the help guide](references/help.md). Return its explanation, modes, starting guidance, and examples without starting setup, ingesting, changing files, or scheduling anything. Include every named mode and at least two examples for each mode: one simple starter and one additional realistic example. Do not omit modes or examples for brevity. End by inviting the user to choose a mode or adapt an example.
+
+Do not confuse help mode with an action request such as “help me ingest this paper.”
+
 ## Route the request
 
 Choose the smallest applicable operation:

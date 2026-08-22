@@ -163,6 +163,17 @@
       ]
     },
     {
+      "id": "help-mode",
+      "request": "help",
+      "mode": "help",
+      "expect": [
+        "Explains the source-grounded vault, durable state, and capability boundaries without inspecting or changing files",
+        "Lists set up, ingest, query, lint, review, and schedule modes in plain language",
+        "Provides a starter and another realistic example for every mode",
+        "Clarifies that help is a natural-language mode rather than a slash command"
+      ]
+    },
+    {
       "id": "non-trigger-obsidian-theme",
       "request": "Help me choose an Obsidian theme and change the editor font.",
       "expect": [

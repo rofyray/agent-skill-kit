@@ -82,6 +82,17 @@
       ]
     },
     {
+      "id": "help-mode",
+      "request": "help",
+      "mode": "help",
+      "expect": [
+        "Explains artifact creation, preservation-focused editing, and capability fallback without generating an image",
+        "Lists create, edit, revise, and prompt-only modes",
+        "Provides a starter and another realistic example for every mode",
+        "States the minimum source-image or description inputs needed to begin"
+      ]
+    },
+    {
       "id": "non-trigger-image-analysis",
       "request": "Describe the chart in this screenshot and summarize its trend.",
       "expect": [

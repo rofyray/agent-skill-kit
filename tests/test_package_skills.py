@@ -24,9 +24,13 @@ class PackageSkillsTests(unittest.TestCase):
             (skill_dir / "assets").mkdir()
             (skill_dir / "scripts" / "__pycache__").mkdir(parents=True)
             (skill_dir / "SKILL.md").write_text("skill\n", encoding="utf-8")
+            (skill_dir / "references" / "help.md").write_text("help\n", encoding="utf-8")
             (skill_dir / "references" / "guide.md").write_text("guide\n", encoding="utf-8")
             (skill_dir / "agents" / "openai.yaml").write_text("interface:\n", encoding="utf-8")
             (skill_dir / "assets" / "CREDITS.txt").write_text("credits\n", encoding="utf-8")
+            (skill_dir / "assets" / "UPSTREAM_LICENSE.txt").write_text(
+                "license\n", encoding="utf-8"
+            )
             (skill_dir / ".DS_Store").write_text("ignored\n", encoding="utf-8")
             (skill_dir / "scripts" / "helper.pyc").write_bytes(b"bytecode")
             (skill_dir / "scripts" / "__pycache__" / "helper.pyc").write_bytes(b"bytecode")
@@ -42,7 +46,9 @@ class PackageSkillsTests(unittest.TestCase):
                         "example-skill/SKILL.md",
                         "example-skill/agents/openai.yaml",
                         "example-skill/assets/CREDITS.txt",
+                        "example-skill/assets/UPSTREAM_LICENSE.txt",
                         "example-skill/references/guide.md",
+                        "example-skill/references/help.md",
                     ],
                 )
                 self.assertNotIn(".DS_Store", "\n".join(archive.namelist()))

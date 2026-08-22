@@ -21,6 +21,13 @@ REQUIRED_OPENAI_INTERFACE_FIELDS = {
     "default_prompt",
 }
 MENTION_PATTERN = re.compile(r"(?:\$|@)[a-z0-9][a-z0-9-]*", re.IGNORECASE)
+HELP_REFERENCE = "references/help.md"
+REQUIRED_HELP_HEADINGS = (
+    "## What this skill does",
+    "## Modes",
+    "## Start here",
+    "## Examples",
+)
 
 
 @dataclass(frozen=True)
@@ -154,6 +161,34 @@ def validate_eval(root: Path, skill_dir: Path) -> list[Issue]:
         if not isinstance(case, dict) or not isinstance(case.get("expect"), list) or not case["expect"]:
             issues.append(Issue(path, f"case {index} must contain non-empty expectations"))
 
+    help_cases = [case for case in cases if isinstance(case, dict) and case.get("mode") == "help"]
+    if not help_cases:
+        issues.append(Issue(path, "evaluation cases must include one case with mode 'help'"))
+    elif not any(case.get("request", "").strip().lower() == "help" for case in help_cases):
+        issues.append(Issue(path, "help-mode evaluation must include the bare request 'help'"))
+
+    return issues
+
+
+def validate_help_mode(skill_dir: Path, body: str) -> list[Issue]:
+    path = skill_dir / HELP_REFERENCE
+    issues: list[Issue] = []
+    if not path.is_file():
+        return [Issue(path, "missing references/help.md required for portable help mode")]
+
+    text = path.read_text(encoding="utf-8")
+    positions: list[int] = []
+    for heading in REQUIRED_HELP_HEADINGS:
+        position = text.find(heading)
+        if position < 0:
+            issues.append(Issue(path, f"missing required help heading {heading!r}"))
+        positions.append(position)
+    present_positions = [position for position in positions if position >= 0]
+    if present_positions != sorted(present_positions):
+        issues.append(Issue(path, "required help headings are out of order"))
+
+    if HELP_REFERENCE not in body:
+        issues.append(Issue(skill_dir / "SKILL.md", "SKILL.md must route help mode to references/help.md"))
     return issues
 
 
@@ -218,6 +253,7 @@ def validate_skill(skill_dir: Path) -> list[Issue]:
             issues.append(Issue(entry, "remove empty optional directories"))
 
     issues.extend(validate_openai_metadata(skill_dir))
+    issues.extend(validate_help_mode(skill_dir, body))
 
     return issues
 

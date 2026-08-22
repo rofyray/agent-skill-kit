@@ -11,6 +11,7 @@ Each skill must:
 - keep its description at 200 characters or fewer, state both capability and trigger boundary, and front-load the main use case;
 - use host-neutral instructions, relative paths, and progressive disclosure;
 - include `agents/openai.yaml` with concise UI metadata and an invocation-neutral default prompt;
+- route a portable natural-language help mode to `references/help.md`, with an explanation, complete mode catalog, starting guidance, and at least two examples per mode;
 - avoid assuming shell, network, local-file, browser, connector, or app-control access;
 - fail gracefully or state requirements when an optional script needs unavailable capabilities; and
 - include matching evaluation cases under `evals/<skill-name>/`.
@@ -37,6 +38,8 @@ The community `npx skills` installer targets coding-agent discovery directories.
 
 Descriptions remain the common implicit-routing mechanism, so they must work without client-specific syntax.
 
+After a skill is selected or named, `help` is the shared getting-started mode on every surface. It is plain conversation text, not a slash command. Each help response explains the skill, lists every mode, and supplies a starter plus another realistic example for each mode without executing the normal workflow. Ordinary requests such as “help me edit this image” remain action requests.
+
 ## Execution boundaries
 
 Skills provide instructions and resources, not permissions. Hosts decide whether a task can use files, a shell, the network, connectors, browser control, or desktop apps. A portable workflow must inspect available capabilities, request approval when required, and offer a non-executing fallback when practical.
@@ -60,5 +63,5 @@ Before calling a skill cross-client compatible:
 1. Run the repository validator and unit tests.
 2. Build its ZIP and inspect the archive root and contents.
 3. Inspect scripts for operating-system, shell, package, network, and permission assumptions.
-4. Test trigger, non-trigger, primary workflow, and degraded-capability cases in fresh sessions.
+4. Test trigger, non-trigger, help mode, primary workflow, and degraded-capability cases in fresh sessions.
 5. Exercise the skill on every available target surface and record meaningful differences in its evals.

@@ -7,6 +7,12 @@ description: Create photorealistic images and make precise edits that preserve e
 
 Create the requested image artifact when the host provides an image-generation or image-editing capability. Preserve source fidelity during edits and make every generated scene physically coherent.
 
+## Help mode
+
+When the user sends `help`, `show help`, `what can this skill do?`, or `how do I use this skill?` after selecting or naming this skill, read [the help guide](references/help.md). Return its explanation, modes, starting guidance, and examples without generating, editing, or revising an image. Include every named mode and at least two examples for each mode: one simple starter and one additional realistic example. Do not omit modes or examples for brevity. End by inviting the user to choose a mode or adapt an example.
+
+Do not confuse help mode with an action request such as “help me edit this image.”
+
 ## Choose the operation
 
 - **Create**: Generate a new image from a description.

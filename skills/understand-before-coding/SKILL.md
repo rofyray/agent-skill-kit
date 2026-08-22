@@ -7,6 +7,12 @@ description: Build evidence-backed understanding around code. Use when planning 
 
 Construct only the understanding needed to answer or act correctly. Inspect the real codebase, ask narrow questions, and let implementation follow from verified context rather than assumptions.
 
+## Help mode
+
+When the user sends `help`, `show help`, `what can this skill do?`, or `how do I use this skill?` after selecting or naming this skill, read [the help guide](references/help.md). Return its explanation, modes, starting guidance, and examples without inspecting or changing code. Include every named mode and at least two examples for each mode: one simple starter and one additional realistic example. Do not omit modes or examples for brevity. End by inviting the user to choose a mode or adapt an example.
+
+Do not confuse help mode with an action request such as “help me understand this function.”
+
 ## Choose the operation
 
 Infer the operation from the request; the user does not need to name a mode.

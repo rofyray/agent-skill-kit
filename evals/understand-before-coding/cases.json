@@ -94,6 +94,17 @@
       ]
     },
     {
+      "id": "help-mode",
+      "request": "help",
+      "mode": "help",
+      "expect": [
+        "Explains evidence-backed code understanding and the default read-only boundary without inspecting the repository",
+        "Lists understand, plan, implement, review, and document modes",
+        "Provides a starter and another realistic example for every mode",
+        "Explains how to begin with a repository, symbol, flow, feature, or diff"
+      ]
+    },
+    {
       "id": "non-trigger-prompt-drafting",
       "request": "Turn this product goal into a detailed prompt for another coding agent.",
       "expect": [

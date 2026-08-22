@@ -7,6 +7,12 @@ description: "Create, improve, or audit executable AI-agent briefs with context,
 
 Turn a request into a self-contained work brief that an agent can execute without silently guessing the assignment, the standard, or the required output.
 
+## Help mode
+
+When the user sends `help`, `show help`, `what can this skill do?`, or `how do I use this skill?` after selecting or naming this skill, read [the help guide](references/help.md). Return its explanation, modes, starting guidance, and examples without drafting, improving, auditing, or executing a brief. Include every named mode and at least two examples for each mode: one simple starter and one additional realistic example. Do not omit modes or examples for brevity. End by inviting the user to choose a mode or adapt an example.
+
+Do not confuse help mode with an action request such as “help me brief another agent.”
+
 ## Choose the operation
 
 - **Draft**: Build a brief from the user's request.

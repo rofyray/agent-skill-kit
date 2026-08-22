@@ -1,0 +1,39 @@
+CREDITS
+
+This skill is an Agent Skill Kit architectural rewrite based on and extending:
+
+Noam Segal, "Interview Coach"
+https://github.com/noamseg/interview-coach-skill
+
+Upstream snapshot reviewed and adapted:
+634a8dd8689e0420c21e5f0c8ae3cfa9e1a7ab7e
+
+Additional public proposals that informed this rewrite:
+
+- Dhiraj Bhat (@dbhat93), post-interview compound workflow and security work
+  https://github.com/noamseg/interview-coach-skill/pull/35
+- Emitt (@C6510), capability-fallback job URL intake
+  https://github.com/noamseg/interview-coach-skill/pull/56
+- Emitt (@C6510), Scan -> Tag -> Update -> Verify state saves
+  https://github.com/noamseg/interview-coach-skill/pull/57
+- Sean Devlin (@itsdevlin), per-interviewer one-pagers and candidate voice
+  https://github.com/noamseg/interview-coach-skill/pull/60
+- Brian Kling (@briankling), candidate-wide learning from every interaction
+  https://github.com/noamseg/interview-coach-skill/issues/41
+- @mtabz, bounded state and an authoritative Current Truth summary
+  https://github.com/noamseg/interview-coach-skill/issues/59
+
+The upstream project supplied valuable foundations including triage-before-
+template coaching, the five-dimension interview rubric, persistent candidate
+state, storybank and earned-secret methods, role-aware drills, transcript
+analysis, lifecycle commands, evidence discipline, and outcome calibration.
+
+This package reorganizes and substantially rewrites these foundations for the
+Agent Skill Kit portability contract. It adds capability-aware operation across
+coding agents and web/desktop hosts, bounded load-on-demand state, an
+authoritative Current Truth head, atomic verified state updates, global-profile
+learning, privacy and prompt-injection safeguards, and focused progressive
+disclosure.
+
+No affiliation with or endorsement by the upstream author or contributors is
+implied. See UPSTREAM_LICENSE.txt for the upstream MIT license.

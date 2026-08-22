@@ -9,6 +9,7 @@ A collection of portable [Agent Skills](https://agentskills.io) for Codex, Claud
 | [`build-and-maintain-a-second-brain`](skills/build-and-maintain-a-second-brain/) | Set up and operate a source-grounded Obsidian-compatible wiki with querying, health checks, recurring ingestion, and reviews. |
 | [`create-and-edit-images`](skills/create-and-edit-images/) | Create photorealistic images or make precise, physically believable edits while preserving every unrequested detail. |
 | [`craft-goal-driven-prompts`](skills/craft-goal-driven-prompts/) | Turn a goal into a structured agent prompt with measurable completion criteria and an optional evidence-driven improvement loop. |
+| [`interview-coach`](skills/interview-coach/) | Get adaptive, evidence-based coaching across role research, application materials, interview prep and practice, transcript analysis, progress, and negotiation. |
 | [`understand-before-coding`](skills/understand-before-coding/) | Build evidence-backed understanding for feature planning, minimal implementation, code explanation and review, impact tracing, and engineering documentation. |
 | [`write-agent-briefs`](skills/write-agent-briefs/) | Create, improve, or audit an executable AI-agent brief with clear context, constraints, verification, and deliverables. |
 
@@ -85,15 +86,11 @@ Agent Skill Kit is not yet publicly available as a plugin, so there is no suppor
 
 Supported hosts may also select a skill automatically when the request matches its description.
 
-### Simple starters
+### Get started with `help`
 
-After loading or selecting a skill, replace the bracketed text and send the matching starter:
+After selecting, mentioning, or otherwise loading any skill, send `help`. The skill will explain what it does, list every available mode, show how to begin, and provide at least two examples for every mode: a simple starter and a more detailed example. `help` is a portable mode, not a slash command.
 
-- **Build and maintain a second brain:** `Set up a source-grounded second brain in [folder or location] and guide me through the required choices.`
-- **Create and edit images:** `Help me create or edit [describe the image], asking only for details that materially affect the result.`
-- **Craft goal-driven prompts:** `Turn this goal into a detailed, ready-to-use prompt: [goal].`
-- **Understand before coding:** `Before changing code, inspect [feature or request] and explain the existing patterns, affected paths, and smallest safe approach.`
-- **Write agent briefs:** `Turn this task into a complete, executable agent brief: [task].`
+If the client does not keep the selected skill obvious in the conversation, name it with the request—for example, `Use interview-coach and show help.` A normal action request such as “help me edit this image” still runs the matching workflow; it is not treated as help mode.
 
 ## Permissions and safety
 

@@ -36,6 +36,17 @@
       ]
     },
     {
+      "id": "help-mode",
+      "request": "help",
+      "mode": "help",
+      "expect": [
+        "Explains how the skill turns goals into verifiable prompts without drafting one",
+        "Lists draft, loop-ready, and execute modes and distinguishes writing from execution",
+        "Provides a starter and another realistic example for every mode",
+        "Invites the user to choose a mode or provide a goal"
+      ]
+    },
+    {
       "id": "non-trigger-direct-task",
       "request": "Fix the typo in README.md.",
       "mode": "should-not-trigger",

@@ -33,6 +33,17 @@
       ]
     },
     {
+      "id": "help-mode",
+      "request": "help",
+      "mode": "help",
+      "expect": [
+        "Explains Context, Constraints, Composition, verification, and deliverable design without writing a brief",
+        "Lists draft, improve, and audit modes",
+        "Provides a starter and another realistic example for every mode",
+        "Clarifies that the skill normally returns a brief rather than performing the delegated task"
+      ]
+    },
+    {
       "id": "non-trigger-direct-question",
       "request": "What is the capital of Portugal?",
       "expect": [

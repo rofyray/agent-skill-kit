@@ -40,10 +40,22 @@ class ValidateSkillsTests(unittest.TestCase):
             f"{extra}"
             "---\n\n"
             "# Focused Task\n\n"
+            "## Help mode\n\n"
+            "When the user asks for help mode, read references/help.md and return its guide.\n\n"
             "1. Inspect the input.\n"
             "2. Produce and verify the result.\n"
         )
         (skill_dir / "SKILL.md").write_text(content, encoding="utf-8")
+        references_dir = skill_dir / "references"
+        references_dir.mkdir()
+        (references_dir / "help.md").write_text(
+            "# Focused Task Help\n\n"
+            "## What this skill does\n\nExplains the task.\n\n"
+            "## Modes\n\n- `run`: Perform the task.\n\n"
+            "## Start here\n\nProvide the input.\n\n"
+            "## Examples\n\n- `Run the focused task on this input.`\n",
+            encoding="utf-8",
+        )
         agents_dir = skill_dir / "agents"
         agents_dir.mkdir()
         (agents_dir / "openai.yaml").write_text(
@@ -57,7 +69,9 @@ class ValidateSkillsTests(unittest.TestCase):
         eval_dir.mkdir()
         (eval_dir / "cases.json").write_text(
             '{"skill": "' + directory + '", "cases": '
-            '[{"request": "Do the task", "expect": ["Verified result"]}]}\n',
+            '[{"request": "Do the task", "expect": ["Verified result"]}, '
+            '{"request": "help", "mode": "help", '
+            '"expect": ["Explains modes and examples without execution"]}]}\n',
             encoding="utf-8",
         )
         return skill_dir
@@ -109,6 +123,49 @@ class ValidateSkillsTests(unittest.TestCase):
         (self.root / "evals" / "focused-task" / "cases.json").unlink()
         messages = [issue.message for issue in validate_skills.validate_root(self.root)]
         self.assertTrue(any("missing evaluation cases" in message for message in messages))
+
+    def test_requires_help_reference(self) -> None:
+        skill_dir = self.write_skill("focused-task")
+        (skill_dir / "references" / "help.md").unlink()
+        messages = [issue.message for issue in validate_skills.validate_root(self.root)]
+        self.assertTrue(any("missing references/help.md" in message for message in messages))
+
+    def test_requires_help_route(self) -> None:
+        skill_dir = self.write_skill("focused-task")
+        skill_path = skill_dir / "SKILL.md"
+        skill_path.write_text(
+            skill_path.read_text(encoding="utf-8").replace(
+                "When the user asks for help mode, read references/help.md and return its guide.\n\n",
+                "",
+            ),
+            encoding="utf-8",
+        )
+        messages = [issue.message for issue in validate_skills.validate_root(self.root)]
+        self.assertTrue(any("must route help mode" in message for message in messages))
+
+    def test_requires_help_eval_case(self) -> None:
+        self.write_skill("focused-task")
+        eval_path = self.root / "evals" / "focused-task" / "cases.json"
+        eval_path.write_text(
+            '{"skill": "focused-task", "cases": '
+            '[{"request": "Do the task", "expect": ["Verified result"]}]}\n',
+            encoding="utf-8",
+        )
+        messages = [issue.message for issue in validate_skills.validate_root(self.root)]
+        self.assertTrue(any("mode 'help'" in message for message in messages))
+
+    def test_requires_bare_help_eval_request(self) -> None:
+        self.write_skill("focused-task")
+        eval_path = self.root / "evals" / "focused-task" / "cases.json"
+        eval_path.write_text(
+            '{"skill": "focused-task", "cases": '
+            '[{"request": "Do the task", "expect": ["Verified result"]}, '
+            '{"request": "Show the guide", "mode": "help", '
+            '"expect": ["Explains modes and examples without execution"]}]}\n',
+            encoding="utf-8",
+        )
+        messages = [issue.message for issue in validate_skills.validate_root(self.root)]
+        self.assertTrue(any("bare request 'help'" in message for message in messages))
 
     def test_requires_readme_catalog_entry(self) -> None:
         self.write_skill("focused-task")
