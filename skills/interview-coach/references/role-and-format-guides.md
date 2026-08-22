@@ -74,7 +74,7 @@ Evaluate narrative arc, content density, audience calibration, evidence, timing,
 
 ### Compensation or offer call
 
-Treat as a distinct negotiation interaction. Score listening, information gathering, composure, clarity of ask, evidence, tradeoffs, and next-step control—not the dollar outcome alone.
+Treat as a distinct negotiation interaction. Score listening, information gathering, composure, clarity of ask, evidence, tradeoffs, and next-step control - not the dollar outcome alone.
 
 ## Interviewer perspectives
 

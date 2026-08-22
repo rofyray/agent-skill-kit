@@ -1,4 +1,4 @@
-# {{VAULT_NAME}} — Second Brain Engine
+# {{VAULT_NAME}} - Second Brain Engine
 
 This vault is a persistent, source-grounded knowledge wiki. Obsidian is an optional interface; the markdown files are the system of record.
 

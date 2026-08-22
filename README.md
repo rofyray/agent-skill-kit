@@ -1,101 +1,96 @@
 # Agent Skill Kit
 
-A collection of portable [Agent Skills](https://agentskills.io) for Codex, Claude Code, Cursor, Claude Web/Desktop/Cowork, and ChatGPT. Current distribution supports coding-agent installs and individual skill ZIP uploads in Claude and ChatGPT Web. A whole-collection ChatGPT plugin is planned.
+Portable [Agent Skills](https://agentskills.io) for Codex, Claude Code, Cursor, Gemini CLI, Claude Web/Desktop/Cowork, and ChatGPT.
 
 ## Skills
 
 | Skill | Description |
 | --- | --- |
-| [`build-and-maintain-a-second-brain`](skills/build-and-maintain-a-second-brain/) | Set up and operate a source-grounded Obsidian-compatible wiki with querying, health checks, recurring ingestion, and reviews. |
-| [`create-and-edit-images`](skills/create-and-edit-images/) | Create photorealistic images or make precise, physically believable edits while preserving every unrequested detail. |
-| [`craft-goal-driven-prompts`](skills/craft-goal-driven-prompts/) | Turn a goal into a structured agent prompt with measurable completion criteria and an optional evidence-driven improvement loop. |
-| [`interview-coach`](skills/interview-coach/) | Get adaptive, evidence-based coaching across role research, application materials, interview prep and practice, transcript analysis, progress, and negotiation. |
-| [`understand-before-coding`](skills/understand-before-coding/) | Build evidence-backed understanding for feature planning, minimal implementation, code explanation and review, impact tracing, and engineering documentation. |
-| [`write-agent-briefs`](skills/write-agent-briefs/) | Create, improve, or audit an executable AI-agent brief with clear context, constraints, verification, and deliverables. |
+| [`build-and-maintain-a-second-brain`](skills/build-and-maintain-a-second-brain/) | Build and maintain a source-grounded, Obsidian-compatible wiki with ingestion, querying, health checks, and reviews. |
+| [`create-and-edit-images`](skills/create-and-edit-images/) | Create photorealistic images or make precise edits while preserving unrequested details. |
+| [`craft-goal-driven-prompts`](skills/craft-goal-driven-prompts/) | Turn a goal into a structured prompt with completion criteria and an optional improvement loop. |
+| [`interview-coach`](skills/interview-coach/) | Coach role research, applications, interview prep, practice, debriefs, progress, and negotiation. |
+| [`understand-before-coding`](skills/understand-before-coding/) | Understand, plan, implement, review, and document code changes using repository evidence. |
+| [`write-agent-briefs`](skills/write-agent-briefs/) | Create, improve, or audit executable agent briefs with clear constraints, verification, and deliverables. |
 
 ## Install
 
-### Claude Web / Desktop / Cowork
+### Claude Web/Desktop/Cowork
 
-1. Enable **Code execution and file creation** in **Settings > Capabilities**. Team and Enterprise owners must also enable Skills for the organization. See Anthropic's [skills setup guide](https://support.claude.com/en/articles/12512180-use-skills-in-claude).
-2. Download the ZIP for the individual skill from [GitHub Releases](https://github.com/rofyray/agent-skill-kit/releases).
-3. In Claude, open **Customize > Skills**, click **+**, choose **Create skill > Upload a skill**, and select the downloaded ZIP.
-4. Toggle the skill on if it is not already enabled. Claude can select it automatically, or you can ask for it by name.
-
-Tagged releases publish one ZIP per skill. Each archive contains exactly one correctly rooted skill folder for Claude's uploader.
+1. Enable **Code execution and file creation** in **Settings > Capabilities**. Team and Enterprise owners must also enable Skills. See Anthropic's [setup guide](https://support.claude.com/en/articles/12512180-use-skills-in-claude).
+2. Download an individual skill ZIP from [GitHub Releases](https://github.com/rofyray/agent-skill-kit/releases).
+3. Open **Customize > Skills**, click **+**, choose **Create skill > Upload a skill**, and select the ZIP. Ensure the skill is enabled.
 
 ### ChatGPT Web
 
-1. Download the ZIP for the individual skill from [GitHub Releases](https://github.com/rofyray/agent-skill-kit/releases).
-2. Open ChatGPT in a web browser and select **Plugins** in the sidebar.
-3. Open the **Skills** tab, click **+**, and choose **Upload from your computer**.
-4. Select or drag in the individual skill ZIP.
-5. In ChatGPT or Work, type `@` and select the skill, or let ChatGPT choose it from your request.
+1. Download an individual skill ZIP from [GitHub Releases](https://github.com/rofyray/agent-skill-kit/releases).
+2. Open **Plugins > Skills**, click **+**, and choose **Upload from your computer**.
+3. Select the ZIP, then type `@` to choose the skill or let ChatGPT select it automatically.
 
-This is the currently verified manual-upload path. OpenAI's [skills documentation](https://learn.chatgpt.com/docs/build-skills) also describes standalone skills in the desktop app, but it does not currently document whether skills uploaded on the web sync to desktop. If the uploaded skill does not appear there, use it in the web app.
+Web upload is verified. Web-to-desktop skill sync is not, so use ChatGPT Web if the skill does not appear in the desktop app.
 
 ### Coding agents
 
-The community [`skills` CLI](https://github.com/vercel-labs/skills) installs skills into coding-agent discovery directories. It does not install skills into a Claude or ChatGPT account.
+The community [`skills` CLI](https://github.com/vercel-labs/skills) installs skills into coding-agent discovery directories.
 
-#### Install one skill
+#### One skill
 
 ```bash
 npx skills add rofyray/agent-skill-kit --skill craft-goal-driven-prompts
 ```
 
-Choose specific clients when needed:
+Target specific clients when needed:
 
 ```bash
-npx skills add rofyray/agent-skill-kit --skill craft-goal-driven-prompts -a codex -a claude-code -a cursor
+npx skills add rofyray/agent-skill-kit --skill craft-goal-driven-prompts -a codex -a claude-code -a cursor -a gemini-cli
 ```
 
-Add `-g` for a user-wide installation instead of the current project.
-
-#### Install the whole collection
+#### Whole collection
 
 ```bash
-npx skills add rofyray/agent-skill-kit --skill '*' -a codex -a claude-code -a cursor
+npx skills add rofyray/agent-skill-kit --skill '*' -a codex -a claude-code -a cursor -a gemini-cli
 ```
 
-Use `--all` to install every skill for every coding agent supported by the CLI without interactive selection.
+Add `-g` for user-wide installation. Use `--all` to install every skill for every supported coding agent.
+
+[Gemini CLI Agent Skills](https://geminicli.com/docs/cli/using-agent-skills/) require version 0.26.0 or later. Update with `npm install -g @google/gemini-cli@latest`, trust the workspace, then run `/skills reload` and `/skills list`.
 
 #### Manual installation
 
-Clone the repository, then copy or symlink the desired folder from [`skills/`](skills/) into a discovery directory:
+Copy or symlink a complete folder from [`skills/`](skills/) into a discovery directory:
 
 | Client | User-wide | Project-local |
 | --- | --- | --- |
 | Codex and Cursor | `~/.agents/skills/<skill-name>/` | `.agents/skills/<skill-name>/` |
 | Claude Code | `~/.claude/skills/<skill-name>/` | `.claude/skills/<skill-name>/` |
+| Gemini CLI | `~/.gemini/skills/<skill-name>/` or `~/.agents/skills/<skill-name>/` | `.gemini/skills/<skill-name>/` or `.agents/skills/<skill-name>/` |
 
-The installed folder must retain `SKILL.md` and every referenced resource.
+Keep `SKILL.md` and every referenced resource together.
 
-### ChatGPT Desktop / Work
+### ChatGPT Desktop/Work
 
-Agent Skill Kit is not yet publicly available as a plugin, so there is no supported whole-collection installation for ChatGPT Desktop/Work. Importing a Claude Code or Cursor setup is not an account-level skill installer and is no longer recommended here. A single plugin containing the full collection is planned; until it is published, use the individual [ChatGPT Web](#chatgpt-web) upload flow above.
+No whole-collection plugin is available yet. Use individual skill uploads in [ChatGPT Web](#chatgpt-web).
+
+### Gemini Web
+
+Standalone Agent Skill installation is not currently documented.
 
 ## Use a skill
 
-| Client | Explicit use |
+| Client | How to use it |
 | --- | --- |
-| ChatGPT Web | Type `@`, select the skill, then describe the task. |
-| Codex CLI / IDE | Type `$` and select the skill, or run `/skills`. |
-| Claude Web / Desktop / Cowork | Enable the skill and ask Claude to use it by name. |
-| Claude Code / Cursor | Select or mention the skill by name using the client's skill UI. |
-
-Supported hosts may also select a skill automatically when the request matches its description.
+| ChatGPT Web | Type `@`, select the skill, and describe the task. |
+| Codex CLI/IDE | Type `$` and select the skill, or run `/skills`. |
+| Gemini CLI | Ask by name or allow automatic activation, then approve it. |
+| Claude Web/Desktop/Cowork | Enable the skill and ask for it by name. |
+| Claude Code/Cursor | Select or mention the skill by name. |
 
 ### Get started with `help`
 
-After selecting, mentioning, or otherwise loading any skill, send `help`. The skill will explain what it does, list every available mode, show how to begin, and provide at least two examples for every mode: a simple starter and a more detailed example. `help` is a portable mode, not a slash command.
-
-If the client does not keep the selected skill obvious in the conversation, name it with the request—for example, `Use interview-coach and show help.` A normal action request such as “help me edit this image” still runs the matching workflow; it is not treated as help mode.
+After selecting or naming a skill, send `help` to see its purpose, modes, and examples. For example: `Use interview-coach and show help.`
 
 ## Permissions and safety
 
-A skill supplies a workflow; it does not grant shell access, file access, network access, connectors, or permission to control apps. Those capabilities depend on the host, environment, organization policy, and approvals active for the task.
+Skills provide instructions, not permissions. File, shell, network, browser, connector, and app access depend on the host and user approval. Review third-party skills before enabling them.
 
-Review third-party skill instructions, scripts, and bundled resources before enabling them.
-
-See [tool compatibility](docs/tool-compatibility.md) for the shared authoring contract. See [CONTRIBUTING.md](CONTRIBUTING.md) to add or improve a skill.
+Maintainers: [tool compatibility](docs/tool-compatibility.md) and [contributing](CONTRIBUTING.md).

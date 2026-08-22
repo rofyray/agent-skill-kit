@@ -35,7 +35,7 @@ Keep the four state files private by default. If the workspace is a Git reposito
 Keep this file compact enough to read in full at every session start.
 
 ```markdown
-# Interview Coaching State — [Candidate]
+# Interview Coaching State - [Candidate]
 
 Last updated: YYYY-MM-DD
 
@@ -45,10 +45,10 @@ Last updated: YYYY-MM-DD
 - Conversion thesis: [what evidence currently says helps or hurts]
 - Primary bottleneck: [latest synthesis]
 - Secondary bottleneck: [latest synthesis or none]
-- Calibration tendency: [accurate / over-rates / under-rates / unknown]
+- Calibration tendency: [accurate/over-rates/under-rates/unknown]
 - Target filters: [role, level, domain, location, constraints]
 - Live pipeline: [one line per active loop]
-- Open corrections — do not relapse: [confirmed corrections]
+- Open corrections - do not relapse: [confirmed corrections]
 
 ## Profile
 - Target roles and level:
@@ -86,7 +86,7 @@ Last updated: YYYY-MM-DD
 | ID | Title | Competencies | Strength | Last used | Evidence status |
 
 ## Story Details
-### S001 — [Title]
+### S001 - [Title]
 - Situation:
 - Task:
 - Actions:
@@ -96,7 +96,7 @@ Last updated: YYYY-MM-DD
 - Earned secret:
 - Competencies:
 - Risks or unverifiable claims:
-- Versions: [30s / 60s / 90s / full]
+- Versions: [30s/60s/90s/full]
 ```
 
 Use stable story IDs. Never create facts to complete STAR. Mark missing evidence as a gap.
@@ -107,7 +107,7 @@ Use stable story IDs. Never create facts to complete STAR. Mark missing evidence
 # Interview Coaching Loops
 
 ## Active Loops
-### [Company] — [Role]
+### [Company] - [Role]
 - Status and next date:
 - Role source and captured date:
 - Fit verdict and confidence:

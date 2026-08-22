@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Validate the catalog's Codex, Claude, Cursor, ChatGPT, and Cowork contract."""
+"""Validate the catalog's Codex, Claude, Cursor, Gemini, ChatGPT, and Cowork contract."""
 
 from __future__ import annotations
 
 import argparse
 import json
 import re
+import subprocess
 import sys
 from dataclasses import dataclass
 from pathlib import Path
@@ -28,6 +29,9 @@ REQUIRED_HELP_HEADINGS = (
     "## Start here",
     "## Examples",
 )
+TEXT_STYLE_EXCLUDED_PARTS = {".git", "__pycache__", "dist", "output"}
+EM_DASH = "\u2014"
+WHITESPACE_ADJACENT_TO_SLASH = re.compile(r"\s/|/\s")
 
 
 @dataclass(frozen=True)
@@ -111,7 +115,7 @@ def parse_openai_interface(path: Path) -> tuple[dict[str, str], list[Issue]]:
 
 
 def validate_openai_metadata(skill_dir: Path) -> list[Issue]:
-    path = skill_dir / "agents" / "openai.yaml"
+    path = skill_dir/"agents"/"openai.yaml"
     if not path.is_file():
         return [Issue(path, "missing agents/openai.yaml required for ChatGPT and Codex presentation")]
 
@@ -137,7 +141,7 @@ def validate_openai_metadata(skill_dir: Path) -> list[Issue]:
 
 
 def validate_eval(root: Path, skill_dir: Path) -> list[Issue]:
-    path = root / "evals" / skill_dir.name / "cases.json"
+    path = root/"evals"/skill_dir.name/"cases.json"
     if not path.is_file():
         return [Issue(path, "missing evaluation cases for this skill")]
 
@@ -171,7 +175,7 @@ def validate_eval(root: Path, skill_dir: Path) -> list[Issue]:
 
 
 def validate_help_mode(skill_dir: Path, body: str) -> list[Issue]:
-    path = skill_dir / HELP_REFERENCE
+    path = skill_dir/HELP_REFERENCE
     issues: list[Issue] = []
     if not path.is_file():
         return [Issue(path, "missing references/help.md required for portable help mode")]
@@ -188,15 +192,55 @@ def validate_help_mode(skill_dir: Path, body: str) -> list[Issue]:
         issues.append(Issue(path, "required help headings are out of order"))
 
     if HELP_REFERENCE not in body:
-        issues.append(Issue(skill_dir / "SKILL.md", "SKILL.md must route help mode to references/help.md"))
+        issues.append(Issue(skill_dir/"SKILL.md", "SKILL.md must route help mode to references/help.md"))
+    return issues
+
+
+def repository_text_paths(root: Path) -> list[Path]:
+    try:
+        result = subprocess.run(
+            ["git", "-C", str(root), "ls-files", "-c", "-o", "--exclude-standard", "-z"],
+            check=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+        )
+        relative_paths = [item for item in result.stdout.decode("utf-8").split("\0") if item]
+        return sorted(
+            path
+            for relative in relative_paths
+            if (path := root/relative).is_file()
+        )
+    except (OSError, subprocess.CalledProcessError, UnicodeDecodeError):
+        return sorted(
+            path
+            for path in root.rglob("*")
+            if path.is_file()
+            and not any(part in TEXT_STYLE_EXCLUDED_PARTS for part in path.relative_to(root).parts)
+        )
+
+
+def validate_text_style(root: Path) -> list[Issue]:
+    issues: list[Issue] = []
+    for path in repository_text_paths(root):
+        try:
+            lines = path.read_text(encoding="utf-8").splitlines()
+        except (OSError, UnicodeDecodeError):
+            continue
+        for line_number, line in enumerate(lines, start=1):
+            if EM_DASH in line:
+                issues.append(Issue(path, f"line {line_number} contains a forbidden em dash"))
+            if WHITESPACE_ADJACENT_TO_SLASH.search(line):
+                issues.append(
+                    Issue(path, f"line {line_number} contains whitespace adjacent to a forward slash")
+                )
     return issues
 
 
 def validate_skill(skill_dir: Path) -> list[Issue]:
     issues: list[Issue] = []
-    skill_file = skill_dir / "SKILL.md"
+    skill_file = skill_dir/"SKILL.md"
     if not skill_file.is_file():
-        return [Issue(skill_dir, "each direct child of skills/ must contain SKILL.md")]
+        return [Issue(skill_dir, "each direct child of the skills directory must contain SKILL.md")]
 
     fields, parse_issues, body = parse_frontmatter(skill_file)
     issues.extend(parse_issues)
@@ -260,15 +304,15 @@ def validate_skill(skill_dir: Path) -> list[Issue]:
 
 def validate_root(root: Path) -> list[Issue]:
     root = root.resolve()
-    skills_dir = root / "skills"
+    skills_dir = root/"skills"
     if not skills_dir.is_dir():
         return [Issue(skills_dir, "missing skills directory")]
 
-    issues: list[Issue] = []
+    issues: list[Issue] = validate_text_style(root)
     direct_skill_dirs = sorted(
         path for path in skills_dir.iterdir() if path.is_dir() and not path.name.startswith(".")
     )
-    readme_path = root / "README.md"
+    readme_path = root/"README.md"
     readme = readme_path.read_text(encoding="utf-8") if readme_path.is_file() else ""
     for skill_dir in direct_skill_dirs:
         issues.extend(validate_skill(skill_dir))
@@ -280,7 +324,7 @@ def validate_root(root: Path) -> list[Issue]:
         path for path in skills_dir.iterdir() if path.is_file() and not path.name.startswith(".")
     ]
     for path in direct_files:
-        issues.append(Issue(path, "skills/ may contain only skill directories"))
+        issues.append(Issue(path, "the skills directory may contain only skill directories"))
 
     nested_skill_files = {
         path.resolve()
@@ -312,7 +356,7 @@ def main() -> int:
 
     skill_count = sum(
         1
-        for path in (args.root / "skills").iterdir()
+        for path in (args.root/"skills").iterdir()
         if path.is_dir() and not path.name.startswith(".")
     )
     print(f"Validated {skill_count} skill(s).")

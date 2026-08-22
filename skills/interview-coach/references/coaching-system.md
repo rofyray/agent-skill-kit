@@ -136,6 +136,6 @@ Learn from successful outcomes as aggressively as failures. Record which stories
 
 End a substantive workflow with:
 
-`**Recommended next**: [mode] — [state-aware reason]. **Alternatives**: [mode], [mode].`
+`**Recommended next**: [mode] - [state-aware reason]. **Alternatives**: [mode], [mode].`
 
 Choose from current time pressure, the primary bottleneck, unprocessed evidence, storybank gaps, and live interview loops. Do not mechanically recommend the next item in a fixed menu.

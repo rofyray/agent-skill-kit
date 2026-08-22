@@ -6,7 +6,7 @@ Use this reference to answer help mode. Present the explanation, modes, start gu
 
 This skill creates photorealistic images and makes precise, physically believable edits. For edits, it inspects the source, defines the exact change, preserves every unrequested detail, integrates the change through correct scale, perspective, lighting, contact, texture, and occlusion, and verifies the resulting artifact when visual inspection is available.
 
-When the host has an image tool, the skill creates the artifact rather than returning only instructions. When the user wants a prompt—or no suitable tool exists—it produces a structured prompt and clearly states that no image was generated.
+When the host has an image tool, the skill creates the artifact rather than returning only instructions. When the user wants a prompt - or no suitable tool exists - it produces a structured prompt and clearly states that no image was generated.
 
 ## Modes
 

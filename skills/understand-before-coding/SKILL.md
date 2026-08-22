@@ -1,6 +1,6 @@
 ---
 name: understand-before-coding
-description: Build evidence-backed understanding around code. Use when planning features, explaining or reviewing code, tracing impacts, implementing minimally, or documenting changes—not for mechanical edits.
+description: Build evidence-backed understanding around code. Use when planning features, explaining or reviewing code, tracing impacts, implementing minimally, or documenting changes - not for mechanical edits.
 ---
 
 # Understand Before Coding

@@ -90,7 +90,7 @@ The skill will ask one high-value question at a time. Browsing, file persistence
 | `round` | `Capture my impressions first, then analyze this transcript and update the whole post-interview loop.` | `Run the full memory-only round workflow now and leave transcript scoring for later.` |
 | `feedback` | `Record this written recruiter feedback and show what it changes in our coaching hypothesis.` | `We advanced despite a low practice score; update the outcome and check calibration.` |
 | `progress` | `Review my progress across real interviews and choose the next two priorities.` | `Check whether scores predict outcomes or whether targeting and role fit explain the gap.` |
-| `reflect` | `I accepted an offer; create a retrospective and help me decide what state to retain.` | `I am pausing this search—summarize durable learning without forcing a success narrative.` |
+| `reflect` | `I accepted an offer; create a retrospective and help me decide what state to retain.` | `I am pausing this search - summarize durable learning without forcing a success narrative.` |
 | `thankyou` | `Draft distinct thank-you notes for these two interviewers using real callbacks.` | `Write a concise follow-up after the hiring-manager round without over-correcting my answers.` |
 | `salary` | `Prepare me for the recruiter's salary-expectations question tomorrow.` | `Build a sourced compensation range and scripts for pushback without revealing unnecessary current pay.` |
 | `negotiate` | `Analyze this offer and build a prioritized ask ladder for base, equity, and flexibility.` | `Practice the offer call and flag the non-compete and equity questions for qualified review.` |

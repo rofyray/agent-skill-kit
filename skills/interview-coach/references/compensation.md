@@ -43,7 +43,7 @@ Check:
 - severance, non-compete or restrictive terms, IP, arbitration, and contingencies for qualified review;
 - response deadline and approval chain.
 
-For multiple offers, compare like with like and include role quality, growth, risk, and candidate preferences—not just a single total-comp number.
+For multiple offers, compare like with like and include role quality, growth, risk, and candidate preferences - not just a single total-comp number.
 
 ## Build negotiation strategy
 

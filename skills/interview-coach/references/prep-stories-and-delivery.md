@@ -106,7 +106,7 @@ Run one question and one answer at a time. Offer a warmup when the candidate is 
 
 ## Mock interviews
 
-Confirm format, target role, duration, difficulty, whether feedback comes after each answer or at the end, and whether the candidate wants voice or text. Ask only the highest-value missing setup question per turn. For urgent sessions, state safe defaults—realistic difficulty, text, and feedback at the end—and invite correction instead of spending several turns on setup.
+Confirm format, target role, duration, difficulty, whether feedback comes after each answer or at the end, and whether the candidate wants voice or text. Ask only the highest-value missing setup question per turn. For urgent sessions, state safe defaults - realistic difficulty, text, and feedback at the end - and invite correction instead of spending several turns on setup.
 
 Run 4–6 questions by default. Stay in interviewer role during the mock. Ask one question at a time; use realistic follow-ups and do not leak the rubric. For panels, identify speakers and vary their lanes without caricature. For mixed interviews, announce only real format transitions an interviewer would make.
 

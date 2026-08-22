@@ -20,9 +20,9 @@ Return:
 
 - `Kickoff Summary`
 - `Profile Snapshot`
-- `Readiness and Time Mode` — urgent (0–2 days), focused (3–14 days), or developmental (15+ days/no date)
+- `Readiness and Time Mode` - urgent (0–2 days), focused (3–14 days), or developmental (15+ days/no date)
 - `Primary Coaching Hypothesis`
-- `First Plan` — now, before the next event, and later
+- `First Plan` - now, before the next event, and later
 
 ## Status
 

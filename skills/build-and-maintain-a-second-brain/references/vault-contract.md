@@ -6,13 +6,13 @@ Use this contract when creating, adapting, or validating a second-brain vault.
 
 ```text
 <vault>/
-├── raw/                         # Immutable source material
-│   ├── assets/                  # Locally captured source images and attachments
-│   └── scheduled/               # Versioned captures from approved recurring sources
-├── wiki/                        # Agent-maintained derived knowledge
+├── raw/: immutable source material
+│   ├── assets/: locally captured source images and attachments
+│   └── scheduled/: versioned captures from approved recurring sources
+├── wiki/: agent-maintained derived knowledge
 ├── reports/
-│   ├── lint/                    # Dated health reports
-│   └── reviews/                 # Dated periodic reviews
+│   ├── lint/: dated health reports
+│   └── reviews/: dated periodic reviews
 ├── automation/
 │   ├── lint-wiki.md             # Recurring lint prompt
 │   ├── recurring-ingest.md      # Recurring source-ingest prompt
@@ -110,7 +110,7 @@ Every factual page needs at least one pointer to raw evidence. Derived wiki page
 `index.md` is content-oriented, not chronological. Group pages by type or domain and list each page once:
 
 ```markdown
-- [[page-name]] — One-line summary. Updated YYYY-MM-DD; 3 sources.
+- [[page-name]] - One-line summary. Updated YYYY-MM-DD; 3 sources.
 ```
 
 Update the index after wiki edits. Do not treat the index as evidence.

@@ -4,7 +4,7 @@ Use this reference to answer help mode. Present the explanation, modes, start gu
 
 ## What this skill does
 
-This skill turns work into a self-contained brief another AI agent can execute without silently guessing the objective, context, inputs, constraints, authority, verification, or required output. It uses the three C's—Context, Constraints, and Composition—and makes completion depend on observable evidence rather than the executing agent's confidence.
+This skill turns work into a self-contained brief another AI agent can execute without silently guessing the objective, context, inputs, constraints, authority, verification, or required output. It uses the three C's - Context, Constraints, and Composition - and makes completion depend on observable evidence rather than the executing agent's confidence.
 
 It normally returns the brief instead of performing the delegated task. If the user also wants execution, that must be requested explicitly and remains subject to the active environment and permissions.
 

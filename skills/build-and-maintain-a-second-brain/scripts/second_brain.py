@@ -18,7 +18,7 @@ from urllib.parse import parse_qsl, urlsplit
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-TEMPLATE_DIR = SCRIPT_DIR.parent / "assets" / "vault-template"
+TEMPLATE_DIR = SCRIPT_DIR.parent/"assets"/"vault-template"
 MANIFEST_VERSION = 1
 REQUIRED_ROOT_FILES = (
     "SECOND_BRAIN.md",
@@ -176,13 +176,13 @@ def init_vault(args: argparse.Namespace) -> int:
         ".cursor/rules",
     )
     for relative in directories:
-        destination = root / relative
+        destination = root/relative
         if destination.exists() and not destination.is_dir():
             raise VaultError(f"required directory path is occupied by a file: {destination}")
         destination.mkdir(parents=True, exist_ok=True)
 
     existing_config: dict[str, Any] = {}
-    config_path = root / ".second-brain/config.json"
+    config_path = root/".second-brain/config.json"
     if config_path.is_file():
         try:
             loaded = json.loads(config_path.read_text(encoding="utf-8"))
@@ -226,15 +226,15 @@ def init_vault(args: argparse.Namespace) -> int:
 
     outcomes: dict[str, str] = {}
     for source_name, destination_name in template_map.items():
-        source = TEMPLATE_DIR / source_name
-        destination = root / destination_name
+        source = TEMPLATE_DIR/source_name
+        destination = root/destination_name
         outcomes[destination_name] = create_or_preserve(
             destination,
             render_template(source, replacements),
             appendable=destination_name in {"index.md", "log.md"},
         )
 
-    helper_destination = root / "automation/second_brain.py"
+    helper_destination = root/"automation/second_brain.py"
     outcomes["automation/second_brain.py"] = create_or_preserve(
         helper_destination,
         Path(__file__).read_text(encoding="utf-8"),
@@ -253,24 +253,24 @@ def init_vault(args: argparse.Namespace) -> int:
         "created": replacements["CREATED_DATE"],
     }
     outcomes[".second-brain/config.json"] = create_or_preserve(
-        root / ".second-brain/config.json",
+        root/".second-brain/config.json",
         json.dumps(config, indent=2, sort_keys=True) + "\n",
     )
     empty_manifest = {"version": MANIFEST_VERSION, "algorithm": "sha256", "files": {}}
     outcomes[".second-brain/raw-manifest.json"] = create_or_preserve(
-        root / ".second-brain/raw-manifest.json",
+        root/".second-brain/raw-manifest.json",
         json.dumps(empty_manifest, indent=2, sort_keys=True) + "\n",
         appendable=True,
     )
     empty_ingest_schedules = {"version": 1, "sources": []}
     outcomes[".second-brain/ingest-schedules.json"] = create_or_preserve(
-        root / ".second-brain/ingest-schedules.json",
+        root/".second-brain/ingest-schedules.json",
         json.dumps(empty_ingest_schedules, indent=2, sort_keys=True) + "\n",
         appendable=True,
     )
 
     if outcomes.get("log.md") == "created":
-        log_path = root / "log.md"
+        log_path = root/"log.md"
         with log_path.open("a", encoding="utf-8", newline="\n") as stream:
             stream.write(
                 f"\n## [{date.today().isoformat()}] setup | {replacements['VAULT_NAME']}\n\n"
@@ -297,7 +297,7 @@ def sha256(path: Path) -> str:
 
 
 def raw_files(root: Path) -> tuple[list[Path], list[str]]:
-    raw = root / "raw"
+    raw = root/"raw"
     if not raw.is_dir():
         return [], []
     files: list[Path] = []
@@ -313,7 +313,7 @@ def raw_files(root: Path) -> tuple[list[Path], list[str]]:
 
 
 def load_manifest(root: Path) -> dict[str, Any]:
-    path = root / ".second-brain/raw-manifest.json"
+    path = root/".second-brain/raw-manifest.json"
     if not path.is_file():
         return {"version": MANIFEST_VERSION, "algorithm": "sha256", "files": {}}
     try:
@@ -354,11 +354,11 @@ def record_raw(args: argparse.Namespace) -> int:
         selected_paths = set(current)
     else:
         selected_paths: set[str] = set()
-        raw_root = (root / "raw").resolve()
+        raw_root = (root/"raw").resolve()
         for supplied in args.sources:
             candidate = Path(supplied).expanduser()
             if not candidate.is_absolute():
-                candidate = root / candidate
+                candidate = root/candidate
             if candidate.is_symlink():
                 raise VaultError(f"raw source symlinks are not supported: {candidate}")
             resolved = candidate.resolve(strict=True)
@@ -374,7 +374,7 @@ def record_raw(args: argparse.Namespace) -> int:
         manifest["files"][path] = current[path]
     if new_paths:
         atomic_write(
-            root / ".second-brain/raw-manifest.json",
+            root/".second-brain/raw-manifest.json",
             json.dumps(manifest, indent=2, sort_keys=True) + "\n",
         )
         integrity = raw_integrity(root, manifest)
@@ -473,7 +473,7 @@ def valid_iso_date(value: Any) -> bool:
 
 def allowed_page_types(root: Path) -> set[str]:
     allowed = set(DEFAULT_PAGE_TYPES)
-    config_path = root / ".second-brain/config.json"
+    config_path = root/".second-brain/config.json"
     if not config_path.is_file():
         return allowed
     try:
@@ -488,9 +488,9 @@ def allowed_page_types(root: Path) -> set[str]:
 
 def source_locator_issues(root: Path, sources: Any, manifest: dict[str, Any]) -> list[str]:
     if not isinstance(sources, list) or not sources:
-        return ["sources must be a non-empty list of raw/ locators"]
+        return ["sources must be a non-empty list of locators under the raw directory"]
     findings: list[str] = []
-    raw_root = (root / "raw").resolve()
+    raw_root = (root/"raw").resolve()
     recorded = manifest.get("files", {})
     for value in sources:
         if not isinstance(value, str):
@@ -503,7 +503,7 @@ def source_locator_issues(root: Path, sources: Any, manifest: dict[str, Any]) ->
             continue
         candidate = root.joinpath(*pure.parts)
         cursor = root
-        if any((cursor := cursor / part).is_symlink() for part in pure.parts):
+        if any((cursor := cursor/part).is_symlink() for part in pure.parts):
             findings.append(f"source locator traverses a symlink: {value}")
             continue
         try:
@@ -637,7 +637,7 @@ def validate_ingest_schedule_data(data: Any) -> list[str]:
 
 
 def ingest_schedule_issues(root: Path) -> list[str]:
-    path = root / ".second-brain/ingest-schedules.json"
+    path = root/".second-brain/ingest-schedules.json"
     if not path.is_file():
         return []
     try:
@@ -653,7 +653,7 @@ def canonical_json_digest(value: Any) -> str:
 
 
 def load_ingest_schedule_data(root: Path) -> dict[str, Any]:
-    path = root / ".second-brain/ingest-schedules.json"
+    path = root/".second-brain/ingest-schedules.json"
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
     except FileNotFoundError as exc:
@@ -701,7 +701,7 @@ def ingest_checkpoint(args: argparse.Namespace) -> int:
     if secret_paths:
         raise VaultError("checkpoint contains credential-like fields: " + ", ".join(secret_paths))
 
-    lock_path = root / ".second-brain/ingest-schedules.lock"
+    lock_path = root/".second-brain/ingest-schedules.lock"
     try:
         lock_fd = os.open(lock_path, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
     except FileExistsError as exc:
@@ -732,7 +732,7 @@ def ingest_checkpoint(args: argparse.Namespace) -> int:
         if issues:
             raise VaultError("checkpoint update would invalidate configuration: " + "; ".join(issues))
         atomic_write(
-            root / ".second-brain/ingest-schedules.json",
+            root/".second-brain/ingest-schedules.json",
             json.dumps(data, indent=2, sort_keys=True) + "\n",
         )
         print_report(
@@ -787,7 +787,7 @@ def resolve_link(target: str, by_relative: dict[str, Path], by_name: dict[str, l
 def scan_vault(args: argparse.Namespace) -> int:
     root = vault_path(args.vault)
     require_vault(root)
-    missing_root = [relative for relative in REQUIRED_ROOT_FILES if not (root / relative).is_file()]
+    missing_root = [relative for relative in REQUIRED_ROOT_FILES if not (root/relative).is_file()]
 
     try:
         manifest = load_manifest(root)
@@ -797,7 +797,7 @@ def scan_vault(args: argparse.Namespace) -> int:
         integrity = {"modified": [], "unrecorded": [], "missing": [], "symlinks": []}
         missing_root.append(f"invalid manifest: {exc}")
 
-    wiki = root / "wiki"
+    wiki = root/"wiki"
     schedule_issues = ingest_schedule_issues(root)
     pages = sorted(path for path in wiki.rglob("*.md") if path.is_file() and not path.is_symlink()) if wiki.is_dir() else []
     by_relative, by_name = build_page_maps(pages, wiki) if wiki.is_dir() else ({}, {})
@@ -844,7 +844,7 @@ def scan_vault(args: argparse.Namespace) -> int:
 
     indexed_pages: set[Path] = set()
     bad_index_links: list[str] = []
-    index_path = root / "index.md"
+    index_path = root/"index.md"
     if index_path.is_file():
         index_text = knowledge_text(index_path.read_text(encoding="utf-8", errors="replace"))
         for raw_target in WIKILINK_RE.findall(index_text):

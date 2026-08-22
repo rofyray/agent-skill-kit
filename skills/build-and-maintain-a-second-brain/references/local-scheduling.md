@@ -35,7 +35,7 @@ Use a per-user LaunchAgent with `StartCalendarInterval`; Apple recommends `launc
 Build the property list with:
 
 - a unique `Label`;
-- `ProgramArguments` as an array containing the absolute agent executable and each literal argument—do not rely on shell interpolation;
+- `ProgramArguments` as an array containing the absolute agent executable and each literal argument - do not rely on shell interpolation;
 - `WorkingDirectory` set to the absolute vault path;
 - `StartCalendarInterval` with the approved weekday, hour, and minute;
 - `StandardOutPath` and `StandardErrorPath` pointing to an approved log directory;

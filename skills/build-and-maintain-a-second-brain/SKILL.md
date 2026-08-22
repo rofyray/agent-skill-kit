@@ -44,7 +44,7 @@ Read [vault-contract.md](references/vault-contract.md) before creating or adapti
 
 1. Inspect the target folder and detect existing `raw/`, `wiki/`, `index.md`, `log.md`, `SECOND_BRAIN.md`, `AGENTS.md`, `CLAUDE.md`, Cursor rules, and `.obsidian/`. When an existing empty Obsidian vault is available, offer it as a convenience; being registered in Obsidian is not a correctness requirement.
 2. Resolve only decisions that materially affect the result: vault location/name, knowledge scope or domains, preferred writing voice, review mode, and desired schedule. Ask one consolidated question if these cannot be inferred safely.
-3. With a shell that can write the approved local folder—directly or through a verified desktop bridge—resolve the bundled helper from this skill's installation directory and run:
+3. With a shell that can write the approved local folder - directly or through a verified desktop bridge - resolve the bundled helper from this skill's installation directory and run:
 
    ```bash
    python3 <skill-directory>/scripts/second_brain.py init <vault-path> --name "<vault-name>" --scope "<knowledge-scope>" --domain "<domain>" --voice "<writing-voice>" --review-mode review-after
@@ -54,7 +54,7 @@ Read [vault-contract.md](references/vault-contract.md) before creating or adapti
 4. Without shell access but with local file creation, copy the files from `assets/vault-template/`, copy the bundled helper to `automation/second_brain.py`, substitute every template placeholder including domain headings, generate the three `.second-brain/*.json` state files, and create the directories specified in the vault contract.
 5. Without direct local access or a functioning desktop bridge, generate a downloadable starter folder or ZIP from `assets/vault-template/` plus the bundled helper at `automation/second_brain.py`. Substitute every template placeholder, generate `.second-brain/config.json`, `.second-brain/raw-manifest.json`, and `.second-brain/ingest-schedules.json`, preserve the required empty directories in the archive, and verify the result against the vault contract. Tell the user to extract it, open the folder as an Obsidian vault, and return with the vault attached or connected for further work. Do not report local setup as complete.
 6. Create one canonical engine, `SECOND_BRAIN.md`, plus thin host adapters: `AGENTS.md`, `CLAUDE.md`, and `.cursor/rules/second-brain.mdc`. Keep shared policy only in the canonical engine so the adapters cannot drift.
-7. Open the folder in Obsidian when desktop control is available and authorized, including through an explicitly connected desktop bridge. If Obsidian is missing, offer the official installer; install it only after confirmation. Obsidian is optional—the files must remain usable without it.
+7. Open the folder in Obsidian when desktop control is available and authorized, including through an explicitly connected desktop bridge. If Obsidian is missing, offer the official installer; install it only after confirmation. Obsidian is optional - the files must remain usable without it.
 8. Run `python3 <vault-path>/automation/second_brain.py scan <vault-path>` when shell access exists. Resolve setup defects and summarize created, preserved, and deferred items.
 9. At handoff, explain that the vault is the durable state, not the current chat. CLI sessions started inside the vault load the host adapters automatically; a new desktop or web Work/Cowork session still needs the vault folder or connected project selected.
 

@@ -98,7 +98,7 @@ def templates(name: str, target_role: str, timeline: str, directness: int) -> di
     target_role = one_line(target_role) or "Unknown"
     timeline = one_line(timeline) or "Unknown"
     return {
-        "coaching_state.md": f"""# Interview Coaching State — {name}
+        "coaching_state.md": f"""# Interview Coaching State - {name}
 
 Last updated: Not yet updated
 
@@ -111,7 +111,7 @@ Last updated: Not yet updated
 - Calibration tendency: Unknown
 - Target filters: {target_role}
 - Live pipeline: None recorded
-- Open corrections — do not relapse: None recorded
+- Open corrections - do not relapse: None recorded
 
 ## Profile
 - Target roles and level: {target_role}
@@ -216,7 +216,7 @@ def init_workspace(args: argparse.Namespace) -> int:
     root.mkdir(parents=True, exist_ok=True)
     if root.is_symlink():
         raise ValueError("workspace path must not be a symbolic link")
-    materials_path = root / "materials"
+    materials_path = root/"materials"
     if materials_path.is_symlink():
         raise ValueError(f"refusing to use symbolic-link materials directory: {materials_path}")
     materials_existed = materials_path.exists()
@@ -225,7 +225,7 @@ def init_workspace(args: argparse.Namespace) -> int:
     created: list[str] = []
     preserved: list[str] = []
     for name, content in templates(args.name, args.target_role, args.timeline, args.directness).items():
-        path = root / name
+        path = root/name
         if path.is_symlink():
             raise ValueError(f"refusing to write through symbolic link: {path}")
         if atomic_create(path, content):
@@ -248,7 +248,7 @@ def validate_workspace(root: Path, quiet: bool = False) -> int:
     contents: dict[str, str] = {}
 
     for name, headings in FILES.items():
-        path = root / name
+        path = root/name
         if not path.is_file():
             findings.append(Finding("ERROR", name, "missing required state file"))
             continue
@@ -279,7 +279,7 @@ def validate_workspace(root: Path, quiet: bool = False) -> int:
                 findings.append(Finding("ERROR", name, f"duplicate level-two heading {heading!r}"))
             seen.add(normalized)
 
-    core = root / "coaching_state.md"
+    core = root/"coaching_state.md"
     if core.is_file() and core.stat().st_size > CORE_LIMIT_BYTES:
         findings.append(
             Finding(
@@ -295,7 +295,7 @@ def validate_workspace(root: Path, quiet: bool = False) -> int:
     for story_id in duplicate_ids:
         findings.append(Finding("ERROR", "coaching_state.storybank.md", f"duplicate story ID {story_id}"))
 
-    materials = root / "materials"
+    materials = root/"materials"
     if not materials.is_dir():
         findings.append(Finding("ERROR", "materials", "missing materials directory"))
     elif materials.is_symlink():
@@ -324,9 +324,9 @@ def count_table_rows(text: str, heading: str) -> int:
 def status_workspace(root: Path) -> int:
     if validate_workspace(root, quiet=True):
         return 1
-    story = (root / "coaching_state.storybank.md").read_text(encoding="utf-8")
-    loops = (root / "coaching_state.loops.md").read_text(encoding="utf-8")
-    history = (root / "coaching_state.history.md").read_text(encoding="utf-8")
+    story = (root/"coaching_state.storybank.md").read_text(encoding="utf-8")
+    loops = (root/"coaching_state.loops.md").read_text(encoding="utf-8")
+    history = (root/"coaching_state.history.md").read_text(encoding="utf-8")
     active_section = loops.split("## Active Loops", 1)[1].split("\n## ", 1)[0]
     result = {
         "workspace": str(root),
@@ -404,7 +404,7 @@ def build_migration_manifest(root: Path, source: Path) -> dict[str, object]:
     manual_review = [
         section["heading"] for section in sections if section["destination"] == "manual-review"
     ]
-    siblings = [name for name in FILES if name != "coaching_state.md" and (root / name).exists()]
+    siblings = [name for name in FILES if name != "coaching_state.md" and (root/name).exists()]
     return {
         "workspace": str(root),
         "source": source.name,
@@ -425,7 +425,7 @@ def build_migration_manifest(root: Path, source: Path) -> dict[str, object]:
 
 
 def migration_plan(root: Path) -> int:
-    result = build_migration_manifest(root, root / "coaching_state.md")
+    result = build_migration_manifest(root, root/"coaching_state.md")
     print(json.dumps(result, indent=2))
     return 0
 
@@ -435,7 +435,7 @@ def verify_migration(root: Path, backup_raw: str, expected_sha256: str) -> int:
         raise ValueError("expected source SHA-256 must contain exactly 64 hexadecimal characters")
     backup = Path(backup_raw).expanduser()
     if not backup.is_absolute():
-        backup = root / backup
+        backup = root/backup
     backup = backup.resolve()
     try:
         backup.relative_to(root)
@@ -448,7 +448,7 @@ def verify_migration(root: Path, backup_raw: str, expected_sha256: str) -> int:
     preamble, original_sections = migration_sections(backup_text)
     output_text: dict[str, str] = {}
     for name in FILES:
-        path = root / name
+        path = root/name
         output_text[name] = path.read_text(encoding="utf-8") if path.is_file() else ""
 
     missing_sections: list[dict[str, str]] = []

@@ -1,6 +1,6 @@
 # Tool compatibility
 
-Every skill in this repository targets Codex, Claude Code, Cursor, Claude Web/Desktop/Cowork, and ChatGPT from one canonical folder under `skills/`.
+Every skill in this repository targets Codex, Claude Code, Cursor, Gemini CLI, Claude Web/Desktop/Cowork, and ChatGPT from one canonical folder under `skills/`.
 
 ## Shared contract
 
@@ -20,19 +20,22 @@ Each skill must:
 
 | Surface | Standalone skill availability | Installation or discovery |
 | --- | --- | --- |
-| Codex CLI / IDE | Yes | `.agents/skills/<name>/` at project or user scope |
+| Codex CLI/IDE | Yes | `.agents/skills/<name>/` at project or user scope |
 | Claude Code | Yes | `.claude/skills/<name>/` at project or user scope |
 | Cursor | Yes | `.agents/skills/<name>/` or `.cursor/skills/<name>/` |
-| Claude Web / Desktop / Cowork | Yes | Upload a single rooted ZIP through **Customize > Skills**; code execution and file creation must be enabled |
+| Gemini CLI | Yes in version 0.26.0 or later | `.agents/skills/<name>/` or `.gemini/skills/<name>/` at workspace scope; `~/.gemini/skills/<name>/` or `~/.agents/skills/<name>/` at user scope |
+| Claude Web/Desktop/Cowork | Yes | Upload a single rooted ZIP through **Customize > Skills**; code execution and file creation must be enabled |
 | ChatGPT Web | Yes where the Skills upload UI is available | Upload an individual ZIP through **Plugins > Skills > + > Upload from your computer** |
-| ChatGPT Desktop / Work | OpenAI documents standalone desktop skills, but web-upload synchronization is not currently documented or verified here | No public Agent Skill Kit plugin yet; use ChatGPT Web for the currently verified individual upload flow |
+| ChatGPT Desktop/Work | OpenAI documents standalone desktop skills, but web-upload synchronization is not currently documented or verified here | No public Agent Skill Kit plugin yet; use ChatGPT Web for the currently verified individual upload flow |
+| Gemini Web | No documented standalone Agent Skill installation | Not currently supported |
 
-The community `npx skills` installer targets coding-agent discovery directories. It is not an account-level installer for Claude Web/Desktop/Cowork or ChatGPT.
+The community `npx skills` installer targets coding-agent discovery directories. It is not an account-level installer for Claude Web/Desktop/Cowork, ChatGPT, or Gemini Web.
 
 ## Invocation
 
 - ChatGPT uses `@` for explicit skill selection when the skill is available on that surface.
 - Codex uses `$` or `/skills`.
+- Gemini CLI can activate a matching skill automatically or by name after user consent; `/skills list` verifies discovery and `/skills reload` refreshes installed skills.
 - Claude can select an enabled skill automatically; users can also ask for it by name.
 - Cursor and Claude Code can select skills through their client UI or by name.
 

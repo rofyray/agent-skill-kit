@@ -35,7 +35,7 @@ Use this template as a drafting scaffold, not a requirement to include empty sec
 - Ask before: [destructive, production, spending, external, or scope-changing action]
 - If blocked: [evidence and smallest decision needed]
 
-# Verification — do not finish until
+# Verification - do not finish until
 
 1. [Inspect or run a check against the actual artifact.]
 2. [Reconcile facts, data, behavior, or appearance to the named source of truth.]

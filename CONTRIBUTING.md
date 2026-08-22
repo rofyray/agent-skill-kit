@@ -1,6 +1,6 @@
 # Contributing
 
-Every skill must work from one source folder across Codex, Claude Code, Cursor, Claude Web/Desktop/Cowork, ChatGPT Web, and ChatGPT Desktop/Work where standalone skills or the future plugin are available.
+Every skill must work from one source folder across Codex, Claude Code, Cursor, Gemini CLI, Claude Web/Desktop/Cowork, ChatGPT Web, and ChatGPT Desktop/Work where standalone skills or the future plugin are available.
 
 ## Add a skill
 
@@ -9,7 +9,7 @@ Every skill must work from one source folder across Codex, Claude Code, Cursor, 
 3. Use a lowercase, outcome-focused, hyphenated name of at most 64 characters.
 4. Keep only `name` and `description` in `SKILL.md` frontmatter. The description must be 200 characters or fewer and explain what the skill does and when to use it.
 5. Write the core workflow in imperative, host-neutral language.
-6. Add `agents/openai.yaml` with a 25–64 character `short_description` and an invocation-neutral `default_prompt`—do not hard-code `@`, `$`, or a client picker.
+6. Add `agents/openai.yaml` with a 25–64 character `short_description` and an invocation-neutral `default_prompt` - do not hard-code `@`, `$`, or a client picker.
 7. Add a portable help mode routed from `SKILL.md` to `references/help.md`. Explain the skill, list every named operational mode plus `help`, show how to begin, and provide at least two examples for each mode. Require the response to include the complete catalog rather than shorten it for brevity.
 8. Add trigger and workflow cases under `evals/<skill-name>/`, including one case with `"mode": "help"`.
 9. Update the README skill directory.
@@ -36,6 +36,8 @@ Do not add per-skill READMEs, changelogs, installation guides, or quick-referenc
 
 ## Portability rules
 
+- Do not use em dashes. Use commas, colons, parentheses, or ASCII hyphens instead.
+- Do not put whitespace immediately before or after `/`. Write `Codex/IDE` and `and/or`.
 - Keep `SKILL.md` under 500 lines and preferably below 5,000 tokens.
 - Link supporting files directly from `SKILL.md`, state when to read them, and avoid reference-to-reference routing.
 - Use relative paths from the skill root.
@@ -89,5 +91,6 @@ Before pushing a release tag, run the validation, tests, and packaging commands 
 - Scripts are deterministic where practical and degrade safely when execution is unavailable.
 - Source credits and third-party license notices are accurate, complete, and included in the installable package when applicable.
 - Help mode routes to `references/help.md`, covers every named mode with examples, and has a matching help eval case.
+- Text contains no em dashes and no whitespace immediately adjacent to a forward slash.
 - No client-specific behavior leaks into the portable core.
 - Validation, tests, packaging, and relevant forward evaluations pass.

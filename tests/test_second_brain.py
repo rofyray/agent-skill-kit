@@ -9,13 +9,13 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SCRIPT = ROOT / "skills" / "build-and-maintain-a-second-brain" / "scripts" / "second_brain.py"
+SCRIPT = ROOT/"skills"/"build-and-maintain-a-second-brain"/"scripts"/"second_brain.py"
 
 
 class SecondBrainTests(unittest.TestCase):
     def setUp(self) -> None:
         self.temp_dir = tempfile.TemporaryDirectory()
-        self.vault = Path(self.temp_dir.name) / "vault"
+        self.vault = Path(self.temp_dir.name)/"vault"
 
     def tearDown(self) -> None:
         self.temp_dir.cleanup()
@@ -44,20 +44,20 @@ class SecondBrainTests(unittest.TestCase):
     def test_init_uses_distinct_user_domains(self) -> None:
         self.init("--domain", "AI creative production", "--domain", "Work & projects", "--domain", "work   & projects")
 
-        index = (self.vault / "index.md").read_text(encoding="utf-8")
+        index = (self.vault/"index.md").read_text(encoding="utf-8")
         self.assertIn("## AI creative production", index)
         self.assertEqual(index.count("## Work & projects"), 1)
         self.assertIn("## Cross-domain syntheses", index)
-        config = json.loads((self.vault / ".second-brain/config.json").read_text(encoding="utf-8"))
+        config = json.loads((self.vault/".second-brain/config.json").read_text(encoding="utf-8"))
         self.assertEqual(config["domains"], ["AI creative production", "Work & projects"])
 
     def test_single_real_page_is_not_reported_as_orphan(self) -> None:
         self.init()
-        raw = self.vault / "raw" / "source.txt"
+        raw = self.vault/"raw"/"source.txt"
         raw.write_text("Evidence", encoding="utf-8")
         recorded = self.run_helper("record-raw", str(self.vault), str(raw))
         self.assertEqual(recorded.returncode, 0, recorded.stderr or recorded.stdout)
-        page = self.vault / "wiki" / "first-page.md"
+        page = self.vault/"wiki"/"first-page.md"
         page.write_text(
             "---\n"
             'title: "First page"\n'
@@ -72,7 +72,7 @@ class SecondBrainTests(unittest.TestCase):
             "A grounded claim from [the source](../raw/source.txt).\n",
             encoding="utf-8",
         )
-        (self.vault / "index.md").write_text("# Wiki Index\n\n- [[first-page]]\n", encoding="utf-8")
+        (self.vault/"index.md").write_text("# Wiki Index\n\n- [[first-page]]\n", encoding="utf-8")
 
         result = self.run_helper("scan", str(self.vault), "--json")
         self.assertEqual(result.returncode, 0, result.stderr or result.stdout)
@@ -81,10 +81,10 @@ class SecondBrainTests(unittest.TestCase):
 
     def test_scan_ignores_example_links_inside_code(self) -> None:
         self.init()
-        raw = self.vault / "raw" / "source.txt"
+        raw = self.vault/"raw"/"source.txt"
         raw.write_text("Evidence", encoding="utf-8")
         self.assertEqual(self.run_helper("record-raw", str(self.vault), str(raw)).returncode, 0)
-        page = self.vault / "wiki" / "example-aware.md"
+        page = self.vault/"wiki"/"example-aware.md"
         page.write_text(
             "---\n"
             'title: "Example aware"\n'
@@ -100,7 +100,7 @@ class SecondBrainTests(unittest.TestCase):
             "```markdown\n[[not-a-real-page]]\n```\n",
             encoding="utf-8",
         )
-        (self.vault / "index.md").write_text("# Wiki Index\n\n- [[example-aware]]\n", encoding="utf-8")
+        (self.vault/"index.md").write_text("# Wiki Index\n\n- [[example-aware]]\n", encoding="utf-8")
 
         result = self.run_helper("scan", str(self.vault), "--json")
         self.assertEqual(result.returncode, 0, result.stderr or result.stdout)
@@ -108,7 +108,7 @@ class SecondBrainTests(unittest.TestCase):
 
     def test_scan_rejects_invalid_frontmatter_values(self) -> None:
         self.init()
-        page = self.vault / "wiki" / "invalid-page.md"
+        page = self.vault/"wiki"/"invalid-page.md"
         page.write_text(
             "---\n"
             'title: "Invalid page"\n'
@@ -135,7 +135,7 @@ class SecondBrainTests(unittest.TestCase):
 
     def test_scan_validates_recurring_ingest_definitions(self) -> None:
         self.init()
-        schedule_path = self.vault / ".second-brain" / "ingest-schedules.json"
+        schedule_path = self.vault/".second-brain"/"ingest-schedules.json"
         schedule_path.write_text(
             json.dumps(
                 {
@@ -172,7 +172,7 @@ class SecondBrainTests(unittest.TestCase):
 
     def test_scan_accepts_versioned_url_normalization(self) -> None:
         self.init()
-        schedule_path = self.vault / ".second-brain" / "ingest-schedules.json"
+        schedule_path = self.vault/".second-brain"/"ingest-schedules.json"
         schedule_path.write_text(
             json.dumps(
                 {
@@ -203,7 +203,7 @@ class SecondBrainTests(unittest.TestCase):
 
     def test_checkpoint_update_is_compare_and_set(self) -> None:
         self.init()
-        schedule_path = self.vault / ".second-brain" / "ingest-schedules.json"
+        schedule_path = self.vault/".second-brain"/"ingest-schedules.json"
         schedule_path.write_text(
             json.dumps(
                 {
@@ -212,7 +212,7 @@ class SecondBrainTests(unittest.TestCase):
                         {
                             "id": "research-inbox",
                             "kind": "directory",
-                            "locator": str(self.vault.parent / "research-inbox"),
+                            "locator": str(self.vault.parent/"research-inbox"),
                             "cadence": "weekdays at 18:00",
                             "timezone": "America/Chicago",
                             "enabled": True,

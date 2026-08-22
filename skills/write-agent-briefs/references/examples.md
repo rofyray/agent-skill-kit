@@ -26,7 +26,7 @@ Identify the three strongest churn themes, quantify their prevalence, and includ
 - Preserve the source population and distinguish direct feedback from inference.
 - Do not expose customer names or contact details.
 
-# Verification — do not finish until
+# Verification - do not finish until
 1. Reconcile the analyzed row count to the filtered source population.
 2. Trace every quote to a source record.
 3. Re-check theme counts against the coded data and disclose ambiguous classifications.
@@ -54,7 +54,7 @@ Capture tier names, prices, included usage or seats, add-ons, and material restr
 - Use live official pricing and documentation pages.
 - Separate public facts from inferences and mark contact-sales values unknown.
 
-# Verification — do not finish until
+# Verification - do not finish until
 1. Open every cited page and confirm each extracted value.
 2. Record the access date and a screenshot or archived evidence where authorized.
 3. Remove any value that cannot be verified.
@@ -82,7 +82,7 @@ Reproduce the defect, identify its root cause, implement the smallest durable fi
 - Add a failing regression test before the fix when the defect is reproducible.
 - Do not change unrelated checkout behavior or production configuration.
 
-# Verification — do not finish until
+# Verification - do not finish until
 1. The regression test fails before the fix and passes after it.
 2. The full cart suite and repository-required type and lint checks pass.
 3. The real coupon-removal flow updates totals correctly without console errors.

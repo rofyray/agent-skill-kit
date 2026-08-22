@@ -6,7 +6,7 @@ Use this reference to answer help mode. Present the explanation, modes, start gu
 
 This skill builds and operates a persistent, source-grounded Markdown knowledge base that can be viewed in Obsidian or any file editor. It preserves original material in `raw/`, compiles durable linked notes into `wiki/`, tracks provenance and operations, answers questions across the collection, checks health, and can configure recurring work when the active runtime can really reach the vault and sources.
 
-The vault—not the chat—is the durable state. The skill can work through a local coding agent, an approved desktop folder connection, or a downloadable handoff when direct file access is unavailable. It never treats Obsidian as mandatory and never claims local automation when the runtime cannot edit the folder.
+The vault - not the chat - is the durable state. The skill can work through a local coding agent, an approved desktop folder connection, or a downloadable handoff when direct file access is unavailable. It never treats Obsidian as mandatory and never claims local automation when the runtime cannot edit the folder.
 
 ## Modes
 
@@ -17,7 +17,7 @@ The vault—not the chat—is the durable state. The skill can work through a lo
 | `query` | Ask a question across the wiki and underlying evidence; save durable synthesis when useful. |
 | `lint` | Find broken links, weak provenance, contradictions, stale claims, or structural drift without destructive cleanup. |
 | `review` | Summarize recent learning, connections, emerging hubs, gaps, and next explorations. |
-| `schedule` | Configure recurring ingestion, lint, or review—or an honest reminder when automatic access is unavailable. |
+| `schedule` | Configure recurring ingestion, lint, or review - or an honest reminder when automatic access is unavailable. |
 | `help` | Display this guide without inspecting or changing a vault. |
 
 The user can name a mode or describe the outcome naturally. No slash command is required.

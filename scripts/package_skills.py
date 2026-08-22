@@ -38,11 +38,11 @@ def package_files(skill_dir: Path) -> list[Path]:
 
 
 def package_skill(skill_dir: Path, output_dir: Path) -> Path:
-    if not (skill_dir / "SKILL.md").is_file():
+    if not (skill_dir/"SKILL.md").is_file():
         raise ValueError(f"{skill_dir} does not contain SKILL.md")
 
     output_dir.mkdir(parents=True, exist_ok=True)
-    archive_path = output_dir / f"{skill_dir.name}.zip"
+    archive_path = output_dir/f"{skill_dir.name}.zip"
 
     with zipfile.ZipFile(archive_path, "w") as archive:
         for path in package_files(skill_dir):
@@ -64,15 +64,15 @@ def main() -> int:
     args = parser.parse_args()
 
     root = args.root.resolve()
-    skills_dir = root / "skills"
-    output_dir = (args.output_dir or root / "dist" / "skills").resolve()
+    skills_dir = root/"skills"
+    output_dir = (args.output_dir or root/"dist"/"skills").resolve()
     selected = args.skills or sorted(
         path.name for path in skills_dir.iterdir() if path.is_dir() and not path.name.startswith(".")
     )
 
     try:
         for name in selected:
-            skill_dir = skills_dir / name
+            skill_dir = skills_dir/name
             if not skill_dir.is_dir():
                 raise ValueError(f"unknown skill: {name}")
             archive_path = package_skill(skill_dir, output_dir)
