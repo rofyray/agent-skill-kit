@@ -1,0 +1,9 @@
+Curate with Taste is conceptually inspired by:
+
+Ravi Mehta
+"Taste is a skill, not a gift"
+https://blog.ravi-mehta.com/p/taste-is-a-skill-not-a-gift
+
+The article influenced the skill's treatment of taste as audience-aware curation, its distinction between taste and craft, its creator/audience critique matrix, and its human-led creative workflow.
+
+The skill instructions, examples, and implementation are original to Agent Skill Kit. No article text or images are included. No endorsement is implied.

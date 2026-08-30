@@ -1,0 +1,140 @@
+{
+  "skill": "curate-with-taste",
+  "cases": [
+    {
+      "id": "inspect-four-tells",
+      "request": "Inspect this article for AI slop tells without rewriting it. It uses em dashes constantly, several not-X-but-Y contrasts, perfectly matched sections, and repeated three-item lists.",
+      "expect": [
+        "Routes to inspect mode and reads the complete supplied prose before judging it",
+        "Finds the four requested pattern types with excerpts or locations and explains their effect in context",
+        "Distinguishes repeated defaults from intentional isolated devices",
+        "Does not claim that the patterns prove AI authorship",
+        "Preserves strengths and returns revision guidance without silently rewriting the article"
+      ]
+    },
+    {
+      "id": "inspect-clean-prose",
+      "request": "Review this short note for formulaic AI writing. It contains one necessary contrast explaining that the migration changes storage, not billing behavior, and no other suspicious patterns.",
+      "expect": [
+        "Does not inflate an isolated factual contrast into an AI-slop verdict",
+        "Explains why a necessary exclusion can remain when it carries real meaning",
+        "Reports no material pattern when the prose is otherwise natural",
+        "Avoids rewriting merely to demonstrate activity"
+      ]
+    },
+    {
+      "id": "rewrite-preserve-voice",
+      "request": "Rewrite this customer email in my direct, warm voice. Keep every date, price, and commitment exact. Remove the AI-sounding patterns and use no em dashes.",
+      "expect": [
+        "Routes to write mode and produces ready-to-use prose",
+        "Preserves every supplied fact and commitment",
+        "Uses no em dashes and removes stock negative parallelisms",
+        "Avoids mechanically balanced paragraphs and habitual triads",
+        "Preserves the supplied direct and warm voice instead of substituting generic polish"
+      ]
+    },
+    {
+      "id": "draft-from-bounded-facts",
+      "request": "Write a founder update for skeptical customers using only these release facts and this voice sample. Do not invent metrics, reactions, or certainty.",
+      "expect": [
+        "Locks the supplied facts and voice evidence before drafting",
+        "Leads with the ready-to-use update",
+        "Avoids invented specificity and unsupported claims",
+        "Applies the strict prose check to the actual final text",
+        "Mentions only material assumptions outside the artifact"
+      ]
+    },
+    {
+      "id": "authorship-boundary",
+      "request": "Tell me whether AI wrote this essay and give me a percentage based on its style.",
+      "expect": [
+        "Declines to infer authorship or provide a probability from stylistic tells",
+        "Offers a style inspection for formulaic patterns instead",
+        "Separates observable prose evidence from authorship claims",
+        "Does not overstate what a scanner or language model can establish"
+      ]
+    },
+    {
+      "id": "critique-with-observed-feedback",
+      "request": "Critique these three homepage concepts. I like B, dislike A, and feel unsure about C. Five target users preferred A and explained that its promise was clearest.",
+      "expect": [
+        "Routes to critique mode and records creator reaction separately from observed audience feedback",
+        "Places individual decisions in the appropriate creator/audience quadrants",
+        "Investigates why the audience values A without treating either reaction as objectively correct",
+        "Separates concept choice from execution quality",
+        "Recommends the next decision or test without silently selecting a winner"
+      ]
+    },
+    {
+      "id": "critique-without-audience-data",
+      "request": "Critique these two presentation openings for a room of hospital administrators. I have no audience testing yet.",
+      "expect": [
+        "Uses the intended audience and purpose without inventing observed reactions",
+        "Labels audience-response claims as predictions with confidence",
+        "Compares the openings on consequential decisions and craft",
+        "Suggests a useful test or asks for the creator's reaction when it would change the conclusion"
+      ]
+    },
+    {
+      "id": "workshop-selection-gate",
+      "request": "Workshop a homepage hero with me. Explore different directions and pause before choosing one.",
+      "expect": [
+        "Frames the audience, purpose, constraints, and desired response",
+        "Generates materially different directions rather than paraphrases",
+        "Critiques the options against the frame",
+        "Stops for the user's selection and does not refine an unselected option",
+        "Keeps the next interaction focused on one meaningful decision"
+      ]
+    },
+    {
+      "id": "workshop-second-exploration",
+      "request": "All of those campaign ideas feel like the same concept with different wording. Explore again from genuinely different premises.",
+      "expect": [
+        "Uses the rejection as information rather than defending the first options",
+        "Changes a major premise, mechanism, structure, audience promise, or emotional posture",
+        "Explains how the new directions differ conceptually",
+        "Avoids cosmetic word swaps presented as new ideas"
+      ]
+    },
+    {
+      "id": "calibrate-taste-profile",
+      "request": "Build a writing taste profile from these four posts I love, two I dislike, and the edits I rejected last week.",
+      "expect": [
+        "Routes to calibrate mode and asks about reasons only where the evidence is ambiguous",
+        "Extracts decision-level preferences rather than copying phrases or creator identities",
+        "Marks principles as observed, reported, or inferred with confidence",
+        "Preserves contradictions and context instead of forcing universal rules",
+        "Requests approval before saving a persistent profile"
+      ]
+    },
+    {
+      "id": "functional-structure",
+      "request": "Review this emergency runbook for AI slop. It has numbered procedures and repeated warning labels because operators need a predictable scan pattern.",
+      "expect": [
+        "Recognizes that the genre benefits from functional regularity",
+        "Does not remove necessary numbering, warning repetition, or operational structure",
+        "Focuses any critique on ornamental patterns that do not aid execution",
+        "Preserves safety meaning and exact commands"
+      ]
+    },
+    {
+      "id": "help-mode",
+      "request": "help",
+      "mode": "help",
+      "expect": [
+        "Explains human-led taste development without inspecting or creating an artifact",
+        "Lists inspect, write, critique, workshop, and calibrate modes",
+        "Provides a starter and another realistic example for every operational mode and help",
+        "States the minimum inputs needed to begin and the relevant capability boundaries"
+      ]
+    },
+    {
+      "id": "non-trigger-proofreading",
+      "request": "Correct the spelling mistakes in this paragraph and change nothing else.",
+      "expect": [
+        "Handles the mechanical proofreading request directly without expanding it into a taste workshop",
+        "Does not critique voice, audience fit, or AI-slop patterns unless asked"
+      ]
+    }
+  ]
+}

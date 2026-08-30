@@ -1,0 +1,4 @@
+interface:
+  display_name: "Curate with Taste"
+  short_description: "Review prose and guide human-led creative taste"
+  default_prompt: "Review this work for formulaic defaults, audience fit, and stronger creative choices."
