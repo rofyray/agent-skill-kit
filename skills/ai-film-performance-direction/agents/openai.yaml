@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI Film Performance Direction"
+  short_description: "Direct consistent acting, dialogue, and voice"
+  default_prompt: "Develop and direct playable character performances for this film scene."

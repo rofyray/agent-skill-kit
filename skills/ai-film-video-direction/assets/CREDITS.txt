@@ -1,0 +1,31 @@
+AI Film Video Direction
+Conceptual source credits
+
+This skill was independently written for Agent Skill Kit. The sources below influenced its treatment of scene decomposition, shot context, active references, geography, first-frame blocking, camera, optics, timed action, physics, lighting, sound, performance, prompt structure, continuity, verification, and production handoff. No source prompts, media, or proprietary templates are bundled.
+
+User-supplied CINEDANCE HIGGSFIELD video-direction methodology
+
+User-supplied LIRA image-direction methodology used as adjacent visual-development context
+
+User-supplied ACTING performance-direction methodology used as adjacent performance context
+
+Higgsfield Studio, Cully Hill Boys project breakdown
+https://higgsfield.ai/@higgsfield.studio/projects/cully-hill-boys
+
+Higgsfield Studio, Hell Grind project breakdown
+https://higgsfield.ai/@higgsfield.studio/projects/hell-grind
+
+Higgsfield Studio, Zephyr project breakdown
+https://higgsfield.ai/@higgsfield.studio/projects/zephyr
+
+Sanjii, AI Cartoon Full Breakdown
+https://higgsfield.ai/@sanjii/blogs/ai-cartoon-full-breakdown
+
+Sanjii, character-sheet prompt example
+https://docs.google.com/document/d/1Y7SR2tEq-FNZbJNhv3CAOCcCvT5OGUJfBBbJGq9Qa0Q/mobilebasic
+
+Sanjii, visual style reference library
+https://drive.google.com/drive/folders/1bDmdOGiy1E2hZuMf34JcRcy-WlDh5kvQ
+
+Sanjii, Cartoon Scene Builder source shared by the user
+https://drive.google.com/file/d/1be06NR1ejseXvRz3D5TJuhuLaxQZI7E-/view

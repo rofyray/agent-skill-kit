@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI Film Screenwriting"
+  short_description: "Develop and write feature-length screenplays"
+  default_prompt: "Develop this feature screenplay into a coherent, production-ready draft."

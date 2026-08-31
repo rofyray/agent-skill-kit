@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI Film Video Direction"
+  short_description: "Plan and generate coherent cinematic video shots"
+  default_prompt: "Plan and generate a coherent, continuity-safe video scene for this film project."

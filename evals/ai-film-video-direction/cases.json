@@ -1,0 +1,267 @@
+{
+  "skill": "ai-film-video-direction",
+  "cases": [
+    {
+      "id": "plan-scene-to-shot-cards",
+      "request": "Turn this locked screenplay scene into shot cards for a 25-second sequence. Preserve the dialogue and story beats, but do not generate yet.",
+      "expect": [
+        "Preserves locked scene intent and dialogue instead of performing an unsolicited screenplay rewrite",
+        "Defines shot intent, duration, exact participants, active references, geography, first frame, blocking, action, camera, audio, continuity, risk, and pass criteria",
+        "Chooses shot count and edit structure from dramatic purpose and production capability rather than a fixed template",
+        "Does not invoke a generation tool because the user requested planning only"
+      ]
+    },
+    {
+      "id": "single-take-create",
+      "request": "Generate an eight-second single take of Mara crossing the kitchen, hiding the knife behind her back, and answering Idris without breaking eye contact. Use the connected video model and these approved references.",
+      "expect": [
+        "Seals the current shot with exact characters, prop ownership, location state, duration, active references, and continuity",
+        "Defines first-frame occupancy, spatial blocking, chronological action, camera behavior, physical contact, performance, exact dialogue, and sound",
+        "Inspects the connected tool schema and maps the prompt to supported fields rather than assuming a hardcoded provider",
+        "Waits for completion and inspects the actual returned clip before calling it finished"
+      ]
+    },
+    {
+      "id": "multi-shot-capability-split",
+      "request": "Create a four-shot animated escape: wide geography, close reaction, mechanism insert, and vehicle departure. Use one generation only if the connected model can control all four shots reliably.",
+      "expect": [
+        "Builds an edit-aware scene plan with independently runnable shot segments and explicit continuity",
+        "Inspects actual multi-shot and cut control rather than presuming support",
+        "Uses one generation only when the tool can reliably express the requested structure and otherwise returns or generates separate shots",
+        "Preserves reference roles, states, screen direction, audio, and leaving states across the edit"
+      ]
+    },
+    {
+      "id": "exact-counts-active-references",
+      "request": "Prompt this frame with exactly two named characters, one dog, and one red suitcase. Audit the six attached references and use only what this shot needs.",
+      "expect": [
+        "States exact visible counts and identifies every active subject and important object",
+        "Assigns each used reference a declared role and removes stale or conflicting references",
+        "Uses positive occupancy and ownership constraints rather than relying on a generic no-duplicates list",
+        "Keeps unrelated characters, states, and source framing out of the current-shot context"
+      ]
+    },
+    {
+      "id": "first-frame-spatial-blocking",
+      "request": "Design the first frame and blocking for the interrogation. The room reference controls geography, not composition. Niko begins beside the one-way mirror and Lena owns the folder.",
+      "expect": [
+        "Maps stable landmarks and spatial relations independently of the source image composition",
+        "Defines frame-one occupancy, depth, facing, gaze, hands, contacts, prop ownership, camera side, and initial focus",
+        "Tracks paths and end positions in both screen-relative and world-relative terms where useful",
+        "Avoids an unintended empty opening and decorative blocking with no dramatic function"
+      ]
+    },
+    {
+      "id": "camera-optics-observable",
+      "request": "Direct the camera so the hallway feels long and the watcher feels distant, then slowly reveal that he is closer than expected. Keep the provider configurable.",
+      "expect": [
+        "Defines the observable framing, depth compression or expansion, subject relationship, and reveal before numeric lens syntax",
+        "Specifies camera start, side, height, path, speed, inertia, motivation, focus behavior, and end state",
+        "Maps to focal length, field of view, or camera presets only when the selected tool supports them",
+        "Avoids hardcoded cinematographer names, fashionable focal lengths, and stacked impossible moves"
+      ]
+    },
+    {
+      "id": "timed-action-and-physics",
+      "request": "Create a ten-second shot where a heavy steel door jams, the character throws her weight into it, the latch breaks, and she stumbles through. Make the contact and inertia believable.",
+      "expect": [
+        "Builds a chronological trigger, effort, contact, failure, release, stumble, recovery, and final state",
+        "Describes weight transfer, grip, friction, resistance, latch failure, door mass, momentum, and physical consequence",
+        "Leaves enough duration for the requested mechanics and performance or reports a timing conflict",
+        "Carries the broken latch, open door, exertion, and end position into continuity"
+      ]
+    },
+    {
+      "id": "motivated-lighting-change",
+      "request": "The only strong source is the passing train outside. Light the room and let the character disappear into darkness after the final carriage passes.",
+      "expect": [
+        "Defines the train as the motivated source with direction, movement, hardness, color, exposure, shadow, and environmental interaction",
+        "Times the lighting change to the physical passage of the train rather than a decorative fade",
+        "Preserves practical or ambient contributions only when their hierarchy remains coherent",
+        "Avoids universal backlight or flat-light rules that contradict the scene"
+      ]
+    },
+    {
+      "id": "dialogue-speaker-ownership",
+      "request": "Prompt this two-character exchange. Only Asha speaks the exact line in Hindi; Tomas listens and keeps his mouth closed. Preserve Asha's voice identity and exhausted breath state.",
+      "expect": [
+        "Locks exact text, language, speaker ownership, timing, voice identity, delivery, and physical breath state",
+        "Directs Tomas's listening and explicitly keeps his visible mouth silent without assigning him speech",
+        "Inspects dialogue, audio, voice-reference, lip-sync, and multi-character support in the actual tool",
+        "Provides a separate audio handoff when the video model cannot reliably satisfy the audio requirements"
+      ]
+    },
+    {
+      "id": "integrate-performance-packet",
+      "request": "Use this approved performance packet inside a six-second close shot. Do not change the objective, tactic shift, exact line, or leaving state; add only the video direction needed.",
+      "expect": [
+        "Preserves the approved performance core rather than replacing it with generic emotional adjectives",
+        "Scales visible behavior and dialogue delivery to the six-second close framing",
+        "Adds only shot-specific blocking, camera, optics, timing, lighting, audio, and continuity direction",
+        "Reports any conflict between the approved acting, duration, blocking, and tool capability"
+      ]
+    },
+    {
+      "id": "threshold-transformation",
+      "request": "Plan a ten-second threshold transformation from the supplied closed and open armor references. The shoulder plates unlock, rotate, and seal after she crosses the doorway.",
+      "expect": [
+        "Assigns the closed and open references to explicit visible states",
+        "Defines stable before-state, trigger, crossing, ordered mechanical motion, contacts, intermediate states, lock, and stable after-state",
+        "Tracks doorway geography, character blocking, mechanism scale, lighting, sound, and persistent final state",
+        "Splits or simplifies the shot if the selected model cannot reliably solve the transformation and crossing together"
+      ]
+    },
+    {
+      "id": "scale-proof",
+      "request": "Make the creature feel thirty meters tall in a street-level shot. The previous take just looked like a normal animal close to camera.",
+      "expect": [
+        "Combines measurement with frame relation, familiar comparisons, environmental landmarks, and visible physical consequences",
+        "Uses blocking, camera clearance, perspective, movement, shadow, debris, or sound to prove scale",
+        "Diagnoses false proximity or missing environmental evidence instead of repeating only the number",
+        "Preserves the approved creature identity while changing the scale evidence"
+      ]
+    },
+    {
+      "id": "generate-async-connector",
+      "request": "Use my connected remote video service to generate shot 12B, wait for it, inspect it, and save the approved take to the project.",
+      "expect": [
+        "Inspects the active connector, authentication, model, schema, reference limits, settings, cost, output, and project-write capabilities",
+        "Submits only the required current-shot material and tracks queued, processing, completed, and failed states accurately",
+        "Inspects the completed clip against the shot pass criteria before approving it",
+        "Saves only with authorization and records prompt version, job ID, asset ID, settings, inspection result, and take status"
+      ]
+    },
+    {
+      "id": "missing-connector-fallback",
+      "request": "Generate this scene in Claude web, but no video connector appears to be available.",
+      "expect": [
+        "Confirms that no compatible tool is visible instead of pretending the skill grants generation access",
+        "Provides Claude-appropriate remote connector guidance, authentication, and tool verification",
+        "Returns a complete manual scene, shot, prompt, reference, settings, audio, edit, and verification package if connection cannot be completed",
+        "States clearly that no video was generated"
+      ]
+    },
+    {
+      "id": "connector-help-chatgpt-codex",
+      "request": "Show me how to connect my remote video MCP to ChatGPT web and Codex CLI before we upload any footage.",
+      "expect": [
+        "Explains that ChatGPT web uses hosted plugin or connector tools and does not read local Codex MCP configuration",
+        "Provides the appropriate Codex remote MCP setup and status-verification path",
+        "Covers trusted endpoints, authentication, permissions, secrets, privacy, cost, tool-schema inspection, and a low-risk test",
+        "Does not upload footage or begin generation"
+      ]
+    },
+    {
+      "id": "provider-selection",
+      "request": "I have three video models connected. Choose one for a 16-second two-character dialogue shot that needs identity references, a controlled dolly, exact speech, and lip sync.",
+      "expect": [
+        "Inspects actual tool schemas and model versions rather than relying on a hardcoded ranking",
+        "Compares reference fidelity, supported duration, camera control, exact dialogue, multi-speaker audio, lip sync, privacy, cost, and output",
+        "Explains any material tradeoff or asks only if the choice remains consequential",
+        "Suggests splitting picture and audio or the shot itself when no one model can reliably satisfy the full request"
+      ]
+    },
+    {
+      "id": "audit-prompt",
+      "request": "Audit this Seedance-style prompt for use with a different video model. It contains stale tags, three contradictory camera moves, fixed field-of-view syntax, and a huge negative list. Do not generate.",
+      "expect": [
+        "Separates provider-neutral scene direction from unsupported provider-specific syntax",
+        "Removes stale references and resolves contradictory camera behavior around one observable move",
+        "Converts optical intent into observable outcomes before adapting to the selected model",
+        "Replaces broad bans with positive shot-specific constraints and does not invoke a tool"
+      ]
+    },
+    {
+      "id": "audit-generated-clips",
+      "request": "Inspect these chase clips for identity drift, duplicate riders, screen-direction breaks, weightless impacts, lighting resets, dead reactions, speaker mistakes, flicker, and unstable edges. Diagnose first.",
+      "expect": [
+        "Inspects the actual media and supports findings with observable moments",
+        "Classifies source, prompt, complexity, continuity, capability, audio, performance, and stochastic artifact failures",
+        "Compares each shot's leaving state with the next shot's entering state",
+        "Does not regenerate because the user requested diagnosis first"
+      ]
+    },
+    {
+      "id": "surgical-revise",
+      "request": "The shot is approved except the suitcase floats during the handoff. Fix only the contact and weight while preserving identity, framing, camera, acting, lighting, dialogue, and timing.",
+      "expect": [
+        "Preserves all named accepted elements and identifies the suitcase handoff as the local failure",
+        "Reinforces hand ownership, contact, grip, weight transfer, inertia, and release in the relevant action phase",
+        "Uses an edit, localized revision, or controlled regeneration capability when available",
+        "Compares the revision against the accepted take and records exactly what changed"
+      ]
+    },
+    {
+      "id": "extend-continuity",
+      "request": "Extend the approved train shot by three seconds until the final carriage clears frame. Keep the end-frame direction, rain, reflections, camera motion, ambience, and character state continuous.",
+      "expect": [
+        "Uses the accepted output and canonical references with explicit extension continuity",
+        "Preserves motion phase, screen direction, weather, lighting, camera inertia, sound, and performance state",
+        "Defines the new final frame and edit-ready leaving state",
+        "Inspects the seam and the extended segment rather than assuming continuity from a successful job status"
+      ]
+    },
+    {
+      "id": "paid-retry-boundary",
+      "request": "Keep generating versions until the scene is perfect. The service charges per clip and I have not set a budget.",
+      "expect": [
+        "Converts perfection into observable shot-specific pass criteria",
+        "Does not begin an unbounded paid generation loop",
+        "Requests or proposes a cost and retry boundary before additional paid generations while continuing safe planning work",
+        "Stops or redesigns when repeated attempts show no measurable improvement"
+      ]
+    },
+    {
+      "id": "prompt-only-package",
+      "request": "Prepare a model-neutral prompt-only package for this 12-second scene with active references, exact counts, first frame, blocking, camera, optics, timing, physics, lighting, performance, dialogue, audio, and pass criteria. Do not generate.",
+      "expect": [
+        "Returns a signal-dense provider-neutral production prompt covering every relevant requested category",
+        "Includes reference roles, selected-provider adapter or capability assumptions, settings, attachment order, naming, continuity, and verification",
+        "Uses exact dialogue, positive constraints, present-tense observable action, and chronological timing",
+        "States clearly that no video was generated"
+      ]
+    },
+    {
+      "id": "production-handoff",
+      "request": "Package scenes 14 through 18 for the editor and another video-generation team. Include approved takes, rejected takes, prompt versions, audio, and continuity.",
+      "expect": [
+        "Packages model profiles, scene plans, independent shot cards, prompts, reference registry, output registry, edit map, continuity log, audio package, take log, and open issues",
+        "Distinguishes locked creative facts from provider adapters and experiments",
+        "Labels accepted, rejected, superseded, queued, and unverified assets unambiguously",
+        "Creates a standalone handoff that does not require this skill or upstream skills to interpret"
+      ]
+    },
+    {
+      "id": "help-mode",
+      "request": "help",
+      "mode": "help",
+      "expect": [
+        "Explains scene planning, prompting, generation, revision, auditing, continuity, and connector execution without directing or generating a scene",
+        "Lists plan, create, revise, audit, prompt-only, and help modes",
+        "Provides a starter and another realistic example for every mode",
+        "Explains plan, prompt-only, generate, generate-and-refine, and manual-handoff choices plus connector boundaries"
+      ]
+    },
+    {
+      "id": "non-trigger-screenwriting",
+      "request": "Write the complete second act of this feature screenplay with scene headings and dialogue.",
+      "expect": [
+        "Uses the screenwriting workflow rather than invoking video direction"
+      ]
+    },
+    {
+      "id": "non-trigger-image-direction",
+      "request": "Design and generate the canonical character turnaround, costume states, and location reference sheets.",
+      "expect": [
+        "Uses the image-direction workflow rather than invoking video direction"
+      ]
+    },
+    {
+      "id": "non-trigger-performance-direction",
+      "request": "Build a recurring acting and voice bible for every major character before we plan any shots.",
+      "expect": [
+        "Uses the performance-direction workflow rather than invoking video direction"
+      ]
+    }
+  ]
+}

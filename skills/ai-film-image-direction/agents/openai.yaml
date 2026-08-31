@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI Film Image Direction"
+  short_description: "Design consistent film and animation image assets"
+  default_prompt: "Develop and generate a continuity-safe visual asset package for this film project."

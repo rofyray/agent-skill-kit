@@ -1,0 +1,21 @@
+AI Film Performance Direction
+Conceptual source credits
+
+This skill was independently written for Agent Skill Kit. The sources below influenced its treatment of behavior under pressure, character profiles, scene adaptation, listening, body and voice behavior, ensemble reactions, continuity, and production handoffs. No source prompts, media, or proprietary templates are bundled.
+
+User-supplied ACTING SYSTEM methodology
+
+Higgsfield Studio, Cully Hill Boys project breakdown
+https://higgsfield.ai/@higgsfield.studio/projects/cully-hill-boys
+
+Higgsfield Studio, Hell Grind project breakdown
+https://higgsfield.ai/@higgsfield.studio/projects/hell-grind
+
+Higgsfield Studio, Zephyr project breakdown
+https://higgsfield.ai/@higgsfield.studio/projects/zephyr
+
+Sanjii, AI Cartoon Full Breakdown
+https://higgsfield.ai/@sanjii/blogs/ai-cartoon-full-breakdown
+
+Sanjii, Cartoon Scene Builder source shared by the user
+https://drive.google.com/file/d/1be06NR1ejseXvRz3D5TJuhuLaxQZI7E-/view

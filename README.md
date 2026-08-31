@@ -6,6 +6,10 @@ Portable [Agent Skills](https://agentskills.io) for Codex, Claude Code, Cursor, 
 
 | Skill | Description |
 | --- | --- |
+| [`ai-film-image-direction`](skills/ai-film-image-direction/) | Design, generate, edit, and audit continuity-safe visual assets for films and animation. |
+| [`ai-film-performance-direction`](skills/ai-film-performance-direction/) | Develop, direct, test, and audit acting, dialogue, voice, and ensemble performance. |
+| [`ai-film-screenwriting`](skills/ai-film-screenwriting/) | Develop, draft, revise, and evaluate feature-length screenplays through production handoff. |
+| [`ai-film-video-direction`](skills/ai-film-video-direction/) | Plan, prompt, generate, revise, and audit continuity-safe film and animation shots. |
 | [`build-and-maintain-a-second-brain`](skills/build-and-maintain-a-second-brain/) | Build and maintain a source-grounded, Obsidian-compatible wiki with ingestion, querying, health checks, and reviews. |
 | [`create-and-edit-images`](skills/create-and-edit-images/) | Create photorealistic images or make precise edits while preserving unrequested details. |
 | [`craft-goal-driven-prompts`](skills/craft-goal-driven-prompts/) | Turn a goal into a structured prompt with completion criteria and an optional improvement loop. |

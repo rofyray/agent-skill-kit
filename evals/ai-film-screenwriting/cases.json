@@ -1,0 +1,150 @@
+{
+  "skill": "ai-film-screenwriting",
+  "cases": [
+    {
+      "id": "develop-premise-to-feature-plan",
+      "request": "Develop this premise into a feature story bible, character arcs, and sequence outline: a paramedic begins receiving emergency calls from tomorrow.",
+      "expect": [
+        "Stress-tests whether the premise can sustain feature-length choices, escalation, and consequences",
+        "Builds a coherent story bible without forcing one named beat-sheet formula",
+        "Defines character wants, pressures, relationships, arc possibilities, world rules, setups, and payoffs",
+        "Produces a causal sequence outline that includes the ending or clearly labels it as open"
+      ]
+    },
+    {
+      "id": "develop-nonlinear-ensemble",
+      "request": "Turn these notes into a nonlinear ensemble feature. Keep the same six characters and final event, but solve the chronology and make every storyline affect the others.",
+      "expect": [
+        "Preserves the six characters and locked ending",
+        "Designs legible causal and information flow without forcing a conventional linear structure",
+        "Tracks what each character and the audience know across chronology shifts",
+        "Makes the storylines collide through choices and consequences rather than thematic resemblance alone"
+      ]
+    },
+    {
+      "id": "draft-opening-pages",
+      "request": "Write the opening ten screenplay pages from this approved outline. Preserve the cold open, the protagonist's existing voice, and the reveal on page ten.",
+      "expect": [
+        "Reads the outline and any existing voice evidence before drafting",
+        "Writes screenplay pages rather than a prose synopsis",
+        "Preserves the cold open and reveal while building causal scene pressure",
+        "Uses readable screenplay form and avoids unnecessary camera or acting direction"
+      ]
+    },
+    {
+      "id": "continue-canonical-project-draft",
+      "request": "Continue my feature through sequence four using the canonical Fountain draft, story bible, and continuity ledger in this project. Update the files but do not change locked dialogue.",
+      "expect": [
+        "Locates and reads the canonical project artifacts before writing",
+        "Uses file tools only when available and authorized, without creating duplicate canonical drafts",
+        "Drafts a coherent connected unit and preserves locked dialogue",
+        "Updates continuity and revision state and reports exactly what was completed"
+      ]
+    },
+    {
+      "id": "full-feature-without-file-access",
+      "request": "Write the entire feature screenplay from this treatment, but I do not have file tools connected in this chat.",
+      "expect": [
+        "Continues with screenplay work that can be done in conversation",
+        "Plans coherent drafting units and maintains a compact story and continuity state",
+        "States the exact portion delivered rather than claiming a truncated response is a complete feature",
+        "Offers an export-ready or manual persistence path without requiring a connector"
+      ]
+    },
+    {
+      "id": "structural-revision",
+      "request": "Fix the slow second act without changing the ending, the sister's betrayal, or the observatory location. Diagnose it first, then rewrite only what needs to change.",
+      "expect": [
+        "Diagnoses upstream causes using evidence from the supplied material",
+        "Treats the ending, betrayal, and observatory as locked",
+        "Builds a revision map that tracks affected setups, payoffs, and continuity",
+        "Rewrites the smallest coherent units that can materially solve the pacing problem"
+      ]
+    },
+    {
+      "id": "dialogue-polish",
+      "request": "Polish the dialogue in scenes 18 through 21. Keep every plot fact and make Lena and Omar sound less interchangeable without writing accents phonetically.",
+      "expect": [
+        "Preserves every plot fact and surrounding story state",
+        "Differentiates voice through worldview, strategy, vocabulary, syntax, and silence",
+        "Avoids phonetic caricature and excessive parentheticals",
+        "Checks that exposition and information ownership remain correct"
+      ]
+    },
+    {
+      "id": "coverage-only",
+      "request": "Give me full coverage on this screenplay. Cite scenes and prioritize the three highest-leverage changes, but do not rewrite anything.",
+      "expect": [
+        "Reviews the available screenplay rather than relying on the author's explanation",
+        "Supports strengths and concerns with scene, beat, page, or passage evidence",
+        "Prioritizes recommendations by leverage and dependency",
+        "Does not rewrite screenplay pages"
+      ]
+    },
+    {
+      "id": "compare-drafts",
+      "request": "Compare drafts three and four and tell me whether the protagonist became more active. Track regressions as well as improvements.",
+      "expect": [
+        "Aligns corresponding scenes despite numbering or ordering changes",
+        "Evaluates protagonist agency using choices and consequences in the actual pages",
+        "Reports improvements, regressions, and new continuity obligations",
+        "Does not assume the newer draft is better"
+      ]
+    },
+    {
+      "id": "production-handoff",
+      "request": "Prepare scenes 62 through 66 for visual development, acting direction, and video production without changing the screenplay.",
+      "expect": [
+        "Creates standalone scene intent sheets grounded in the canonical screenplay",
+        "Exports story state, objectives, hidden information, required action, exact dialogue, and continuity",
+        "Keeps narrative requirements separate from visual design, acting micro-behavior, camera, and model syntax",
+        "Labels locked, provisional, and open fields where ambiguity could cause drift"
+      ]
+    },
+    {
+      "id": "connector-guidance",
+      "request": "I want to keep the screenplay in my Claude project and send approved drafts to a connected production service. Show me how this skill handles connectors before writing anything.",
+      "expect": [
+        "Explains that the skill and the connector are separate capabilities",
+        "Checks the active surface and already available tools before recommending setup",
+        "Provides Claude-appropriate remote connector or Claude Code MCP guidance",
+        "Covers authentication, least permissions, verification, external-write approval, and manual fallback without beginning screenplay work"
+      ]
+    },
+    {
+      "id": "external-model-choice",
+      "request": "Draft this sequence using the writing model connected to this chat, and save the result to the existing screenplay file.",
+      "expect": [
+        "Inspects the connected tool and its actual model, input, output, and write capabilities",
+        "Uses the user-selected external model rather than substituting a hardcoded provider",
+        "Preserves the canonical screenplay and obtains any required write approval",
+        "Verifies the returned text and saved destination before claiming completion"
+      ]
+    },
+    {
+      "id": "help-mode",
+      "request": "help",
+      "mode": "help",
+      "expect": [
+        "Explains long-form screenplay development, drafting, revision, coverage, and production handoff without working on a screenplay",
+        "Lists develop, draft, revise, coverage, and help modes",
+        "Provides a starter and another realistic example for every mode",
+        "Explains conversation, persistent-project, connected-workflow, and manual-handoff choices plus connector setup boundaries"
+      ]
+    },
+    {
+      "id": "non-trigger-video-prompt",
+      "request": "Turn this locked scene into a 12-second video prompt with camera movement, lens choice, timed action, and lip sync.",
+      "expect": [
+        "Does not invoke the feature-screenwriting workflow merely to create a video-generation prompt"
+      ]
+    },
+    {
+      "id": "non-trigger-character-sheet",
+      "request": "Generate a four-view character design sheet and five facial expressions from this visual reference.",
+      "expect": [
+        "Does not invoke the feature-screenwriting workflow for visual asset generation"
+      ]
+    }
+  ]
+}
