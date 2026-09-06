@@ -1,0 +1,28 @@
+CREDITS
+
+This skill is an original Agent Skill Kit implementation conceptually informed by:
+
+Anshu Chimala, "How to turn your AI into a world-class designer"
+Guest post in Lenny's Newsletter
+https://www.lennysnewsletter.com/p/how-to-turn-your-ai-into-a-world
+
+The publicly available portion of the article informed the Discover, Define, and
+Deliver structure; hidden design seeds; ambitious, taste-led briefing; fresh-context
+visual criticism; purposeful image and video generation; and subtraction during
+final polish.
+
+Public summaries identify two additional technique names, "Remove AI tells" and
+"Rewrite copy by hand," but their article text was not publicly available during
+development. The default-pattern audit and human-owned copy workflow in this skill
+were independently developed from those high-level labels and are not presented as
+a reproduction or summary of the paywalled sections.
+
+The seed workflow was also informed by:
+
+Kou Misaki and Takuya Akiba, Sakana AI
+"String Seed of Thought: Prompting LLMs for Distribution-Faithful and Diverse Generation"
+https://pub.sakana.ai/ssot/
+
+No article text, images, videos, code, or other third-party assets are bundled in
+this skill. No affiliation with or endorsement by the authors or publishers is
+implied.

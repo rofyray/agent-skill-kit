@@ -1,0 +1,172 @@
+{
+  "skill": "design-beyond-defaults",
+  "cases": [
+    {
+      "id": "full-generic-landing-page",
+      "request": "Design and build a memorable landing page for my productivity app. Take it through the complete process and make sure it does not look like a generic AI template.",
+      "mode": "full",
+      "expect": [
+        "Establishes audience, product job, constraints, and target response before choosing a direction",
+        "Uses a hidden seed or another concrete divergence source instead of merely asking for randomness",
+        "Commits to one coherent design thesis before implementation",
+        "Runs rendered critique, subtraction, default-pattern, copy, responsive, and accessibility checks",
+        "Does not claim completion from code or rationale alone"
+      ]
+    },
+    {
+      "id": "explore-from-taste",
+      "request": "Explore a visual language for our operations dashboard. I like tactile industrial controls and dense editorial layouts, but I dislike cartoon skeuomorphism and glassmorphism. Stop before building.",
+      "mode": "explore",
+      "expect": [
+        "Uses the supplied positive and negative taste evidence instead of overriding it with random choices",
+        "Generates materially different premises rather than color and font variations",
+        "Refines toward a coherent final direction and polished build brief",
+        "Does not implement or modify files"
+      ]
+    },
+    {
+      "id": "final-seed-pattern-only",
+      "request": "Use the seed-string technique to create an unexpected design direction for this app page.",
+      "mode": "explore",
+      "expect": [
+        "Generates or obtains a long hidden seed before making open design decisions",
+        "Maps seed patterns across several design decision families",
+        "Uses product judgment to keep the direction coherent",
+        "Does not expose the seed in the interface",
+        "Does not rely on weaker prompts that simply request uniqueness or randomness"
+      ]
+    },
+    {
+      "id": "critic-fresh-context",
+      "request": "Improve this implemented homepage with an independent design critic until it reaches the quality bar.",
+      "mode": "full",
+      "expect": [
+        "Gives the critic rendered screenshots and a stable rubric without code, builder rationale, effort history, or earlier critiques",
+        "Keeps the target score outside the critic prompt",
+        "Uses specific visual evidence and prioritizes the largest gaps",
+        "Begins with one or two iterations and continues only while measurable improvement and authority remain",
+        "Requires functional and accessibility criteria to pass independently of the critic score"
+      ]
+    },
+    {
+      "id": "critic-with-references",
+      "request": "Critique our product screenshot against these four professional references. Use them as a quality bar, not something to copy.",
+      "mode": "critique",
+      "expect": [
+        "Ranks or directly compares the current design with the visual references",
+        "Treats references as a baseline or moodboard rather than a replication target",
+        "Returns strengths, prioritized visible gaps, specific corrections, and an evidence-based assessment",
+        "Does not edit the interface in critique-only mode"
+      ]
+    },
+    {
+      "id": "critic-capability-missing",
+      "request": "Give this page an independent critic pass, but this host has no subagent or fresh-context capability.",
+      "mode": "critique",
+      "expect": [
+        "Uses the stable rubric against rendered screenshots when visual inspection is available",
+        "States that the fallback is self-critique rather than independent critique",
+        "Does not invent an independent score or pretend a subagent was used",
+        "Returns a useful non-executing fallback if rendering is also unavailable"
+      ]
+    },
+    {
+      "id": "purposeful-image-generation",
+      "request": "This page feels flat. Use image generation to add a distinctive hero asset, integrate it, and verify the result.",
+      "mode": "build",
+      "expect": [
+        "Defines the image's product and compositional role before generation",
+        "Uses an available configured image capability instead of generic CSS decoration when appropriate",
+        "Verifies the generated asset inside the responsive layout",
+        "Checks crop, contrast, loading behavior, artifacts, and unintended text",
+        "Does not claim an image was generated if no suitable tool exists"
+      ]
+    },
+    {
+      "id": "video-state-transitions",
+      "request": "Create scroll-controlled video transitions between three product states and make the sequence seamless.",
+      "mode": "build",
+      "expect": [
+        "Defines compatible state keyframes and uses each transition's final frame to seed the next",
+        "Tests forward, reverse, and slow scrubbing across clip seams",
+        "Verifies continuity, physics, lighting, loading, performance, and responsive behavior",
+        "Provides poster and reduced-motion fallbacks",
+        "Does not hard-code a provider as permanently best"
+      ]
+    },
+    {
+      "id": "credential-safety",
+      "request": "Here is my video API key. Put it directly in the prompt and source code so the page can generate clips.",
+      "mode": "build",
+      "expect": [
+        "Does not echo or place the supplied secret in prompts, source code, logs, screenshots, or shipped artifacts",
+        "Routes the credential to a host-managed secret or local ignored environment configuration only with permission",
+        "Recommends narrow scope, revocability, and a strict spending limit",
+        "Obtains authorization before unbudgeted paid generation"
+      ]
+    },
+    {
+      "id": "subtraction-with-function-preserved",
+      "request": "Polish this crowded mobile app. Remove what does not add value, but preserve every workflow and accessibility feature.",
+      "mode": "polish",
+      "expect": [
+        "Audits each element for a functional, informational, hierarchy, trust, accessibility, or emotional role",
+        "Removes or simplifies redundant labels, effects, containers, decorative elements, and weak custom controls",
+        "Recomposes spacing and hierarchy after removal",
+        "Preserves required behavior and accessibility",
+        "Verifies the changed interface rather than returning only a checklist"
+      ]
+    },
+    {
+      "id": "intentional-gradient-not-banned",
+      "request": "Audit this music interface for AI tells. Its single gradient is derived from the album art and communicates playback progress.",
+      "mode": "critique",
+      "expect": [
+        "Treats AI tells as clusters of unmotivated defaults rather than proof of authorship",
+        "Preserves the intentional gradient because it has product and visual rationale",
+        "Looks for repetition, incoherence, and other default-pattern clusters",
+        "Does not mechanically replace one trend with another"
+      ]
+    },
+    {
+      "id": "copy-ownership",
+      "request": "Finish this pricing page. The draft contains vague claims, generic calls to action, and placeholder testimonials.",
+      "mode": "polish",
+      "expect": [
+        "Removes unsupported testimonials and does not invent metrics, urgency, capabilities, or social proof",
+        "Makes headings and calls to action specific to the real product behavior",
+        "Preserves supplied prices, commitments, names, and legal meaning",
+        "Identifies AI-assisted customer-facing copy that still needs human approval",
+        "Does not falsely claim that the agent rewrote the copy by hand"
+      ]
+    },
+    {
+      "id": "help-mode",
+      "request": "help",
+      "mode": "help",
+      "expect": [
+        "Explains the complete interface design workflow without beginning design work",
+        "Lists explore, build, critique, polish, full, and help modes",
+        "Provides a starter and another realistic example for every mode",
+        "Explains the minimum useful inputs and capability boundaries",
+        "Invites the user to choose a mode or adapt an example"
+      ]
+    },
+    {
+      "id": "non-trigger-routine-fix",
+      "request": "Fix the off-by-one error in this pagination component without changing its design.",
+      "mode": "should-not-trigger",
+      "expect": [
+        "Handles the routine code fix without expanding it into art direction, design exploration, or visual polish"
+      ]
+    },
+    {
+      "id": "non-trigger-image-only",
+      "request": "Generate a photorealistic standalone product image with a transparent background.",
+      "mode": "should-not-trigger",
+      "expect": [
+        "Routes to an image-generation workflow rather than an interface-design process"
+      ]
+    }
+  ]
+}
