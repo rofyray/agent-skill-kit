@@ -19,6 +19,8 @@ Use this skill for scene-to-shot breakdowns, shot cards, reference assignment, s
 
 Do not use it merely to author a feature screenplay, design canonical character or location assets, build a master acting bible, or perform unrelated video editing and transcoding. It can consume those upstream materials when available. When they are absent, create only the minimum local story, visual, or performance assumptions needed to direct the requested shot.
 
+When the primary task is kinetic typography, graphic overlays, product assembly choreography, architectural graphic reveals, vector explainers, or editorial data graphics, prefer `ai-motion-graphics-direction` when available. This skill owns narrative scenes, performance blocking, and cinematic shot continuity. In a mixed commercial, choose by the dominant deliverable and share approved references and continuity between disciplines; neither skill requires the other to be installed.
+
 ## Choose the mode
 
 Infer the mode and requested output level:

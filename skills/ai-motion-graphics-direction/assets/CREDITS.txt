@@ -1,0 +1,13 @@
+AI Motion Graphics Direction
+Conceptual source credits
+
+Independently written for Agent Skill Kit following the user's requested six-format scope. The source informed the ideas of a central motion mechanic, explicit reference roles, identity anchors, style constraints, timed beats, copy manifests, object persistence, mixed 2D and 3D layers, vertical recomposition, and generation fallbacks.
+
+Author: @adilinthewildtempo
+Article: I Built a $5K/Month Business With Claude Fable 5.1 + Higgsfield AI
+Published: September 2, 2026
+https://higgsfield.ai/@adilinthewildtempo/blogs/claude-fable-5-1-higgsfield-marketing-studio-300-day
+
+Reviewed the six creation sections, their ten example prompts, and the attachment displayed as Higgsfield-mcp-skill_1.md (internally titled MiniMax H3 Motion Design Prompts). No source prompt bodies, attachment text, videos, reference images, fonts, or code are bundled. This package supplies independently authored instructions, examples, and validation code. Attribution does not imply affiliation, endorsement, or permission to reuse source media.
+
+Capability-discovery guidance was checked against official Higgsfield, fal, Kie, and WaveSpeed documentation. Provider documentation links in the tool-access reference are lookup entry points, not copied manuals or permanent capability claims.

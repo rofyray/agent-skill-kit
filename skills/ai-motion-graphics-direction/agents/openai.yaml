@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI Motion Graphics Direction"
+  short_description: "Direct six motion graphics formats across AI models"
+  default_prompt: "Turn this brief into a motion graphics treatment, timed storyboard, and production package for my chosen tools."

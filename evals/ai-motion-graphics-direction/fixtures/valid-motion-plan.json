@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "duration_seconds": 8,
+  "fps": 30,
+  "references": [
+    {"id": "style", "role": "palette and typography only"}
+  ],
+  "copy": [
+    {"id": "result", "text": "40% chose refill"}
+  ],
+  "beats": [
+    {
+      "id": "reveal",
+      "start": 0,
+      "end": 6,
+      "action": "Reveal the survey result and complete the chart.",
+      "copy_ids": ["result"],
+      "reference_ids": ["style"]
+    },
+    {
+      "id": "read",
+      "start": 6,
+      "end": 8,
+      "action": "Hold the complete result for reading.",
+      "copy_ids": ["result"],
+      "reference_ids": ["style"],
+      "hold": true,
+      "copy_text": {"result": "40% chose refill"}
+    }
+  ],
+  "final_hold_seconds": 1,
+  "percent_bars": [
+    {"id": "refill", "percent": 40, "filled_length": 80, "track_length": 200}
+  ],
+  "metadata": {"source": "User-approved fictional survey fixture: 80 of 200 replies."}
+}
