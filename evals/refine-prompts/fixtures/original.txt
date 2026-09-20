@@ -1,0 +1,2 @@
+Draft an email using {{customer}}.
+Ask for confirmation before calling send_email.

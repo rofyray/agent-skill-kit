@@ -1,11 +1,13 @@
 ---
 name: craft-goal-driven-prompts
-description: Turn a goal into a structured agent prompt with constraints, measurable completion criteria, verification, and an optional improvement loop. Use when drafting or strengthening an agent prompt.
+description: Turn goals into agent prompts with constraints, completion criteria, verification, and optional improvement loops. Use when drafting from a goal or adding a completion bar.
 ---
 
 # Craft Goal-Driven Prompts
 
 Turn an intended outcome into a prompt that gives the executing agent freedom over the method while holding it to explicit constraints and an observable completion bar.
+
+For audits, wording repairs, or structural refactors of an existing prompt, prefer refine-prompts when available. Use this skill when the main task is developing a goal into instructions or adding completion criteria and an improvement loop.
 
 ## Help mode
 

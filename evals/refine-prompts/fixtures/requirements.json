@@ -1,0 +1,7 @@
+{
+  "required_literals": [
+    "{{customer}}",
+    "send_email",
+    "Ask for confirmation before calling send_email."
+  ]
+}

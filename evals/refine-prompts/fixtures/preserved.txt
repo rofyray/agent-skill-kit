@@ -1,0 +1,5 @@
+# Background
+Draft an email using {{customer}}.
+
+# Behaviour
+Ask for confirmation before calling send_email.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Refine Prompts"
+  short_description: "Repair and refine prompts while preserving intent"
+  default_prompt: "Review and improve this existing prompt, preserving its requirements and explaining consequential changes."

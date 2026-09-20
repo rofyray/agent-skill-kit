@@ -1,0 +1,20 @@
+Conceptual influences
+
+Wulfie Bain, Why the world's best AI startups write bad prompts (& how to fix this).
+Original shared post: https://x.com/wulfie_bain_/status/2098060386813566990
+Author's publication: https://www.linkedin.com/pulse/why-worlds-best-ai-startups-write-bad-prompts-how-fix-wulfie-bain-ryiec
+Influence: prompt maintenance as product work, precise requirements, modular organization, and the Background/Behaviour/Output framework. The user also supplied the article text and a template screenshot. This package includes neither the article nor the screenshot; its instructions, template wording, examples, and code are independently written.
+
+Benjamin Verbeek, account of improving Lovable's system prompt.
+https://www.linkedin.com/posts/benjamin-verbeek_im-an-engineer-at-lovable-and-i-spent-the-activity-7415063883113209856-Nuej
+Influence: inspect assembled prompts, review rewrites for lost constraints, and test changes.
+
+Hamel Husain, A Field Guide to Rapidly Improving AI Products.
+https://hamel.dev/blog/posts/field-guide/index.html
+Influence: diagnose real failures and evaluate task-specific outcomes with evidence.
+
+Yaniv Leviathan, Matan Kalman, and Yossi Matias, Prompt Repetition Improves Non-Reasoning LLMs.
+https://arxiv.org/abs/2512.14982
+Influence: avoid treating repetition as universally harmful; test deliberate reinforcement in its actual setting.
+
+Attribution does not imply endorsement. No third-party code or media is bundled.
