@@ -1,0 +1,23 @@
+Conceptual inspiration:
+Sebastian, "If coding is solved, what now?: Measuring the sloppiness of code", Earendil.
+https://earendil.com/posts/measuring-code-sloppiness/
+The article motivated the paired verbosity and erosion measurements and their
+interpretation. This skill's instructions and adapter are independently written.
+
+Research and executable dependency:
+Gabriel Orlanski and collaborators, SlopCodeBench.
+https://github.com/SprocketLab/slop-code-bench
+Gabriel Orlanski, scb-check, pinned dependency version 0.2.0.
+https://github.com/gabeorlanski/scb-check
+The adapter invokes installed parser, complexity, clone, and bundled-rule APIs.
+Upstream code and rules are not vendored in this skill. Their packages retain
+their own licenses. No endorsement by the cited authors is implied.
+
+Multilingual parser dependency:
+tree-sitter-language-pack contributors, pinned dependency version 0.10.0.
+https://pypi.org/project/tree-sitter-language-pack/0.10.0/
+https://github.com/xberg-io/tree-sitter-language-pack
+Individual grammar authors are credited and licensed in that distribution.
+This skill imports installed parsers. It does not vendor grammar code. The
+multilingual rule logic, clone matcher, and measurement adapters are independently
+authored and do not imply equivalent rule coverage to the Python research profile.

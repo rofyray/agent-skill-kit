@@ -1,0 +1,4 @@
+interface:
+  display_name: "Audit Code Slop"
+  short_description: "Measure verbosity, erosion, and refactoring progress"
+  default_prompt: "Audit this codebase for verbosity and structural erosion, explain the largest contributors, and save a baseline for future comparison."
