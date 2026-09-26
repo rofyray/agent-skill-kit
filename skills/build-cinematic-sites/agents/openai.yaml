@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build Cinematic Sites"
+  short_description: "Build story-led websites with purposeful motion"
+  default_prompt: "Create a complete cinematic website from my brief in my chosen tools, with responsive layouts, purposeful motion, and a verified preview."

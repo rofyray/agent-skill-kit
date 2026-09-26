@@ -1,0 +1,20 @@
+Build Cinematic Sites
+Conceptual source credits
+
+Independently authored for Agent Skill Kit from the user's supplied seven-file package titled "10K Websites": SKILL.md, prompt-laws.md, design-package.md, scrub-pipeline.md, ffmpeg-recipes.md, troubleshooting.md, and deploy.md.
+
+The source informed site-first media planning, a shared design package, continuous scroll journeys, composed ending states, caption reading windows, media inspection, restrained asset processing, responsive alternatives, and failure-state verification.
+
+The supplied files contain Metics Media partner references, but do not establish an explicit author credit, canonical publication URL, or reuse license. Authorship and canonical source URL remain unverified; no attribution is inferred from promotional links. The supplied package and its code are not redistributed. This skill contains newly written instructions and examples, with no bundled source media or vendor setup material. Attribution does not imply affiliation or endorsement.
+
+Optional companions from the same repository:
+https://github.com/rofyray/agent-skill-kit/tree/main/skills/design-beyond-defaults
+https://github.com/rofyray/agent-skill-kit/tree/main/skills/ai-motion-graphics-direction
+
+Technical lookup sources consulted September 26, 2026:
+https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/currentTime
+https://developer.mozilla.org/en-US/docs/Web/API/URL/revokeObjectURL_static
+https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html
+https://ffmpeg.org/ffmpeg-filters.html
+
+Documentation was consulted for behavior and verification guidance; documentation text and implementation code are not bundled.
