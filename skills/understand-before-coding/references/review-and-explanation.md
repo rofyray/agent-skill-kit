@@ -55,6 +55,8 @@ Check the relevant analysis lenses, including correctness, edge cases, error pro
 
 Compare documentation, inline comments, and tests against functional logic. A test's existence does not prove it covers the changed behavior; inspect its assertions and path.
 
+Check that expected results have an authority beyond the implementation itself and that mocks do not bypass the boundary being claimed as verified. Distinguish observed behavior from proposed checks, and confirm that execution evidence applies to the reviewed state. Keep application defects separate from gaps in verification.
+
 ## Return the result
 
 - For explanation, answer directly and separate material unknowns from facts.

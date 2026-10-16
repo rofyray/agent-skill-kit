@@ -5,6 +5,7 @@ Use this playbook only when the user clearly asks to generate or change code.
 ## Confirm the change boundary
 
 - Identify the requested behavior and the smallest observable completion condition.
+- Establish expected results from requirements or contracts before editing; do not derive the completion bar solely from the implementation being changed.
 - Inspect repository instructions, working-tree state, relevant implementation, callers, tests, and established patterns.
 - Preserve unrelated user changes and avoid broad cleanup.
 - Carry forward explicit priorities and deferred concerns.
@@ -41,7 +42,7 @@ When the user defers a concern, do not implement it. Record it in the handoff if
 2. Run focused checks first, then broader existing checks in proportion to regression risk.
 3. Inspect the actual diff for unintended behavior, duplicate logic, stale comments, and unrelated formatting.
 4. Exercise the user or system flow when the environment permits it.
-5. Report checks that could not run and why.
+5. Tie results to the final working state, retaining pre-existing failures and unstable reruns. Report checks that could not run and why.
 
 Do not claim success from code inspection alone when executable verification is available.
 

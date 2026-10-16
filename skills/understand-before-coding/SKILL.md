@@ -1,6 +1,6 @@
 ---
 name: understand-before-coding
-description: Build evidence-backed understanding around code. Use when planning features, explaining or reviewing code, tracing impacts, implementing minimally, or documenting changes - not for mechanical edits.
+description: Understand, plan, implement, review, verify, and document code using repository evidence. Use when checking behavior, tracing change impact, or implementing scoped changes, not mechanical edits.
 ---
 
 # Understand Before Coding
@@ -21,9 +21,10 @@ Infer the operation from the request; the user does not need to name a mode.
 - **Plan**: Design a feature or change after finding reusable code, established patterns, affected boundaries, bottlenecks, and extension points.
 - **Implement**: Make the smallest justified code change and verify its behavior.
 - **Review**: Assess code or a diff for correctness, regressions, risk, consistency, and missing coverage.
+- **Verify**: Establish whether a specified behavior or change meets its requirements using executable checks and observed results; identify weak checks and missing evidence.
 - **Document**: Write a PR description, engineering summary, product-impact note, architecture update, or notification plan.
 
-When a request is vague, begin with read-only understanding or planning. Do not edit code until the user clearly requests implementation. Treat words such as `plan`, `understand`, `implement`, `review`, and `document` as portable mode hints, not client-specific commands.
+When a request is vague, begin with read-only understanding or planning. Do not edit code until the user clearly requests implementation or test changes. Treat mode names as portable natural-language hints, not client-specific commands. Use Review for finding defects in code or a diff, and Verify when the requested deliverable is evidence about behavior. Combine them only as needed by the request.
 
 ## Establish focus and authority
 
@@ -53,6 +54,7 @@ Do not claim that absence of search results proves absence of behavior. State to
 - Read [planning](references/planning.md) for feature planning, architecture, reuse, isolation, bottlenecks, or extensibility.
 - Read [implementation](references/implementation.md) before generating or changing code.
 - Read [review and explanation](references/review-and-explanation.md) for code reading, caller tracing, architecture or user-flow explanation, and code review.
+- Read [verification](references/verification.md) for Verify mode, and when Plan, Implement, or Review needs to select or assess behavioral checks beyond routine validation. Load it before implementation when acceptance evidence needs design.
 - Read [documentation](references/documentation.md) for PR descriptions, summaries, architecture updates, product implications, and notification candidates.
 - Read [analysis lenses](references/analysis-lenses.md) when the request names cross-cutting concerns or needs a broader risk pass.
 
@@ -72,6 +74,7 @@ Answer the question at the requested level of abstraction. Prefer a concise evid
 
 - **Understand, Plan, Review, Document**: Remain read-only unless the user separately authorizes edits.
 - **Implement**: Preserve unrelated user changes, follow repository conventions, keep the diff minimal, and avoid opportunistic refactors.
+- **Verify**: Inspect and run appropriate checks in an authorized test environment without changing application code, tests, dependencies, or configuration unless requested. Temporary probes and test outputs may use isolated scratch space. A request to add tests authorizes scoped test changes; a request to fix failures authorizes scoped repairs under Implement. Do not ask again for authority already granted.
 - **All operations**: Do not perform destructive actions, production changes, external communication, purchases, or permission expansion without the authority those actions require.
 
 If the requested action cannot be completed with available files, tools, permissions, or runtime access, complete the safe analysis that remains possible and identify the exact limitation.
@@ -86,4 +89,5 @@ Return the artifact appropriate to the operation:
 - **Plan**: recommended design, existing patterns, architecture and impact, risks, verification, and open decisions.
 - **Implement**: completed change, verification evidence, material decisions, deferred concerns, and limitations.
 - **Review**: prioritized actionable findings first, followed by important gaps or residual uncertainty. If no material findings exist, say so plainly.
+- **Verify**: criterion-level evidence tied to the tested state, pass/fail/blocked/not-run results, deficiencies in the checks, and a scoped conclusion with remaining uncertainty.
 - **Document**: the requested ready-to-use document, with unsupported ownership or impact claims removed or qualified.

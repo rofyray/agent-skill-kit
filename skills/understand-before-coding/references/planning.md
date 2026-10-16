@@ -8,6 +8,7 @@ Use this playbook to plan a feature or code change without editing the codebase.
 - Identify the current behavior, desired behavior, non-goals, and compatibility constraints.
 - Resolve only questions that would change architecture, scope, safety, or acceptance criteria.
 - Keep optional future work separate from the present requirement.
+- Identify acceptance criteria, the source of each expected result, and the evidence that could disprove success. Plan executable checks where needed without claiming they have run.
 
 ## Find the existing shape
 

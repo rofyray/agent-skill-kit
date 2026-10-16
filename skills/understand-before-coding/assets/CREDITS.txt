@@ -11,5 +11,14 @@ portable workflow, evidence rules, action boundaries, reference structure, and
 verification guidance in this package were independently adapted for Agent
 Skill Kit.
 
-No affiliation with or endorsement by the source author is implied. No
+Addy Osmani, "Agentic Verification"
+https://addyo.substack.com/p/agentic-verification
+
+The article informed the Verify mode's focus on executable acceptance evidence,
+property and differential checks, runtime observation, and reliable feedback
+loops. The verification playbook, scope boundaries, reporting contract, and
+evaluation fixtures are original Agent Skill Kit implementations of these
+concepts. No article text or third-party code was copied into this package.
+
+No affiliation with or endorsement by either source author is implied. No
 third-party code or assets are bundled in this skill.
