@@ -41,6 +41,8 @@ For a page or user flow, connect visible actions to handlers, network or service
 
 ## Review code
 
+For a dedicated independent change review or a tracked re-review, prefer `review-code-changes` when installed and consistent with the user's selection. This playbook remains the self-contained path for ordinary review during development or when that specialist is unavailable. Do not make a committee a prerequisite for explaining or checking a small code path.
+
 Inspect the relevant baseline, diff, surrounding code, callers, and tests. Prioritize findings by impact, not by the order encountered.
 
 A useful finding must include:

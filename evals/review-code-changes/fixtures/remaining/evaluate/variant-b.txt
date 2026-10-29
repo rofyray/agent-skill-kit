@@ -1,0 +1,1 @@
+Trace changed behavior from input to output and challenge whether it preserves the contract. Review candidate against base. Report only supported consequential introduced defects with location, trigger, impact, and evidence; say when there are no supported findings. Keep source unchanged.

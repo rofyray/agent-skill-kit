@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Code Changes"
+  short_description: "Adaptive code review with independently checked findings"
+  default_prompt: "Use review-code-changes to review this change with an adaptive committee, verify consequential findings, and report evidence and coverage gaps."

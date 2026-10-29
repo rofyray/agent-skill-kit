@@ -1,0 +1,19 @@
+Conceptual influences
+
+Addy Osmani, Morgan Westlee Lunt, and Qing Wang, "How the Claude Code team does code review", October 15, 2026.
+https://claude.dev/blog/solving-code-review-at-anthropic/
+Influence: layered review, independent candidate validation, bounded re-review, risk-sensitive human involvement, and incident-driven evaluation.
+
+Anthropic, Claude Code documentation: Code Review, Customize Code Review, Read and request reviews, Review locally, and Best practices.
+https://code.claude.com/docs/en/code-review
+https://code.claude.com/docs/en/code-review-customize
+https://code.claude.com/docs/en/code-review-pull-requests
+https://code.claude.com/docs/en/code-review-local
+https://code.claude.com/docs/en/best-practices
+Influence: separation of discovery, verification, reporting, executable checks, trusted policy, and repository enforcement.
+
+Thariq Shihipar, "Lessons from building Claude Code: How we use skills".
+https://claude.dev/blog/lessons-from-building-claude-code-how-we-use-skills/
+Influence: focused skill responsibilities and progressive disclosure.
+
+Original instructions, templates, helper code, and evaluation fixtures were written for this kit. No upstream implementation, internal prompts, or illustrations are included. Committee sizes, task budgets, record format, and portable fallback behavior are this kit's design choices. No affiliation with or endorsement by Anthropic is implied. Sources were consulted October 28, 2026; provider behavior should be rechecked before configuring an integration.

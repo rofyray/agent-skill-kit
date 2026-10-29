@@ -1,0 +1,361 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Review Code Changes record",
+  "description": "Declared review evidence, not a merge approval. The bundled validator also checks cross-field consistency. Snapshot strings may identify commits or immutable supplied/dirty-tree snapshots. Findings are validated issues; unresolved candidates belong in limitations and blocked coverage.",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "target": {
+      "type": "object",
+      "properties": {
+        "baseline": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reviewed": {
+          "type": "string",
+          "minLength": 1
+        },
+        "previous_reviewed": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        }
+      },
+      "required": [
+        "baseline",
+        "reviewed",
+        "previous_reviewed"
+      ],
+      "additionalProperties": false
+    },
+    "round": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "round_limit": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Explicit review-round budget. Use three unless the user authorizes another limit."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "complete",
+        "incomplete",
+        "needs-human"
+      ]
+    },
+    "outcome": {
+      "type": "string",
+      "enum": [
+        "findings",
+        "no-findings",
+        "inconclusive"
+      ]
+    },
+    "coverage": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/coverage"
+      },
+      "minItems": 1
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/check"
+      },
+      "minItems": 0
+    },
+    "committee": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/member"
+      },
+      "minItems": 1
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/finding"
+      },
+      "minItems": 0
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0
+    }
+  },
+  "required": [
+    "schema_version",
+    "target",
+    "round",
+    "round_limit",
+    "status",
+    "outcome",
+    "coverage",
+    "checks",
+    "committee",
+    "findings",
+    "limitations"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "coverage": {
+      "type": "object",
+      "properties": {
+        "area": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "complete",
+            "blocked"
+          ]
+        },
+        "evidence": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "area",
+        "status",
+        "evidence"
+      ],
+      "additionalProperties": false
+    },
+    "check": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "passed",
+            "failed",
+            "blocked",
+            "not-run"
+          ]
+        },
+        "revision": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "evidence": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "name",
+        "state",
+        "revision",
+        "evidence"
+      ],
+      "additionalProperties": false
+    },
+    "member": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "discovery",
+            "verification",
+            "adjudication"
+          ]
+        },
+        "independent": {
+          "type": "boolean"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "complete",
+            "blocked",
+            "superseded"
+          ]
+        },
+        "replacement_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Required only for superseded members. Must name a different completed committee member with the same role."
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "role",
+        "independent",
+        "status",
+        "scope"
+      ],
+      "additionalProperties": false
+    },
+    "finding": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "critical",
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "provenance": {
+          "type": "string",
+          "enum": [
+            "introduced",
+            "pre-existing",
+            "unknown"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "open",
+            "fixed",
+            "dismissed"
+          ]
+        },
+        "location": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "line": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "required": [
+            "path",
+            "line"
+          ],
+          "additionalProperties": false
+        },
+        "trigger": {
+          "type": "string",
+          "minLength": 1
+        },
+        "impact": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence": {
+          "type": "string",
+          "minLength": 1
+        },
+        "validation": {
+          "type": "object",
+          "properties": {
+            "method": {
+              "type": "string",
+              "enum": [
+                "static",
+                "executed"
+              ]
+            },
+            "reviewers": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "rationale": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "method",
+            "reviewers",
+            "rationale"
+          ],
+          "additionalProperties": false
+        },
+        "disposition": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "reason": {
+              "type": "string",
+              "minLength": 1
+            },
+            "evidence": {
+              "type": "string",
+              "minLength": 1
+            },
+            "revision": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "reason",
+            "evidence",
+            "revision"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "severity",
+        "provenance",
+        "status",
+        "location",
+        "trigger",
+        "impact",
+        "evidence",
+        "validation",
+        "disposition"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

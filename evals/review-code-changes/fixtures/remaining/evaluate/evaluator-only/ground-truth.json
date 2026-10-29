@@ -1,0 +1,18 @@
+{
+  "amber": {
+    "introduced_defects": 1,
+    "root_cause": "last amount dropped by slice",
+    "trigger": [
+      149,
+      151
+    ],
+    "expected": 300,
+    "candidate_actual": 149,
+    "location": "candidate/invoice.py:2"
+  },
+  "cobalt": {
+    "introduced_defects": 0,
+    "expectation": "equivalent integer accumulation including empty list"
+  },
+  "limits": "Two targets establish workflow execution, not production superiority. No price or token telemetry is supplied."
+}

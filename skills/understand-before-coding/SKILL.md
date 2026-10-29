@@ -26,6 +26,8 @@ Infer the operation from the request; the user does not need to name a mode.
 
 When a request is vague, begin with read-only understanding or planning. Do not edit code until the user clearly requests implementation or test changes. Treat mode names as portable natural-language hints, not client-specific commands. Use Review for finding defects in code or a diff, and Verify when the requested deliverable is evidence about behavior. Combine them only as needed by the request.
 
+For a dedicated independent PR or change review, adaptive review committee, or re-review that tracks findings across revisions, prefer `review-code-changes` when available. Keep ordinary review within an understanding or implementation task here, and honor an explicit request to use this skill. If the specialist is unavailable, use this skill's Review playbook and disclose any requested committee or history capability that cannot be provided. Neither skill requires the other; do not run both full workflows by default.
+
 ## Establish focus and authority
 
 1. Identify the concrete question, component, feature, flow, or diff in scope.

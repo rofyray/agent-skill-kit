@@ -1,0 +1,17 @@
+{
+  "source": "provided read-only repository administration snapshot",
+  "required_status_checks": [
+    "unit"
+  ],
+  "unit_command": "python3 -m unittest -v test_service.py",
+  "review_service_check": {
+    "name": "hosted-review",
+    "conclusion_policy": "informational; does not fail on findings",
+    "required": false
+  },
+  "require_conversation_resolution": false,
+  "required_human_approvals": 2,
+  "stale_approval_dismissal": true,
+  "merge_queue_enabled": false,
+  "deployment": "manual staged deployment with a configuration rollback; no irreversible data migration in scope"
+}

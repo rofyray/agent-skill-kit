@@ -228,6 +228,32 @@
         "Produces the requested prompt or brief without executing the verification workflow",
         "Does not confuse a request to specify checks with authorization to run them"
       ]
+    },
+    {
+      "id": "route-independent-change-review",
+      "request": "Independently review this PR using an adaptive committee and preserve findings for re-review. review-code-changes is installed.",
+      "expect": [
+        "Prefers review-code-changes for the dedicated independent review and tracked lifecycle",
+        "Does not run both full workflows or require the general skill as a dependency"
+      ]
+    },
+    {
+      "id": "retain-explicit-review-selection",
+      "mode": "review",
+      "request": "Use understand-before-coding to review this function and explain how errors reach its callers.",
+      "expect": [
+        "Honors explicit selection and uses the existing Review and explanation playbook",
+        "Does not require or automatically launch the specialist committee for this small code-path request"
+      ]
+    },
+    {
+      "id": "specialist-unavailable-review-fallback",
+      "mode": "review",
+      "request": "Independently review this change. The review-code-changes skill and subagent tools are unavailable; only understand-before-coding and the supplied diff are available.",
+      "expect": [
+        "Completes a scoped read-only review with the existing self-contained playbook",
+        "Discloses missing independent committee and any history limitations without pretending delegation occurred"
+      ]
     }
   ]
 }

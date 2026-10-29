@@ -20,6 +20,7 @@ Portable [Agent Skills](https://agentskills.io) for Codex, Claude Code, Cursor, 
 | [`design-beyond-defaults`](skills/design-beyond-defaults/) | Create, critique, and polish distinctive interfaces beyond familiar AI design defaults. |
 | [`interview-coach`](skills/interview-coach/) | Coach role research, applications, interview prep, practice, debriefs, progress, and negotiation. |
 | [`refine-prompts`](skills/refine-prompts/) | Audit, polish, refactor, and compare existing prompts while preserving requirements and exposing behavior changes. |
+| [`review-code-changes`](skills/review-code-changes/) | Review changes with an adaptive committee, independently verified findings, and bounded re-review. |
 | [`understand-before-coding`](skills/understand-before-coding/) | Understand, plan, implement, review, verify, and document code changes using repository evidence. |
 | [`write-agent-briefs`](skills/write-agent-briefs/) | Create, improve, or audit executable agent briefs with clear constraints, verification, and deliverables. |
 

@@ -26,6 +26,8 @@ The user can name a mode or describe the outcome naturally. No slash command is 
 
 Use review for actionable findings about code; use verify for evidence about behavior. Planning can specify acceptance checks, and implementation can run them during authorized repairs, without requiring a separate invocation.
 
+Dedicated independent change reviews, adaptive review committees, and tracked re-reviews can use `review-code-changes` when installed. This skill retains ordinary Review mode and works on its own; an explicit selection is respected. Neither workflow automatically runs the other.
+
 ## Start here
 
 Identify the repository, feature, symbol, flow, or diff and the question or action you care about. Add focus such as “minimize the change,” “prioritize permissions,” or “keep billing isolated” when relevant. The skill will inspect available evidence before asking for context it can discover itself.

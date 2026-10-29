@@ -1,0 +1,39 @@
+{
+  "target": {
+    "id": "migration-42",
+    "changed_files": 10,
+    "confirmed_introduced_defects": 1,
+    "defect_files": [
+      "writer.py"
+    ]
+  },
+  "runs": [
+    {
+      "id": "A",
+      "status": "failed",
+      "files_inspected": 4,
+      "total_files": 10,
+      "inspected_files": [
+        "README.md",
+        "constants.py",
+        "logger.py",
+        "test_logging.py"
+      ],
+      "reported_findings": [],
+      "elapsed_seconds": 120,
+      "tokens": null,
+      "cost": null
+    },
+    {
+      "id": "B",
+      "status": "complete",
+      "files_inspected": 10,
+      "total_files": 10,
+      "reported_findings": [],
+      "elapsed_seconds": 90,
+      "tokens": null,
+      "cost": null
+    }
+  ],
+  "notes": "These are supplied observations for metric calculation, not live tool executions. The ground truth is supplied by an independent adjudicated corpus. No clean target was included."
+}

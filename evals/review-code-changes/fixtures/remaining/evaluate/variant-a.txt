@@ -1,0 +1,1 @@
+Review candidate against base for consequential introduced defects. Inspect the contract and relevant source. Return each supported defect with location, trigger, impact, and evidence; say when there are no supported findings. Keep source unchanged.
