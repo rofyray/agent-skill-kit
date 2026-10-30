@@ -110,3 +110,7 @@ Do not include exploratory prompt ladders in the final brief. The builder receiv
 ## Reference boundary
 
 Extract high-level properties from references, such as density, typographic contrast, material restraint, information rhythm, or motion character. Do not copy a living creator's distinctive expression, a competitor's interface, protected artwork, brand assets, or proprietary copy unless the user has the rights and explicitly requests that use.
+
+## Materials and structure
+
+Use existing brand materials first. When useful, select an optional Material Library profile through the routing in SKILL.md, or develop a bespoke direction. Choose the user job and information structure independently of typography, colors, surfaces, and motion. A chosen direction needs no redundant catalog-selection checkpoint.

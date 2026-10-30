@@ -1,0 +1,245 @@
+{
+  "version": 1,
+  "materials": [
+    {
+      "id": "quiet-utility",
+      "name": "Quiet Utility",
+      "profile": "references/materials/quiet-utility.md",
+      "font": "system-ui, sans-serif",
+      "radius": "0.4rem",
+      "tokens": {
+        "ground": "#f5f6f7",
+        "surface": "#ffffff",
+        "ink": "#182128",
+        "muted": "#4b555d",
+        "accent": "#174a66",
+        "on_accent": "#ffffff",
+        "focus": "#174a66"
+      },
+      "jobs": [
+        "A service booking form with grouped choices",
+        "An incident queue with priority, owner, and next action"
+      ]
+    },
+    {
+      "id": "technical-ledger",
+      "name": "Technical Ledger",
+      "profile": "references/materials/technical-ledger.md",
+      "font": "\"Arial\", sans-serif",
+      "radius": "0.1rem",
+      "tokens": {
+        "ground": "#eef3f7",
+        "surface": "#ffffff",
+        "ink": "#142838",
+        "muted": "#435866",
+        "accent": "#124c77",
+        "on_accent": "#ffffff",
+        "focus": "#124c77"
+      },
+      "jobs": [
+        "A developer tool walkthrough with a live input/output example",
+        "A transaction reconciliation workspace with exceptions"
+      ]
+    },
+    {
+      "id": "warm-editorial",
+      "name": "Warm Editorial",
+      "profile": "references/materials/warm-editorial.md",
+      "font": "Georgia, serif",
+      "radius": "0.15rem",
+      "tokens": {
+        "ground": "#f7f1e7",
+        "surface": "#fffaf2",
+        "ink": "#30281f",
+        "muted": "#655747",
+        "accent": "#704522",
+        "on_accent": "#ffffff",
+        "focus": "#704522"
+      },
+      "jobs": [
+        "An editorial membership page with sample reading and terms",
+        "A research reading list with filters and annotations"
+      ]
+    },
+    {
+      "id": "expressive-print",
+      "name": "Expressive Print",
+      "profile": "references/materials/expressive-print.md",
+      "font": "\"Arial Black\", sans-serif",
+      "radius": "0",
+      "tokens": {
+        "ground": "#fff4dc",
+        "surface": "#ffffff",
+        "ink": "#281a25",
+        "muted": "#68535e",
+        "accent": "#a32243",
+        "on_accent": "#ffffff",
+        "focus": "#a32243"
+      },
+      "jobs": [
+        "A community event page with a schedule and registration",
+        "A release planning board with owners and milestones"
+      ]
+    },
+    {
+      "id": "tactile-craft",
+      "name": "Tactile Craft",
+      "profile": "references/materials/tactile-craft.md",
+      "font": "Georgia, serif",
+      "radius": "0.65rem",
+      "tokens": {
+        "ground": "#eee9df",
+        "surface": "#fffdf8",
+        "ink": "#2c3228",
+        "muted": "#59604f",
+        "accent": "#35543a",
+        "on_accent": "#ffffff",
+        "focus": "#35543a"
+      },
+      "jobs": [
+        "A repair workshop booking flow with services and times",
+        "An inventory view with material, quantity, and restock action"
+      ]
+    },
+    {
+      "id": "quiet-luxury",
+      "name": "Quiet Luxury",
+      "profile": "references/materials/quiet-luxury.md",
+      "font": "\"Palatino Linotype\", Palatino, Georgia, serif",
+      "radius": "0",
+      "tokens": {
+        "ground": "#f5f2ec",
+        "surface": "#ffffff",
+        "ink": "#272524",
+        "muted": "#625c56",
+        "accent": "#4e4238",
+        "on_accent": "#ffffff",
+        "focus": "#4e4238"
+      },
+      "jobs": [
+        "A furniture collection with dimensions and ordering details",
+        "A client appointment ledger with availability and confirmation"
+      ]
+    },
+    {
+      "id": "night-instrument",
+      "name": "Night Instrument",
+      "profile": "references/materials/night-instrument.md",
+      "font": "system-ui, sans-serif",
+      "radius": "0.3rem",
+      "tokens": {
+        "ground": "#111b2b",
+        "surface": "#1c2b40",
+        "ink": "#eff6ff",
+        "muted": "#bbcbdc",
+        "accent": "#99d4f0",
+        "on_accent": "#102232",
+        "focus": "#e7f6ff"
+      },
+      "jobs": [
+        "A listening session page with a programme and booking",
+        "An export monitor with progress, retry, and completed files"
+      ]
+    },
+    {
+      "id": "place-and-light",
+      "name": "Place and Light",
+      "profile": "references/materials/place-and-light.md",
+      "font": "\"Trebuchet MS\", sans-serif",
+      "radius": "0.25rem",
+      "tokens": {
+        "ground": "#f4f1e9",
+        "surface": "#ffffff",
+        "ink": "#24342c",
+        "muted": "#56635c",
+        "accent": "#285d46",
+        "on_accent": "#ffffff",
+        "focus": "#285d46"
+      },
+      "jobs": [
+        "A guided walk page with route, access details, and booking",
+        "A venue operations view with rooms, capacity, and actions"
+      ]
+    },
+    {
+      "id": "friendly-forms",
+      "name": "Friendly Forms",
+      "profile": "references/materials/friendly-forms.md",
+      "font": "\"Trebuchet MS\", sans-serif",
+      "radius": "0.9rem",
+      "tokens": {
+        "ground": "#f7f0f7",
+        "surface": "#ffffff",
+        "ink": "#33263b",
+        "muted": "#69576d",
+        "accent": "#733f83",
+        "on_accent": "#ffffff",
+        "focus": "#733f83"
+      },
+      "jobs": [
+        "A course signup with choices and eligibility",
+        "A team onboarding workspace with completion and retry states"
+      ]
+    },
+    {
+      "id": "color-geometry",
+      "name": "Color Geometry",
+      "profile": "references/materials/color-geometry.md",
+      "font": "\"Arial\", sans-serif",
+      "radius": "0.2rem",
+      "tokens": {
+        "ground": "#edf4fc",
+        "surface": "#ffffff",
+        "ink": "#182c47",
+        "muted": "#4c617c",
+        "accent": "#2154a1",
+        "on_accent": "#ffffff",
+        "focus": "#2154a1"
+      },
+      "jobs": [
+        "A learning catalogue with paths and enrolment",
+        "A resource planner with categories, filters, and allocation"
+      ]
+    },
+    {
+      "id": "public-poster",
+      "name": "Public Poster",
+      "profile": "references/materials/public-poster.md",
+      "font": "\"Arial Black\", sans-serif",
+      "radius": "0",
+      "tokens": {
+        "ground": "#fff5a7",
+        "surface": "#fffde8",
+        "ink": "#1e2524",
+        "muted": "#535943",
+        "accent": "#1e2524",
+        "on_accent": "#fff5a7",
+        "focus": "#1e2524"
+      },
+      "jobs": [
+        "A public programme with timetable and access instructions",
+        "A service status board with affected routes and next steps"
+      ]
+    },
+    {
+      "id": "civic-clarity",
+      "name": "Civic Clarity",
+      "profile": "references/materials/civic-clarity.md",
+      "font": "system-ui, sans-serif",
+      "radius": "0.2rem",
+      "tokens": {
+        "ground": "#f2f4f3",
+        "surface": "#ffffff",
+        "ink": "#172c27",
+        "muted": "#4b6059",
+        "accent": "#185442",
+        "on_accent": "#ffffff",
+        "focus": "#185442"
+      },
+      "jobs": [
+        "A service application with eligibility and document requirements",
+        "A case management queue with permissions and next actions"
+      ]
+    }
+  ]
+}

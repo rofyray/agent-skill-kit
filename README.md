@@ -17,7 +17,7 @@ Portable [Agent Skills](https://agentskills.io) for Codex, Claude Code, Cursor, 
 | [`create-and-edit-images`](skills/create-and-edit-images/) | Create photorealistic images or make precise edits while preserving unrequested details. |
 | [`craft-goal-driven-prompts`](skills/craft-goal-driven-prompts/) | Turn a goal into a structured prompt with completion criteria and an optional improvement loop. |
 | [`curate-with-taste`](skills/curate-with-taste/) | Review or create distinctive prose, critique creative options, and keep human taste in the decision loop. |
-| [`design-beyond-defaults`](skills/design-beyond-defaults/) | Create, critique, and polish distinctive interfaces beyond familiar AI design defaults. |
+| [`design-beyond-defaults`](skills/design-beyond-defaults/) | Design, redesign, critique, polish, and audit distinctive interfaces with preserved behavior and rendered evidence. |
 | [`interview-coach`](skills/interview-coach/) | Coach role research, applications, interview prep, practice, debriefs, progress, and negotiation. |
 | [`refine-prompts`](skills/refine-prompts/) | Audit, polish, refactor, and compare existing prompts while preserving requirements and exposing behavior changes. |
 | [`review-code-changes`](skills/review-code-changes/) | Review changes with an adaptive committee, independently verified findings, and bounded re-review. |

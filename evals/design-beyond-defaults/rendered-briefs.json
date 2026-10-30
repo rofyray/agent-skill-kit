@@ -1,0 +1,53 @@
+{
+  "protocol": "Matched current versus expanded skill, fresh builder per arm, anonymous visual review; local fictional fixtures only",
+  "briefs": [
+    {
+      "id": "repair-booking",
+      "request": "Build a memorable responsive one-page site for Mend, a repair workshop. Facts: Saturday workshops at 10am and 2pm, $30 per session, bring one small household object. Use a native session selector and a local confirmation after submit; do not send a booking. No customer counts or testimonials are available.",
+      "held_out": false,
+      "fixture": null
+    },
+    {
+      "id": "cafe-menu",
+      "request": "Build a welcoming responsive page for Common Table cafe. Hours are 8am to 3pm Tuesday to Saturday. Menu: filter coffee $4, tea $3, toast $6. There are no photos or testimonials. Let visitors filter food and drinks and reset the filter.",
+      "held_out": false,
+      "fixture": null
+    },
+    {
+      "id": "developer-tool",
+      "request": "Build a distinctive responsive page for LineCount, a browser-only text utility. Provide a working text area and word count updated on input, an empty state, and a clear button. Nothing is uploaded. Do not invent usage metrics.",
+      "held_out": false,
+      "fixture": null
+    },
+    {
+      "id": "signup-component",
+      "request": "Build only an accessible newsletter signup component, not a surrounding marketing page. Email is required. Invalid input must not succeed. Show a local confirmation for a valid address; send nothing externally. Include labels, keyboard focus, and narrow-screen behavior.",
+      "held_out": false,
+      "fixture": null
+    },
+    {
+      "id": "operations-app",
+      "request": "Build an operations task screen with filters and a dense readable list. Data: Pump A needs inspection, owner Jo, priority high; Pump B ready, owner Lee, priority low; Valve C blocked, owner Jo, priority high; Valve D ready, owner Uma, priority medium. Filter by status, show result count and empty results, and allow reset. Treat this as an app, not a landing page.",
+      "held_out": false,
+      "fixture": null
+    },
+    {
+      "id": "brand-restyle",
+      "request": "Restyle the supplied Fieldnote settings page with clearer hierarchy and calmer spacing. Preserve its purple gradient identity, $24 Studio plan, three seats, billing terms, field names, validation, local persistence, billing anchor, and settings-save analytics behavior. Keep the information architecture. No network or external assets.",
+      "held_out": false,
+      "fixture": "fixtures/settings-before.html"
+    },
+    {
+      "id": "settings-restructure",
+      "request": "Redesign the supplied Fieldnote settings page. You may regroup the page into account preferences and billing information to improve comprehension. Preserve prices, terms, every input, native validation, local persistence, billing destination, and the settings-save analytics event. Keep the existing brand color; a full new brand is not requested.",
+      "held_out": true,
+      "fixture": "fixtures/settings-before.html"
+    },
+    {
+      "id": "museum-visit",
+      "request": "Build a distinctive responsive visit-planning page for the fictional North Room museum. Open Wednesday to Sunday, 11am to 5pm; admission is free; step-free entrance is on Oak Street; quiet hour is Thursday 11am. Provide a working date/party-size planner with a local confirmation and validation. No photographs or attendance figures are available. Do not submit externally.",
+      "held_out": true,
+      "fixture": null
+    }
+  ]
+}

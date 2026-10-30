@@ -254,6 +254,32 @@
         "Completes a scoped read-only review with the existing self-contained playbook",
         "Discloses missing independent committee and any history limitations without pretending delegation occurred"
       ]
+    },
+    {
+      "id": "route-interface-redesign",
+      "request": "Give this app a substantial visual redesign while preserving its behavior.",
+      "expect": [
+        "Suggests design-beyond-defaults when available because design quality is central",
+        "Retains implementation and preservation scope",
+        "Does not start both full workflows or recursively hand off"
+      ]
+    },
+    {
+      "id": "keep-mechanical-css-local",
+      "request": "Fix this one CSS alignment defect without changing the design.",
+      "expect": [
+        "Keeps the change local",
+        "Does not launch art direction or material selection"
+      ]
+    },
+    {
+      "id": "design-specialist-unavailable",
+      "request": "Audit the implemented interface for responsive and keyboard defects; the design specialist is unavailable.",
+      "expect": [
+        "Uses scoped Verify behavior with observed evidence",
+        "Discloses unavailable visual-specialist capability",
+        "Does not claim independent design critique or block useful checks"
+      ]
     }
   ]
 }

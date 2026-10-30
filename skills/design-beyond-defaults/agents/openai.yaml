@@ -1,4 +1,4 @@
 interface:
   display_name: "Design Beyond Defaults"
-  short_description: "Create distinctive interfaces beyond AI defaults"
-  default_prompt: "Create or polish this interface through bold exploration, independent visual critique, and a disciplined finishing pass."
+  short_description: "Design, redesign, and verify distinctive interfaces"
+  default_prompt: "Design or improve this interface with deliberate art direction, preserved behavior, rendered critique, and evidence-based verification."

@@ -4,9 +4,11 @@ Use this reference to answer help mode. Present the explanation, modes, starting
 
 ## What this skill does
 
-This skill helps an AI move beyond familiar interface defaults and produce web or app designs with a coherent identity. It supports the complete design arc: explore unusual directions, turn the selected direction into a buildable brief, implement it, improve the rendered result through independent visual critique when possible, and finish through subtraction, anti-default review, and copy refinement.
+This skill helps an AI move beyond familiar interface defaults and produce web or app designs with a coherent identity. It supports the complete design arc: explore unusual directions, turn the selected direction into a buildable brief, implement it, improve the rendered result through independent visual critique when possible, and finish through subtraction, anti-default review, and copy refinement. Redesign preserves declared content and behavior; Audit checks the implemented interface with explicit evidence. The optional Material Library supplies visual directions without dictating layout.
 
 The skill protects required behavior, brand constraints, accessibility, responsiveness, and production practicality. Generated images or video are used only when they strengthen the design and suitable capabilities are available.
+
+Visual review covers relevant working, error/recovery, and completion states as well as first impressions. It reports evidence, confidence, and tradeoffs rather than requiring a fixed beauty score. A stronger opening view and a clearer completed task can favor different designs.
 
 ## Modes
 
@@ -16,6 +18,8 @@ The skill protects required behavior, brand constraints, accessibility, responsi
 | `build` | Implement an already selected, supplied, or approved visual direction. |
 | `critique` | Review rendered interface evidence and prioritize improvements without editing unless requested. |
 | `polish` | Improve an existing interface through removal, anti-default review, copy refinement, and visual QA. |
+| `redesign` | Restyle or restructure an existing interface within the authorized scope and verify preserved behavior. |
+| `audit` | Inspect implemented behavior, responsiveness, and accessibility evidence without editing unless requested. |
 | `full` | Run the complete Discover, Define, and Deliver workflow for a new design or substantial redesign. |
 | `help` | Display this guide without beginning design work. |
 
@@ -35,6 +39,8 @@ If you have a strong taste preference, describe what attracts or repels you and 
 | `build` | `Build the supplied design brief as a responsive landing page.` | `Implement the selected isometric-city direction while preserving our current navigation, analytics hooks, and accessibility requirements.` |
 | `critique` | `Critique this homepage screenshot and do not change the code.` | `Compare these responsive screenshots with the supplied reference set, identify the largest studio-quality gaps, and prioritize the next two fixes.` |
 | `polish` | `Polish this existing dashboard so it feels less AI-generated and more intentional.` | `Simplify this mobile app, remove decorative clutter, preserve every workflow, and flag the customer-facing copy that still needs my approval.` |
+| `redesign` | `Restyle our settings screens while preserving every field, route, and validation rule.` | `Restructure this booking flow to reduce confusion, preserving prices and eligibility rules; test the full journey before and after.` |
+| `audit` | `Audit this implemented app for responsive and keyboard failures; do not edit.` | `Verify checkout at phone and desktop widths, including error recovery, and report any states you could not test.` |
 | `full` | `Redesign and build this product page using the complete workflow.` | `Take this generic prototype from initial art direction through implementation, screenshot critique, generated media where useful, and final responsive verification.` |
 | `help` | `Help` | `Show every design mode and examples without inspecting or changing an interface.` |
 

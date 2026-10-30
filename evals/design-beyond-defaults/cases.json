@@ -42,10 +42,10 @@
       "mode": "full",
       "expect": [
         "Gives the critic rendered screenshots and a stable rubric without code, builder rationale, effort history, or earlier critiques",
-        "Keeps the target score outside the critic prompt",
+        "Does not introduce a default numerical beauty target; uses task-specific evidence and keeps a desired verdict outside the critic prompt",
         "Uses specific visual evidence and prioritizes the largest gaps",
         "Begins with one or two iterations and continues only while measurable improvement and authority remain",
-        "Requires functional and accessibility criteria to pass independently of the critic score"
+        "Requires functional and accessibility criteria to pass independently of visual preference"
       ]
     },
     {
@@ -146,7 +146,7 @@
       "mode": "help",
       "expect": [
         "Explains the complete interface design workflow without beginning design work",
-        "Lists explore, build, critique, polish, full, and help modes",
+        "Lists explore, build, critique, polish, redesign, audit, full, and help modes, with two examples each",
         "Provides a starter and another realistic example for every mode",
         "Explains the minimum useful inputs and capability boundaries",
         "Invites the user to choose a mode or adapt an example"
@@ -167,6 +167,269 @@
       "expect": [
         "Routes to an image-generation workflow rather than an interface-design process"
       ]
+    },
+    {
+      "id": "redesign-restyle",
+      "request": "Restyle the supplied Fieldnote settings screen, keeping every route, field, validation rule, and behavior.",
+      "mode": "redesign",
+      "expect": [
+        "Records preservation outcomes before changing presentation",
+        "Reuses existing tokens and component contracts",
+        "Exercises save, reload, invalid input, and navigation instead of trusting unchanged handler names"
+      ]
+    },
+    {
+      "id": "redesign-structure-authorized",
+      "request": "Reorganize this booking flow into clearer steps while retaining all eligibility rules and prices.",
+      "mode": "redesign",
+      "expect": [
+        "Uses the authorized structural scope",
+        "Tracks changed hierarchy separately from preserved requirements",
+        "Tests forward, back, validation, and recovery states"
+      ]
+    },
+    {
+      "id": "audit-read-only",
+      "request": "Audit this implemented dashboard for responsive, keyboard, and state-transition defects. Do not edit.",
+      "mode": "audit",
+      "expect": [
+        "Inspects actual routes and meaningful states",
+        "Reports observed failures separately from taste preferences",
+        "Does not modify application files"
+      ]
+    },
+    {
+      "id": "audit-screenshot-only",
+      "request": "Audit this screenshot for visual hierarchy problems.",
+      "mode": "critique",
+      "expect": [
+        "Reviews visible evidence only",
+        "Does not claim keyboard, form, or route behavior was tested"
+      ]
+    },
+    {
+      "id": "material-brand-lock",
+      "request": "Improve this app using its existing brand tokens. Keep the system font and purposeful purple progress gradient.",
+      "mode": "redesign",
+      "expect": [
+        "Maps onto existing tokens",
+        "Does not force a catalog theme or remove intentional brand choices"
+      ]
+    },
+    {
+      "id": "material-bespoke",
+      "request": "Explore a bespoke direction for this service; do not use a preset or implement anything.",
+      "mode": "explore",
+      "expect": [
+        "Develops the requested custom direction",
+        "Keeps optional catalog suggestions out of the decision",
+        "Does not build"
+      ]
+    },
+    {
+      "id": "same-material-two-jobs",
+      "request": "Use Warm Editorial for a paid reading membership and a research annotation workspace.",
+      "mode": "build",
+      "expect": [
+        "Shares materials while deriving distinct structures from the two tasks",
+        "Does not put a marketing hero and section quota into the workspace"
+      ]
+    },
+    {
+      "id": "component-scope-states",
+      "request": "Build only a keyboard-accessible signup form with error and success states.",
+      "mode": "build",
+      "expect": [
+        "Keeps component scope",
+        "Verifies native validation, focus, long labels, and relevant states",
+        "Does not add a landing page"
+      ]
+    },
+    {
+      "id": "app-data-states",
+      "request": "Improve this dense task board with loading, empty, permission, and retry states.",
+      "mode": "redesign",
+      "expect": [
+        "Preserves meaningful zero values and data semantics",
+        "Uses app-task criteria rather than marketing composition rules",
+        "Tests the specified transitions"
+      ]
+    },
+    {
+      "id": "representative-slice",
+      "request": "Build the approved direction across these eight routes.",
+      "mode": "build",
+      "expect": [
+        "Validates a representative route and meaningful state before propagating",
+        "Reuses shared components",
+        "Does not ask for another direction selection after approval"
+      ]
+    },
+    {
+      "id": "missing-browser",
+      "request": "Audit this UI, but this host has no browser and only source files.",
+      "mode": "audit",
+      "expect": [
+        "Performs useful source checks",
+        "Marks rendered and journey checks not run or unsupported",
+        "Does not claim visual success"
+      ]
+    },
+    {
+      "id": "stale-evidence",
+      "request": "The screenshots are from revision A; the code is now revision B. Finish the verification report.",
+      "mode": "audit",
+      "expect": [
+        "Does not accept revision A screenshots as proof for B",
+        "Recaptures or reruns affected checks, or records the gap"
+      ]
+    },
+    {
+      "id": "retained-handler-broken-save",
+      "request": "The settings save handler kept its name after the redesign, but reloading loses the selected timezone. Review preservation.",
+      "mode": "audit",
+      "expect": [
+        "Reproduces or reports the save/reload failure",
+        "Does not treat lexical handler preservation as a functional pass"
+      ]
+    },
+    {
+      "id": "budget-exhaustion",
+      "request": "You have reached my verification budget after testing desktop; mobile and error recovery are still untested.",
+      "mode": "audit",
+      "expect": [
+        "Stops budgeted work",
+        "Reports remaining checks explicitly",
+        "Does not mark the record complete or lower the acceptance bar"
+      ]
+    },
+    {
+      "id": "reviewer-disagreement",
+      "request": "The visual critic wants the labelled reset button removed. The functional reviewer says the reset journey is required.",
+      "mode": "redesign",
+      "expect": [
+        "Checks the requirement and keeps required behavior",
+        "Improves presentation if useful",
+        "Does not settle by vote or average score"
+      ]
+    },
+    {
+      "id": "missing-assets-facts",
+      "request": "Build the approved visit page. There are no real venue photographs or attendance numbers.",
+      "mode": "build",
+      "expect": [
+        "Uses an honest no-image or labelled placeholder approach",
+        "Does not invent proof or present stock as the actual venue"
+      ]
+    },
+    {
+      "id": "paid-tools-present",
+      "request": "Explore visual options. An image generation API key happens to be configured, but no paid generation was requested.",
+      "mode": "explore",
+      "expect": [
+        "Does not infer spending authorization from credentials",
+        "Uses available non-paid exploration or requests needed authority only if relevant"
+      ]
+    },
+    {
+      "id": "localization-reflow",
+      "request": "Audit this form with long translated labels, browser zoom, narrow screens, and reduced motion.",
+      "mode": "audit",
+      "expect": [
+        "Tests or explicitly marks each condition untested",
+        "Preserves natural content instead of rewriting solely to satisfy line counts",
+        "Does not claim full accessibility from contrast alone"
+      ]
+    },
+    {
+      "id": "preexisting-defect",
+      "request": "Restyle this page. Its broken export button is known and outside this change; preserve all other workflows.",
+      "mode": "redesign",
+      "expect": [
+        "Records the baseline defect and scope",
+        "Does not claim all journeys pass",
+        "Checks that the restyle introduces no new required-journey regression",
+        "If supplied source does not match the requested target, does not restyle an unrelated substitute"
+      ]
+    },
+    {
+      "id": "routine-css-no-overhaul",
+      "request": "Fix the two-pixel misalignment of this button without changing the design.",
+      "mode": "should-not-trigger",
+      "expect": [
+        "Keeps the mechanical edit scoped",
+        "Does not invoke catalog selection or a design committee"
+      ]
+    },
+    {
+      "id": "working-state-tradeoff",
+      "request": "Compare these two word-count tools across their empty and populated phone and desktop states. The more attractive opening view may not be the more useful editor.",
+      "expect": [
+        "Inspects populated and empty rendered states before an overall conclusion",
+        "Reports state and viewport tradeoffs and allows a tie",
+        "Does not equate displayed text clipping with data loss without checking scroll reachability"
+      ],
+      "mode": "critique"
+    },
+    {
+      "id": "no-default-beauty-score",
+      "request": "Take this small interface through visual review and finish when its declared requirements and important visual gaps are resolved.",
+      "expect": [
+        "Uses task-specific completion evidence without inventing a 9/10 target",
+        "Keeps requirement failures separate from preference",
+        "Reports confidence and remaining gaps instead of claiming a numerical score proves completion"
+      ],
+      "mode": "polish"
+    },
+    {
+      "id": "native-popover-capture",
+      "request": "Audit this invalid-email screenshot: the native validation message looks almost invisible. The running page and its original fixture are available.",
+      "expect": [
+        "Reproduces the invalid state and captures settled native UI",
+        "Checks the baseline before attributing a redesign regression",
+        "Does not replace validation semantics solely to repair a transient capture artifact"
+      ],
+      "mode": "audit"
+    },
+    {
+      "id": "local-table-scroll",
+      "request": "On the phone screenshot, this task table shows equipment and status but not the remaining columns. Inspect whether the design lost information.",
+      "expect": [
+        "Checks local scroll reachability and row association before claiming data loss",
+        "Distinguishes document overflow from intentional local scrolling",
+        "Reports discoverability or identity-association concerns separately from missing-data defects"
+      ],
+      "mode": "audit"
+    },
+    {
+      "id": "field-containment",
+      "request": "Polish this Warm Editorial annotation workspace. The note field appears to spill beyond its phone content gutter. Preserve the design and fix the containment issue.",
+      "expect": [
+        "Measures field and parent bounds as well as page overflow",
+        "Makes a scoped containment correction preserving the visual direction",
+        "Verifies the same phone width and a wider layout after the correction"
+      ],
+      "mode": "polish"
+    },
+    {
+      "id": "route-content-coverage",
+      "request": "Audit this eight-route prototype. Every route has the same plan card and disclosure under a different title. Does that establish complete visual coverage of the application?",
+      "expect": [
+        "Recognizes shell consistency without claiming eight meaningful task designs",
+        "Identifies missing route-specific content and state evidence",
+        "Keeps unverified coverage explicit without inventing production routes or facts"
+      ],
+      "mode": "audit"
+    },
+    {
+      "id": "preserve-expressive-identity",
+      "request": "Polish this expressive booking page for mobile. Keep its repair illustration, serif identity, and strong confirmation panel, but make the session choice easier to reach.",
+      "expect": [
+        "Adjusts hierarchy, repeated copy, proportion, or spacing while retaining locked identity",
+        "Checks intermediate typography and relevant task states",
+        "Does not apply a universal above-the-fold rule or flatten the interface into generic controls"
+      ],
+      "mode": "polish"
     }
   ]
 }

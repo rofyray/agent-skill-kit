@@ -1,0 +1,20 @@
+{
+  "created_after_skill_freeze": true,
+  "frozen_at": "2026-10-30T03:09:03.470522+00:00",
+  "briefs": [
+    {
+      "id": "lendroom-app",
+      "held_out": true,
+      "regression": false,
+      "fixture": null,
+      "request": "Build a responsive browser-only app for Lendroom, a fictional neighborhood equipment library. Provide meaningful Inventory, item-detail, and My loans routes using local hash navigation; direct hash visits and browser Back must work. Inventory facts: Cordless drill, Tools, available; Folding table, Events, available; Carpet cleaner, Home, checked out, due November 12, 2026; Projector, Events, available. The current member is Alex. My loans initially shows Carpet cleaner due November 12, 2026. Search inventory by item name and filter by category, with a result count, empty result state, and reset. On the detail route show the item and availability; available items can be reserved locally, with a confirmation identifying the item, and then appear under My loans as a reservation. A checked-out item cannot be reserved. The member can cancel a reservation from My loans, which restores its availability. Preserve reservations and inventory filter/search state while navigating routes during the session. Include a way to recover from an unknown item route. No backend, sign-in, external assets, or invented inventory, member counts, or policies."
+    },
+    {
+      "id": "paper-relay-service",
+      "held_out": true,
+      "regression": false,
+      "fixture": null,
+      "request": "Build a responsive service page and working local print-estimate form for Paper Relay, a fictional neighborhood print counter. Facts: black-and-white A4 printing costs $0.12 per printed page per copy, plus a $3 setup fee per order. Pickup is free at 22 Alder Street, Tuesday to Friday, 9am to 5pm. Local courier costs $8 per order. The form requires an email address, pages per copy (whole number 1 to 40), copies (whole number 1 to 100), and pickup or courier. Choosing courier reveals a required five-digit delivery ZIP field; switching to pickup removes that requirement. Show an itemized total that updates as valid quantities and fulfillment change; invalid quantities must not show a misleading valid total. Submit validates the inputs and shows a local estimate summary with quantities, fulfillment, and total. Users can return from that summary to edit without losing their entries. State clearly that this is an estimate and no file, order, or email is sent. No upload, payment, backend, external assets, invented turnaround claims, testimonials, or customer counts."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "approved_direction": "Quiet Utility using existing Fieldnote purple brand color and system font. Improve hierarchy and spacing while preserving each route, navigation destination, facts, and disclosure behavior.",
+  "routes": [
+    "overview",
+    "account",
+    "notifications",
+    "team",
+    "projects",
+    "activity",
+    "help",
+    "billing"
+  ]
+}

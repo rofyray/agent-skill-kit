@@ -28,6 +28,8 @@ When a request is vague, begin with read-only understanding or planning. Do not 
 
 For a dedicated independent PR or change review, adaptive review committee, or re-review that tracks findings across revisions, prefer `review-code-changes` when available. Keep ordinary review within an understanding or implementation task here, and honor an explicit request to use this skill. If the specialist is unavailable, use this skill's Review playbook and disclose any requested committee or history capability that cannot be provided. Neither skill requires the other; do not run both full workflows by default.
 
+For interface art direction, substantial visual redesign, or a rendered design-quality audit, prefer `design-beyond-defaults` when available. Its Redesign mode preserves declared behavior; Audit checks implemented interface evidence; Critique reviews pixels. Routine CSS fixes and code-defect reviews stay here. Honor explicit skill choices, retain the requested action boundary, and use a scoped fallback if the specialist is unavailable. Do not run both complete workflows or recursively hand off.
+
 ## Establish focus and authority
 
 1. Identify the concrete question, component, feature, flow, or diff in scope.

@@ -49,3 +49,5 @@ For verification, identify the behavior or change and any required outcomes, com
 | `help` | `Help` | `Show me every code-understanding mode and examples without inspecting the repository yet.` |
 
 End the help response by asking which mode the user wants or inviting them to paste a code question, change request, or diff.
+
+For substantial visual redesign or interface-quality auditing, use `design-beyond-defaults` when available. Its Redesign mode preserves required behavior; Audit measures the implemented interface; Critique reviews rendered visuals. Mechanical CSS fixes and code-defect review remain scoped here. The specialist is optional and does not require a second complete workflow.

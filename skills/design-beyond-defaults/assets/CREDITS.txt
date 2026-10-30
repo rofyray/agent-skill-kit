@@ -26,3 +26,14 @@ https://pub.sakana.ai/ssot/
 No article text, images, videos, code, or other third-party assets are bundled in
 this skill. No affiliation with or endorsement by the authors or publishers is
 implied.
+
+Hallmark, Nutlope and contributors
+https://github.com/Nutlope/hallmark
+https://www.usehallmark.com/
+Conceptual influence: separating visual materials from task structure, representative-slice review, preservation inventories, and explicit verification. Research snapshot: 8f6969f8922caabde9de1784959eae11ddf68073. Profiles, specimens, helper code, and expanded instructions in this kit were independently authored; no upstream photos or fonts are bundled. No endorsement implied.
+
+OpenDesign contributors: https://github.com/nexu-io/open-design
+UI UX Pro Max contributors: https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
+Impeccable contributors: https://github.com/pbakaus/impeccable
+Taste Skill contributors: https://github.com/Leonxlnx/taste-skill
+Conceptual influences: separate design materials, migrate existing semantic tokens, distinguish detection from judgment, and compare rendered results independently from rule conformance. No endorsement implied.

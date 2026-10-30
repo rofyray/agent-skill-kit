@@ -1,0 +1,965 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Material Library specimens</title>
+<style>
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: #e9ecee; color: #182128; font: 16px/1.55 system-ui, sans-serif; }
+header, main { max-width: 1280px; margin: auto; padding: 24px; }
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; letter-spacing: -.035em; }
+h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.15; margin: 0 0 14px; }
+h3 { font-size: 1.45rem; line-height: 1.2; margin: 0; }
+p { max-width: 65ch; }
+a { color: inherit; text-underline-offset: .2em; }
+nav { display: flex; flex-wrap: wrap; gap: 10px 24px; }
+nav a { padding-block: 3px; }
+.material { margin-block: 32px; padding: clamp(16px, 3vw, 40px); background: var(--ground); color: var(--ink); }
+.material h2, .material h3 { font-family: var(--font); }
+.profile-note { margin: 0; max-width: 62ch; color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 10px 24px; padding-block: 18px; margin-block: 16px 24px; border-top: 1px solid var(--muted); border-bottom: 1px solid var(--muted); }
+.legend div { display: flex; align-items: baseline; gap: 8px; }
+.legend dt { font-size: .8rem; color: var(--muted); }
+.legend dd { margin: 0; font-size: .875rem; }
+.swatch { display: inline-block; width: .8em; height: .8em; margin-right: 6px; border: 1px solid var(--muted); background: var(--surface); vertical-align: baseline; }
+.swatch.accent { background: var(--accent); border-color: var(--accent); }
+.samples { display: grid; grid-template-columns: 1fr 1.15fr; gap: 24px; align-items: start; }
+.sample { min-width: 0; padding: 24px; background: var(--surface); border-radius: var(--radius); container-type: inline-size; }
+.sample-heading { padding-bottom: 18px; border-bottom: 1px solid var(--muted); margin-bottom: 18px; }
+.sample-heading p { margin: 8px 0 0; color: var(--muted); font-size: .875rem; }
+.intro { max-width: 44ch; margin: 0 0 20px; }
+label { display: block; font-weight: 600; margin-block: 12px 6px; }
+select, button { font: inherit; min-height: 44px; max-width: 100%; border-radius: var(--radius); }
+select { width: 100%; background: var(--surface); color: var(--ink); border: 1px solid var(--muted); padding: 9px 12px; }
+button { cursor: pointer; }
+.preview-button, .reset-filter { padding: 10px 18px; border: 2px solid transparent; background: var(--accent); color: var(--on_accent); }
+.preview-button { margin-top: 16px; }
+.preview-button:active, .reset-filter:active { transform: translateY(1px); }
+:focus-visible { outline: 3px solid var(--focus, #174a66); outline-offset: 4px; }
+.helper { color: var(--muted); font-size: .875rem; margin: 8px 0; }
+.error { border-left: 3px solid var(--ink); padding-left: 10px; font-weight: 600; margin: 12px 0 0; }
+.error:empty { display: none; }
+[aria-invalid=true] { border: 2px solid var(--ink); }
+.confirmation { border-top: 2px solid var(--accent); margin: 20px 0 0; padding-top: 14px; }
+.confirmation:empty { display: none; }
+.confirmation strong { display: block; margin-bottom: 4px; }
+.queue-head { display: grid; grid-template-columns: minmax(0,1fr) 9rem 3.5rem; gap: 12px; font-size: .75rem; color: var(--muted); margin-top: 24px; padding: 0 12px 8px; }
+.queue-head span:last-child { text-align: right; }
+.rows { list-style: none; padding: 0; margin: 0; }
+.rows li { border-bottom: 1px solid var(--muted); }
+.task { display: grid; grid-template-columns: minmax(0,1fr) 9rem 3.5rem; align-items: start; gap: 12px; width: 100%; margin: 0; padding: 14px 12px; color: var(--ink); background: transparent; border: 2px solid transparent; border-left: 4px solid transparent; border-radius: 0; text-align: left; }
+.task[aria-pressed=true] { border-left-color: var(--accent); background: var(--ground); }
+.task-title, .task-state { overflow-wrap: anywhere; }
+.task-title { font-weight: 600; }
+.selection { display: none; font: 600 .75rem/1.4 system-ui, sans-serif; margin-top: 4px; }
+.task[aria-pressed=true] .selection { display: block; }
+.task-state { font-size: .875rem; }
+.task-count { text-align: right; line-height: 1.2; }
+.task-count-value { font-size: 1.15rem; font-variant-numeric: tabular-nums; }
+.count-label { display: none; font-size: .75rem; font-weight: 400; margin-top: 4px; }
+.queue-summary { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; border-top: 1px solid var(--muted); margin-top: 20px; padding-top: 12px; }
+.queue-summary p { margin: 0; font-size: .875rem; }
+.selection-note { color: var(--muted); }
+.empty { padding: 24px 12px; border: 1px solid var(--muted); margin-top: 20px; }
+.empty h4 { font-size: 1rem; margin: 0 0 8px; }
+.empty p { margin: 0 0 12px; }
+.media-fallback { margin: 0 0 24px; padding: 18px; background: var(--surface); border: 1px solid var(--muted); }
+.media-fallback svg { display: block; width: 100%; max-width: 540px; height: auto; margin: 12px 0; color: var(--ink); }
+.media-fallback figcaption { max-width: 66ch; font-size: .875rem; color: var(--muted); }
+.fallback-label { font-weight: 600; margin: 0; }
+#technical-ledger .task[aria-pressed=true] { background: var(--accent); color: var(--on_accent); border-left-color: var(--ink); }
+#technical-ledger .task-count-value, #technical-ledger .queue-head, #night-instrument .task-count-value { font-family: ui-monospace, monospace; }
+#technical-ledger .sample-heading { border-bottom-width: 2px; }
+#warm-editorial .intro { line-height: 1.7; max-width: 36ch; }
+#warm-editorial .sample-heading { border-bottom: 0; padding-bottom: 4px; }
+#warm-editorial h3 { font-size: 1.65rem; }
+#expressive-print .sample-heading { background: var(--accent); color: var(--on_accent); padding: 18px; border: 0; }
+#expressive-print .sample-heading p { color: inherit; }
+#tactile-craft .sample { box-shadow: inset 0 0 0 1px var(--muted); }
+#tactile-craft select { box-shadow: inset 0 2px 3px #00000012; }
+#tactile-craft .preview-button:active { box-shadow: inset 0 2px 4px #00000040; }
+#quiet-luxury h3 { font-size: 1.7rem; font-weight: 400; letter-spacing: -.02em; }
+#quiet-luxury .sample-heading { padding-bottom: 24px; margin-bottom: 24px; }
+#quiet-luxury .intro { margin-bottom: 28px; }
+#night-instrument .task-count-value { color: var(--accent); }
+#night-instrument .sample-heading { border-bottom: 2px solid var(--accent); }
+#place-and-light h2 { font-weight: 500; }
+#place-and-light .sample-heading { border-bottom: 0; }
+#friendly-forms .error { background: var(--ground); padding: 12px; border-radius: var(--radius); }
+#color-geometry .sample-heading { background: var(--accent); color: var(--on_accent); padding: 18px; border: 0; }
+#color-geometry .sample-heading p { color: inherit; }
+#color-geometry .task-state::before { content: ''; display: inline-block; width: .55em; height: .55em; margin-right: .6em; border: 2px solid currentColor; transform: rotate(45deg); }
+#color-geometry [data-state=done] .task-state::before { border-radius: 50%; transform: none; background: currentColor; }
+#public-poster h2 { font-size: clamp(2.1rem,4vw,3.2rem); }
+#public-poster h3 { font-size: clamp(1.65rem,3vw,2rem); line-height: 1.1; }
+#public-poster .sample-heading { border-bottom: 3px solid var(--ink); }
+@container (max-width: 430px) {
+ .queue-head { display: none; }
+ .rows { margin-top: 20px; }
+ .task { grid-template-columns: minmax(0,1fr) 4.5rem; row-gap: 8px; padding: 14px 10px; }
+ .task-title { grid-column: 1/-1; }
+ .task-state { grid-column: 1; }
+ .task-count { grid-column: 2; }
+ .count-label { display: block; }
+}
+@media (max-width: 600px) {
+ .media-fallback svg text { display: none; }
+}
+@media (max-width: 780px) { .samples { grid-template-columns: 1fr; } header, main { padding: 16px; } .sample { padding: 18px; } }
+@media (prefers-reduced-motion: reduce) { .preview-button:active, .reset-filter:active { transform: none; } }
+</style>
+</head>
+<body>
+<header>
+<h1>Material Library</h1>
+<p>Twelve optional visual directions on the same two tasks. Compare the material choices, then derive your product’s layout from its own job. All data is fictional; no booking or network request is made. Fonts use local fallback stacks.</p>
+<p>Try an empty submission, select a session, filter to “Blocked” for an empty queue, or use the keyboard to inspect focus. A selected queue row and its open-check count are shared comparison data.</p>
+<nav aria-label="Materials">
+<a href="#quiet-utility">Quiet Utility</a>
+<a href="#technical-ledger">Technical Ledger</a>
+<a href="#warm-editorial">Warm Editorial</a>
+<a href="#expressive-print">Expressive Print</a>
+<a href="#tactile-craft">Tactile Craft</a>
+<a href="#quiet-luxury">Quiet Luxury</a>
+<a href="#night-instrument">Night Instrument</a>
+<a href="#place-and-light">Place and Light</a>
+<a href="#friendly-forms">Friendly Forms</a>
+<a href="#color-geometry">Color Geometry</a>
+<a href="#public-poster">Public Poster</a>
+<a href="#civic-clarity">Civic Clarity</a>
+</nav>
+</header>
+<main>
+<section class="material" id="quiet-utility" style="--ground:#f5f6f7;--surface:#ffffff;--ink:#182128;--muted:#4b555d;--accent:#174a66;--on_accent:#ffffff;--focus:#174a66;--font:system-ui, sans-serif;--radius:0.4rem">
+<h2>Quiet Utility</h2>
+<p class="profile-note">Neutral hierarchy, compact controls, and aligned quantities keep attention on the task.</p>
+<dl class="legend" aria-label="Material legend">
+<div><dt>Surface</dt><dd><i class="swatch" aria-hidden="true"></i>Reading plane</dd></div>
+<div><dt>Accent</dt><dd><i class="swatch accent" aria-hidden="true"></i>Action and selection</dd></div>
+<div><dt>Type</dt><dd>Display voice, plain working text</dd></div>
+</dl>
+<div class="samples">
+<article class="sample">
+<div class="sample-heading"><h3>Choose a workshop</h3><p>One object, one session</p></div>
+<p class="intro">Learn to repair a small object. Bring one item and choose the session that suits you.</p>
+<form aria-label="Quiet Utility workshop preview">
+<label for="quiet-utility-session">Session</label>
+<select id="quiet-utility-session" required aria-describedby="quiet-utility-session-help quiet-utility-session-error">
+<option value="">Choose a session</option>
+<option>Saturday morning</option>
+<option>Sunday afternoon</option>
+</select>
+<p class="helper" id="quiet-utility-session-help">Local preview only. Nothing is booked or sent.</p>
+<p class="error" id="quiet-utility-session-error" role="alert"></p>
+<button class="preview-button" type="submit">Preview this session</button>
+<p class="status confirmation" role="status" aria-live="polite"></p>
+</form>
+</article>
+<article class="sample">
+<div class="sample-heading"><h3>Workshop operations</h3><p>Preparation queue · fictional data</p></div>
+<label for="quiet-utility-filter">Show tasks</label>
+<select id="quiet-utility-filter" class="filter">
+<option value="all">All tasks</option>
+<option value="open">Needs attention</option>
+<option value="done">Ready</option>
+<option value="blocked">Blocked</option>
+</select>
+<div class="queue-head" aria-hidden="true"><span>Task</span><span>Status</span><span>Open checks</span></div>
+<ul class="rows">
+<li data-state="open">
+<button class="task" type="button" aria-pressed="true" data-task="Inspect repair tools" aria-label="Inspect repair tools, Needs attention, 2 open checks">
+<span class="task-title">Inspect repair tools<span class="selection">Selected</span></span>
+<span class="task-state">Needs attention</span>
+<span class="task-count"><strong class="task-count-value">2</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+<li data-state="done">
+<button class="task" type="button" aria-pressed="false" data-task="Prepare workbenches" aria-label="Prepare workbenches, Ready, 0 open checks">
+<span class="task-title">Prepare workbenches<span class="selection">Selected</span></span>
+<span class="task-state">Ready</span>
+<span class="task-count"><strong class="task-count-value">0</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+<li data-state="open">
+<button class="task" type="button" aria-pressed="false" data-task="Confirm access needs" aria-label="Confirm access needs, Needs attention, 1 open checks">
+<span class="task-title">Confirm access needs<span class="selection">Selected</span></span>
+<span class="task-state">Needs attention</span>
+<span class="task-count"><strong class="task-count-value">1</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+</ul>
+<div class="empty" hidden><h4>No blocked tasks</h4><p>Nothing in this fictional queue is blocked. Show all tasks to continue.</p><button class="reset-filter" type="button">Show all tasks</button></div>
+<div class="queue-summary"><p class="status" role="status">3 tasks shown</p><p class="selection-note" aria-live="polite">Selected: Inspect repair tools</p></div>
+</article>
+</div>
+</section>
+<section class="material" id="technical-ledger" style="--ground:#eef3f7;--surface:#ffffff;--ink:#142838;--muted:#435866;--accent:#124c77;--on_accent:#ffffff;--focus:#124c77;--font:&quot;Arial&quot;, sans-serif;--radius:0.1rem">
+<h2>Technical Ledger</h2>
+<p class="profile-note">Crisp rules, an explicit selected row, and aligned machine-like values make comparison precise.</p>
+<dl class="legend" aria-label="Material legend">
+<div><dt>Surface</dt><dd><i class="swatch" aria-hidden="true"></i>Reading plane</dd></div>
+<div><dt>Accent</dt><dd><i class="swatch accent" aria-hidden="true"></i>Action and selection</dd></div>
+<div><dt>Type</dt><dd>Display voice, plain working text</dd></div>
+</dl>
+<div class="samples">
+<article class="sample">
+<div class="sample-heading"><h3>Choose a workshop</h3><p>One object, one session</p></div>
+<p class="intro">Learn to repair a small object. Bring one item and choose the session that suits you.</p>
+<form aria-label="Technical Ledger workshop preview">
+<label for="technical-ledger-session">Session</label>
+<select id="technical-ledger-session" required aria-describedby="technical-ledger-session-help technical-ledger-session-error">
+<option value="">Choose a session</option>
+<option>Saturday morning</option>
+<option>Sunday afternoon</option>
+</select>
+<p class="helper" id="technical-ledger-session-help">Local preview only. Nothing is booked or sent.</p>
+<p class="error" id="technical-ledger-session-error" role="alert"></p>
+<button class="preview-button" type="submit">Preview this session</button>
+<p class="status confirmation" role="status" aria-live="polite"></p>
+</form>
+</article>
+<article class="sample">
+<div class="sample-heading"><h3>Workshop operations</h3><p>Preparation queue · fictional data</p></div>
+<label for="technical-ledger-filter">Show tasks</label>
+<select id="technical-ledger-filter" class="filter">
+<option value="all">All tasks</option>
+<option value="open">Needs attention</option>
+<option value="done">Ready</option>
+<option value="blocked">Blocked</option>
+</select>
+<div class="queue-head" aria-hidden="true"><span>Task</span><span>Status</span><span>Open checks</span></div>
+<ul class="rows">
+<li data-state="open">
+<button class="task" type="button" aria-pressed="true" data-task="Inspect repair tools" aria-label="Inspect repair tools, Needs attention, 2 open checks">
+<span class="task-title">Inspect repair tools<span class="selection">Selected</span></span>
+<span class="task-state">Needs attention</span>
+<span class="task-count"><strong class="task-count-value">2</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+<li data-state="done">
+<button class="task" type="button" aria-pressed="false" data-task="Prepare workbenches" aria-label="Prepare workbenches, Ready, 0 open checks">
+<span class="task-title">Prepare workbenches<span class="selection">Selected</span></span>
+<span class="task-state">Ready</span>
+<span class="task-count"><strong class="task-count-value">0</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+<li data-state="open">
+<button class="task" type="button" aria-pressed="false" data-task="Confirm access needs" aria-label="Confirm access needs, Needs attention, 1 open checks">
+<span class="task-title">Confirm access needs<span class="selection">Selected</span></span>
+<span class="task-state">Needs attention</span>
+<span class="task-count"><strong class="task-count-value">1</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+</ul>
+<div class="empty" hidden><h4>No blocked tasks</h4><p>Nothing in this fictional queue is blocked. Show all tasks to continue.</p><button class="reset-filter" type="button">Show all tasks</button></div>
+<div class="queue-summary"><p class="status" role="status">3 tasks shown</p><p class="selection-note" aria-live="polite">Selected: Inspect repair tools</p></div>
+</article>
+</div>
+</section>
+<section class="material" id="warm-editorial" style="--ground:#f7f1e7;--surface:#fffaf2;--ink:#30281f;--muted:#655747;--accent:#704522;--on_accent:#ffffff;--focus:#704522;--font:Georgia, serif;--radius:0.15rem">
+<h2>Warm Editorial</h2>
+<p class="profile-note">Serif hierarchy, a comfortable reading measure, and quiet notes support considered decisions.</p>
+<dl class="legend" aria-label="Material legend">
+<div><dt>Surface</dt><dd><i class="swatch" aria-hidden="true"></i>Reading plane</dd></div>
+<div><dt>Accent</dt><dd><i class="swatch accent" aria-hidden="true"></i>Action and selection</dd></div>
+<div><dt>Type</dt><dd>Display voice, plain working text</dd></div>
+</dl>
+<div class="samples">
+<article class="sample">
+<div class="sample-heading"><h3>Choose a workshop</h3><p>One object, one session</p></div>
+<p class="intro">Learn to repair a small object. Bring one item and choose the session that suits you.</p>
+<form aria-label="Warm Editorial workshop preview">
+<label for="warm-editorial-session">Session</label>
+<select id="warm-editorial-session" required aria-describedby="warm-editorial-session-help warm-editorial-session-error">
+<option value="">Choose a session</option>
+<option>Saturday morning</option>
+<option>Sunday afternoon</option>
+</select>
+<p class="helper" id="warm-editorial-session-help">Local preview only. Nothing is booked or sent.</p>
+<p class="error" id="warm-editorial-session-error" role="alert"></p>
+<button class="preview-button" type="submit">Preview this session</button>
+<p class="status confirmation" role="status" aria-live="polite"></p>
+</form>
+</article>
+<article class="sample">
+<div class="sample-heading"><h3>Workshop operations</h3><p>Preparation queue · fictional data</p></div>
+<label for="warm-editorial-filter">Show tasks</label>
+<select id="warm-editorial-filter" class="filter">
+<option value="all">All tasks</option>
+<option value="open">Needs attention</option>
+<option value="done">Ready</option>
+<option value="blocked">Blocked</option>
+</select>
+<div class="queue-head" aria-hidden="true"><span>Task</span><span>Status</span><span>Open checks</span></div>
+<ul class="rows">
+<li data-state="open">
+<button class="task" type="button" aria-pressed="true" data-task="Inspect repair tools" aria-label="Inspect repair tools, Needs attention, 2 open checks">
+<span class="task-title">Inspect repair tools<span class="selection">Selected</span></span>
+<span class="task-state">Needs attention</span>
+<span class="task-count"><strong class="task-count-value">2</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+<li data-state="done">
+<button class="task" type="button" aria-pressed="false" data-task="Prepare workbenches" aria-label="Prepare workbenches, Ready, 0 open checks">
+<span class="task-title">Prepare workbenches<span class="selection">Selected</span></span>
+<span class="task-state">Ready</span>
+<span class="task-count"><strong class="task-count-value">0</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+<li data-state="open">
+<button class="task" type="button" aria-pressed="false" data-task="Confirm access needs" aria-label="Confirm access needs, Needs attention, 1 open checks">
+<span class="task-title">Confirm access needs<span class="selection">Selected</span></span>
+<span class="task-state">Needs attention</span>
+<span class="task-count"><strong class="task-count-value">1</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+</ul>
+<div class="empty" hidden><h4>No blocked tasks</h4><p>Nothing in this fictional queue is blocked. Show all tasks to continue.</p><button class="reset-filter" type="button">Show all tasks</button></div>
+<div class="queue-summary"><p class="status" role="status">3 tasks shown</p><p class="selection-note" aria-live="polite">Selected: Inspect repair tools</p></div>
+</article>
+</div>
+</section>
+<section class="material" id="expressive-print" style="--ground:#fff4dc;--surface:#ffffff;--ink:#281a25;--muted:#68535e;--accent:#a32243;--on_accent:#ffffff;--focus:#a32243;--font:&quot;Arial Black&quot;, sans-serif;--radius:0">
+<h2>Expressive Print</h2>
+<p class="profile-note">A strong heading field carries the print voice; labels and working text stay calm.</p>
+<dl class="legend" aria-label="Material legend">
+<div><dt>Surface</dt><dd><i class="swatch" aria-hidden="true"></i>Reading plane</dd></div>
+<div><dt>Accent</dt><dd><i class="swatch accent" aria-hidden="true"></i>Action and selection</dd></div>
+<div><dt>Type</dt><dd>Display voice, plain working text</dd></div>
+</dl>
+<div class="samples">
+<article class="sample">
+<div class="sample-heading"><h3>Choose a workshop</h3><p>One object, one session</p></div>
+<p class="intro">Learn to repair a small object. Bring one item and choose the session that suits you.</p>
+<form aria-label="Expressive Print workshop preview">
+<label for="expressive-print-session">Session</label>
+<select id="expressive-print-session" required aria-describedby="expressive-print-session-help expressive-print-session-error">
+<option value="">Choose a session</option>
+<option>Saturday morning</option>
+<option>Sunday afternoon</option>
+</select>
+<p class="helper" id="expressive-print-session-help">Local preview only. Nothing is booked or sent.</p>
+<p class="error" id="expressive-print-session-error" role="alert"></p>
+<button class="preview-button" type="submit">Preview this session</button>
+<p class="status confirmation" role="status" aria-live="polite"></p>
+</form>
+</article>
+<article class="sample">
+<div class="sample-heading"><h3>Workshop operations</h3><p>Preparation queue · fictional data</p></div>
+<label for="expressive-print-filter">Show tasks</label>
+<select id="expressive-print-filter" class="filter">
+<option value="all">All tasks</option>
+<option value="open">Needs attention</option>
+<option value="done">Ready</option>
+<option value="blocked">Blocked</option>
+</select>
+<div class="queue-head" aria-hidden="true"><span>Task</span><span>Status</span><span>Open checks</span></div>
+<ul class="rows">
+<li data-state="open">
+<button class="task" type="button" aria-pressed="true" data-task="Inspect repair tools" aria-label="Inspect repair tools, Needs attention, 2 open checks">
+<span class="task-title">Inspect repair tools<span class="selection">Selected</span></span>
+<span class="task-state">Needs attention</span>
+<span class="task-count"><strong class="task-count-value">2</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+<li data-state="done">
+<button class="task" type="button" aria-pressed="false" data-task="Prepare workbenches" aria-label="Prepare workbenches, Ready, 0 open checks">
+<span class="task-title">Prepare workbenches<span class="selection">Selected</span></span>
+<span class="task-state">Ready</span>
+<span class="task-count"><strong class="task-count-value">0</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+<li data-state="open">
+<button class="task" type="button" aria-pressed="false" data-task="Confirm access needs" aria-label="Confirm access needs, Needs attention, 1 open checks">
+<span class="task-title">Confirm access needs<span class="selection">Selected</span></span>
+<span class="task-state">Needs attention</span>
+<span class="task-count"><strong class="task-count-value">1</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+</ul>
+<div class="empty" hidden><h4>No blocked tasks</h4><p>Nothing in this fictional queue is blocked. Show all tasks to continue.</p><button class="reset-filter" type="button">Show all tasks</button></div>
+<div class="queue-summary"><p class="status" role="status">3 tasks shown</p><p class="selection-note" aria-live="polite">Selected: Inspect repair tools</p></div>
+</article>
+</div>
+</section>
+<section class="material" id="tactile-craft" style="--ground:#eee9df;--surface:#fffdf8;--ink:#2c3228;--muted:#59604f;--accent:#35543a;--on_accent:#ffffff;--focus:#35543a;--font:Georgia, serif;--radius:0.65rem">
+<h2>Tactile Craft</h2>
+<p class="profile-note">Warm planes, soft corners, and a subtle inset suggest a physical control without textural noise.</p>
+<dl class="legend" aria-label="Material legend">
+<div><dt>Surface</dt><dd><i class="swatch" aria-hidden="true"></i>Reading plane</dd></div>
+<div><dt>Accent</dt><dd><i class="swatch accent" aria-hidden="true"></i>Action and selection</dd></div>
+<div><dt>Type</dt><dd>Display voice, plain working text</dd></div>
+</dl>
+<div class="samples">
+<article class="sample">
+<div class="sample-heading"><h3>Choose a workshop</h3><p>One object, one session</p></div>
+<p class="intro">Learn to repair a small object. Bring one item and choose the session that suits you.</p>
+<form aria-label="Tactile Craft workshop preview">
+<label for="tactile-craft-session">Session</label>
+<select id="tactile-craft-session" required aria-describedby="tactile-craft-session-help tactile-craft-session-error">
+<option value="">Choose a session</option>
+<option>Saturday morning</option>
+<option>Sunday afternoon</option>
+</select>
+<p class="helper" id="tactile-craft-session-help">Local preview only. Nothing is booked or sent.</p>
+<p class="error" id="tactile-craft-session-error" role="alert"></p>
+<button class="preview-button" type="submit">Preview this session</button>
+<p class="status confirmation" role="status" aria-live="polite"></p>
+</form>
+</article>
+<article class="sample">
+<div class="sample-heading"><h3>Workshop operations</h3><p>Preparation queue · fictional data</p></div>
+<label for="tactile-craft-filter">Show tasks</label>
+<select id="tactile-craft-filter" class="filter">
+<option value="all">All tasks</option>
+<option value="open">Needs attention</option>
+<option value="done">Ready</option>
+<option value="blocked">Blocked</option>
+</select>
+<div class="queue-head" aria-hidden="true"><span>Task</span><span>Status</span><span>Open checks</span></div>
+<ul class="rows">
+<li data-state="open">
+<button class="task" type="button" aria-pressed="true" data-task="Inspect repair tools" aria-label="Inspect repair tools, Needs attention, 2 open checks">
+<span class="task-title">Inspect repair tools<span class="selection">Selected</span></span>
+<span class="task-state">Needs attention</span>
+<span class="task-count"><strong class="task-count-value">2</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+<li data-state="done">
+<button class="task" type="button" aria-pressed="false" data-task="Prepare workbenches" aria-label="Prepare workbenches, Ready, 0 open checks">
+<span class="task-title">Prepare workbenches<span class="selection">Selected</span></span>
+<span class="task-state">Ready</span>
+<span class="task-count"><strong class="task-count-value">0</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+<li data-state="open">
+<button class="task" type="button" aria-pressed="false" data-task="Confirm access needs" aria-label="Confirm access needs, Needs attention, 1 open checks">
+<span class="task-title">Confirm access needs<span class="selection">Selected</span></span>
+<span class="task-state">Needs attention</span>
+<span class="task-count"><strong class="task-count-value">1</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+</ul>
+<div class="empty" hidden><h4>No blocked tasks</h4><p>Nothing in this fictional queue is blocked. Show all tasks to continue.</p><button class="reset-filter" type="button">Show all tasks</button></div>
+<div class="queue-summary"><p class="status" role="status">3 tasks shown</p><p class="selection-note" aria-live="polite">Selected: Inspect repair tools</p></div>
+</article>
+</div>
+</section>
+<section class="material" id="quiet-luxury" style="--ground:#f5f2ec;--surface:#ffffff;--ink:#272524;--muted:#625c56;--accent:#4e4238;--on_accent:#ffffff;--focus:#4e4238;--font:&quot;Palatino Linotype&quot;, Palatino, Georgia, serif;--radius:0">
+<h2>Quiet Luxury</h2>
+<p class="profile-note">Measured heading scale and deliberate spacing create hierarchy without tiny or faint controls.</p>
+<dl class="legend" aria-label="Material legend">
+<div><dt>Surface</dt><dd><i class="swatch" aria-hidden="true"></i>Reading plane</dd></div>
+<div><dt>Accent</dt><dd><i class="swatch accent" aria-hidden="true"></i>Action and selection</dd></div>
+<div><dt>Type</dt><dd>Display voice, plain working text</dd></div>
+</dl>
+<div class="samples">
+<article class="sample">
+<div class="sample-heading"><h3>Choose a workshop</h3><p>One object, one session</p></div>
+<p class="intro">Learn to repair a small object. Bring one item and choose the session that suits you.</p>
+<form aria-label="Quiet Luxury workshop preview">
+<label for="quiet-luxury-session">Session</label>
+<select id="quiet-luxury-session" required aria-describedby="quiet-luxury-session-help quiet-luxury-session-error">
+<option value="">Choose a session</option>
+<option>Saturday morning</option>
+<option>Sunday afternoon</option>
+</select>
+<p class="helper" id="quiet-luxury-session-help">Local preview only. Nothing is booked or sent.</p>
+<p class="error" id="quiet-luxury-session-error" role="alert"></p>
+<button class="preview-button" type="submit">Preview this session</button>
+<p class="status confirmation" role="status" aria-live="polite"></p>
+</form>
+</article>
+<article class="sample">
+<div class="sample-heading"><h3>Workshop operations</h3><p>Preparation queue · fictional data</p></div>
+<label for="quiet-luxury-filter">Show tasks</label>
+<select id="quiet-luxury-filter" class="filter">
+<option value="all">All tasks</option>
+<option value="open">Needs attention</option>
+<option value="done">Ready</option>
+<option value="blocked">Blocked</option>
+</select>
+<div class="queue-head" aria-hidden="true"><span>Task</span><span>Status</span><span>Open checks</span></div>
+<ul class="rows">
+<li data-state="open">
+<button class="task" type="button" aria-pressed="true" data-task="Inspect repair tools" aria-label="Inspect repair tools, Needs attention, 2 open checks">
+<span class="task-title">Inspect repair tools<span class="selection">Selected</span></span>
+<span class="task-state">Needs attention</span>
+<span class="task-count"><strong class="task-count-value">2</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+<li data-state="done">
+<button class="task" type="button" aria-pressed="false" data-task="Prepare workbenches" aria-label="Prepare workbenches, Ready, 0 open checks">
+<span class="task-title">Prepare workbenches<span class="selection">Selected</span></span>
+<span class="task-state">Ready</span>
+<span class="task-count"><strong class="task-count-value">0</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+<li data-state="open">
+<button class="task" type="button" aria-pressed="false" data-task="Confirm access needs" aria-label="Confirm access needs, Needs attention, 1 open checks">
+<span class="task-title">Confirm access needs<span class="selection">Selected</span></span>
+<span class="task-state">Needs attention</span>
+<span class="task-count"><strong class="task-count-value">1</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+</ul>
+<div class="empty" hidden><h4>No blocked tasks</h4><p>Nothing in this fictional queue is blocked. Show all tasks to continue.</p><button class="reset-filter" type="button">Show all tasks</button></div>
+<div class="queue-summary"><p class="status" role="status">3 tasks shown</p><p class="selection-note" aria-live="polite">Selected: Inspect repair tools</p></div>
+</article>
+</div>
+</section>
+<section class="material" id="night-instrument" style="--ground:#111b2b;--surface:#1c2b40;--ink:#eff6ff;--muted:#bbcbdc;--accent:#99d4f0;--on_accent:#102232;--focus:#e7f6ff;--font:system-ui, sans-serif;--radius:0.3rem">
+<h2>Night Instrument</h2>
+<p class="profile-note">Separated dark surfaces, pale focus, and aligned readouts keep working states visible.</p>
+<dl class="legend" aria-label="Material legend">
+<div><dt>Surface</dt><dd><i class="swatch" aria-hidden="true"></i>Reading plane</dd></div>
+<div><dt>Accent</dt><dd><i class="swatch accent" aria-hidden="true"></i>Action and selection</dd></div>
+<div><dt>Type</dt><dd>Display voice, plain working text</dd></div>
+</dl>
+<div class="samples">
+<article class="sample">
+<div class="sample-heading"><h3>Choose a workshop</h3><p>One object, one session</p></div>
+<p class="intro">Learn to repair a small object. Bring one item and choose the session that suits you.</p>
+<form aria-label="Night Instrument workshop preview">
+<label for="night-instrument-session">Session</label>
+<select id="night-instrument-session" required aria-describedby="night-instrument-session-help night-instrument-session-error">
+<option value="">Choose a session</option>
+<option>Saturday morning</option>
+<option>Sunday afternoon</option>
+</select>
+<p class="helper" id="night-instrument-session-help">Local preview only. Nothing is booked or sent.</p>
+<p class="error" id="night-instrument-session-error" role="alert"></p>
+<button class="preview-button" type="submit">Preview this session</button>
+<p class="status confirmation" role="status" aria-live="polite"></p>
+</form>
+</article>
+<article class="sample">
+<div class="sample-heading"><h3>Workshop operations</h3><p>Preparation queue · fictional data</p></div>
+<label for="night-instrument-filter">Show tasks</label>
+<select id="night-instrument-filter" class="filter">
+<option value="all">All tasks</option>
+<option value="open">Needs attention</option>
+<option value="done">Ready</option>
+<option value="blocked">Blocked</option>
+</select>
+<div class="queue-head" aria-hidden="true"><span>Task</span><span>Status</span><span>Open checks</span></div>
+<ul class="rows">
+<li data-state="open">
+<button class="task" type="button" aria-pressed="true" data-task="Inspect repair tools" aria-label="Inspect repair tools, Needs attention, 2 open checks">
+<span class="task-title">Inspect repair tools<span class="selection">Selected</span></span>
+<span class="task-state">Needs attention</span>
+<span class="task-count"><strong class="task-count-value">2</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+<li data-state="done">
+<button class="task" type="button" aria-pressed="false" data-task="Prepare workbenches" aria-label="Prepare workbenches, Ready, 0 open checks">
+<span class="task-title">Prepare workbenches<span class="selection">Selected</span></span>
+<span class="task-state">Ready</span>
+<span class="task-count"><strong class="task-count-value">0</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+<li data-state="open">
+<button class="task" type="button" aria-pressed="false" data-task="Confirm access needs" aria-label="Confirm access needs, Needs attention, 1 open checks">
+<span class="task-title">Confirm access needs<span class="selection">Selected</span></span>
+<span class="task-state">Needs attention</span>
+<span class="task-count"><strong class="task-count-value">1</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+</ul>
+<div class="empty" hidden><h4>No blocked tasks</h4><p>Nothing in this fictional queue is blocked. Show all tasks to continue.</p><button class="reset-filter" type="button">Show all tasks</button></div>
+<div class="queue-summary"><p class="status" role="status">3 tasks shown</p><p class="selection-note" aria-live="polite">Selected: Inspect repair tools</p></div>
+</article>
+</div>
+</section>
+<section class="material" id="place-and-light" style="--ground:#f4f1e9;--surface:#ffffff;--ink:#24342c;--muted:#56635c;--accent:#285d46;--on_accent:#ffffff;--focus:#285d46;--font:&quot;Trebuchet MS&quot;, sans-serif;--radius:0.25rem">
+<h2>Place and Light</h2>
+<p class="profile-note">An explicitly labeled no-photo fallback uses a schematic and caption without claiming a real location.</p>
+<dl class="legend" aria-label="Material legend">
+<div><dt>Surface</dt><dd><i class="swatch" aria-hidden="true"></i>Reading plane</dd></div>
+<div><dt>Accent</dt><dd><i class="swatch accent" aria-hidden="true"></i>Action and selection</dd></div>
+<div><dt>Type</dt><dd>Display voice, plain working text</dd></div>
+</dl>
+<figure class="media-fallback">
+<p class="fallback-label">No-photo fallback · fictional workshop</p>
+<svg viewBox="0 0 540 140" role="img" aria-label="Schematic: entrance on the left, workbench on the right, windows along the upper wall.">
+<path d="M60 58V20H520V120H60V88" fill="none" stroke="currentColor" stroke-width="2"/>
+<path d="M60 58L31 88M60 88H31" fill="none" stroke="currentColor" stroke-width="2"/>
+<path d="M230 20H390" stroke="currentColor" stroke-width="6"/>
+<rect x="340" y="60" width="145" height="40" fill="none" stroke="currentColor" stroke-width="2"/>
+<text x="95" y="82" fill="currentColor" font-size="16">Entrance</text>
+<text x="250" y="47" fill="currentColor" font-size="14">Windows</text>
+<text x="357" y="85" fill="currentColor" font-size="16">Workbench</text>
+</svg>
+<figcaption>Original schematic, not a real venue map. Entrance left, workbench right, windows above. A factual caption and complete text route remain useful when verified photographs are unavailable.</figcaption>
+</figure>
+<div class="samples">
+<article class="sample">
+<div class="sample-heading"><h3>Choose a workshop</h3><p>One object, one session</p></div>
+<p class="intro">Learn to repair a small object. Bring one item and choose the session that suits you.</p>
+<form aria-label="Place and Light workshop preview">
+<label for="place-and-light-session">Session</label>
+<select id="place-and-light-session" required aria-describedby="place-and-light-session-help place-and-light-session-error">
+<option value="">Choose a session</option>
+<option>Saturday morning</option>
+<option>Sunday afternoon</option>
+</select>
+<p class="helper" id="place-and-light-session-help">Local preview only. Nothing is booked or sent.</p>
+<p class="error" id="place-and-light-session-error" role="alert"></p>
+<button class="preview-button" type="submit">Preview this session</button>
+<p class="status confirmation" role="status" aria-live="polite"></p>
+</form>
+</article>
+<article class="sample">
+<div class="sample-heading"><h3>Workshop operations</h3><p>Preparation queue · fictional data</p></div>
+<label for="place-and-light-filter">Show tasks</label>
+<select id="place-and-light-filter" class="filter">
+<option value="all">All tasks</option>
+<option value="open">Needs attention</option>
+<option value="done">Ready</option>
+<option value="blocked">Blocked</option>
+</select>
+<div class="queue-head" aria-hidden="true"><span>Task</span><span>Status</span><span>Open checks</span></div>
+<ul class="rows">
+<li data-state="open">
+<button class="task" type="button" aria-pressed="true" data-task="Inspect repair tools" aria-label="Inspect repair tools, Needs attention, 2 open checks">
+<span class="task-title">Inspect repair tools<span class="selection">Selected</span></span>
+<span class="task-state">Needs attention</span>
+<span class="task-count"><strong class="task-count-value">2</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+<li data-state="done">
+<button class="task" type="button" aria-pressed="false" data-task="Prepare workbenches" aria-label="Prepare workbenches, Ready, 0 open checks">
+<span class="task-title">Prepare workbenches<span class="selection">Selected</span></span>
+<span class="task-state">Ready</span>
+<span class="task-count"><strong class="task-count-value">0</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+<li data-state="open">
+<button class="task" type="button" aria-pressed="false" data-task="Confirm access needs" aria-label="Confirm access needs, Needs attention, 1 open checks">
+<span class="task-title">Confirm access needs<span class="selection">Selected</span></span>
+<span class="task-state">Needs attention</span>
+<span class="task-count"><strong class="task-count-value">1</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+</ul>
+<div class="empty" hidden><h4>No blocked tasks</h4><p>Nothing in this fictional queue is blocked. Show all tasks to continue.</p><button class="reset-filter" type="button">Show all tasks</button></div>
+<div class="queue-summary"><p class="status" role="status">3 tasks shown</p><p class="selection-note" aria-live="polite">Selected: Inspect repair tools</p></div>
+</article>
+</div>
+</section>
+<section class="material" id="friendly-forms" style="--ground:#f7f0f7;--surface:#ffffff;--ink:#33263b;--muted:#69576d;--accent:#733f83;--on_accent:#ffffff;--focus:#733f83;--font:&quot;Trebuchet MS&quot;, sans-serif;--radius:0.9rem">
+<h2>Friendly Forms</h2>
+<p class="profile-note">Soft groups, helpful local errors, and a clear confirmation make the next step legible.</p>
+<dl class="legend" aria-label="Material legend">
+<div><dt>Surface</dt><dd><i class="swatch" aria-hidden="true"></i>Reading plane</dd></div>
+<div><dt>Accent</dt><dd><i class="swatch accent" aria-hidden="true"></i>Action and selection</dd></div>
+<div><dt>Type</dt><dd>Display voice, plain working text</dd></div>
+</dl>
+<div class="samples">
+<article class="sample">
+<div class="sample-heading"><h3>Choose a workshop</h3><p>One object, one session</p></div>
+<p class="intro">Learn to repair a small object. Bring one item and choose the session that suits you.</p>
+<form aria-label="Friendly Forms workshop preview">
+<label for="friendly-forms-session">Session</label>
+<select id="friendly-forms-session" required aria-describedby="friendly-forms-session-help friendly-forms-session-error">
+<option value="">Choose a session</option>
+<option>Saturday morning</option>
+<option>Sunday afternoon</option>
+</select>
+<p class="helper" id="friendly-forms-session-help">Local preview only. Nothing is booked or sent.</p>
+<p class="error" id="friendly-forms-session-error" role="alert"></p>
+<button class="preview-button" type="submit">Preview this session</button>
+<p class="status confirmation" role="status" aria-live="polite"></p>
+</form>
+</article>
+<article class="sample">
+<div class="sample-heading"><h3>Workshop operations</h3><p>Preparation queue · fictional data</p></div>
+<label for="friendly-forms-filter">Show tasks</label>
+<select id="friendly-forms-filter" class="filter">
+<option value="all">All tasks</option>
+<option value="open">Needs attention</option>
+<option value="done">Ready</option>
+<option value="blocked">Blocked</option>
+</select>
+<div class="queue-head" aria-hidden="true"><span>Task</span><span>Status</span><span>Open checks</span></div>
+<ul class="rows">
+<li data-state="open">
+<button class="task" type="button" aria-pressed="true" data-task="Inspect repair tools" aria-label="Inspect repair tools, Needs attention, 2 open checks">
+<span class="task-title">Inspect repair tools<span class="selection">Selected</span></span>
+<span class="task-state">Needs attention</span>
+<span class="task-count"><strong class="task-count-value">2</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+<li data-state="done">
+<button class="task" type="button" aria-pressed="false" data-task="Prepare workbenches" aria-label="Prepare workbenches, Ready, 0 open checks">
+<span class="task-title">Prepare workbenches<span class="selection">Selected</span></span>
+<span class="task-state">Ready</span>
+<span class="task-count"><strong class="task-count-value">0</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+<li data-state="open">
+<button class="task" type="button" aria-pressed="false" data-task="Confirm access needs" aria-label="Confirm access needs, Needs attention, 1 open checks">
+<span class="task-title">Confirm access needs<span class="selection">Selected</span></span>
+<span class="task-state">Needs attention</span>
+<span class="task-count"><strong class="task-count-value">1</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+</ul>
+<div class="empty" hidden><h4>No blocked tasks</h4><p>Nothing in this fictional queue is blocked. Show all tasks to continue.</p><button class="reset-filter" type="button">Show all tasks</button></div>
+<div class="queue-summary"><p class="status" role="status">3 tasks shown</p><p class="selection-note" aria-live="polite">Selected: Inspect repair tools</p></div>
+</article>
+</div>
+</section>
+<section class="material" id="color-geometry" style="--ground:#edf4fc;--surface:#ffffff;--ink:#182c47;--muted:#4c617c;--accent:#2154a1;--on_accent:#ffffff;--focus:#2154a1;--font:&quot;Arial&quot;, sans-serif;--radius:0.2rem">
+<h2>Color Geometry</h2>
+<p class="profile-note">A color field groups each task; redundant shapes and text distinguish queue states.</p>
+<dl class="legend" aria-label="Material legend">
+<div><dt>Surface</dt><dd><i class="swatch" aria-hidden="true"></i>Reading plane</dd></div>
+<div><dt>Accent</dt><dd><i class="swatch accent" aria-hidden="true"></i>Action and selection</dd></div>
+<div><dt>Type</dt><dd>Display voice, plain working text</dd></div>
+</dl>
+<div class="samples">
+<article class="sample">
+<div class="sample-heading"><h3>Choose a workshop</h3><p>One object, one session</p></div>
+<p class="intro">Learn to repair a small object. Bring one item and choose the session that suits you.</p>
+<form aria-label="Color Geometry workshop preview">
+<label for="color-geometry-session">Session</label>
+<select id="color-geometry-session" required aria-describedby="color-geometry-session-help color-geometry-session-error">
+<option value="">Choose a session</option>
+<option>Saturday morning</option>
+<option>Sunday afternoon</option>
+</select>
+<p class="helper" id="color-geometry-session-help">Local preview only. Nothing is booked or sent.</p>
+<p class="error" id="color-geometry-session-error" role="alert"></p>
+<button class="preview-button" type="submit">Preview this session</button>
+<p class="status confirmation" role="status" aria-live="polite"></p>
+</form>
+</article>
+<article class="sample">
+<div class="sample-heading"><h3>Workshop operations</h3><p>Preparation queue · fictional data</p></div>
+<label for="color-geometry-filter">Show tasks</label>
+<select id="color-geometry-filter" class="filter">
+<option value="all">All tasks</option>
+<option value="open">Needs attention</option>
+<option value="done">Ready</option>
+<option value="blocked">Blocked</option>
+</select>
+<div class="queue-head" aria-hidden="true"><span>Task</span><span>Status</span><span>Open checks</span></div>
+<ul class="rows">
+<li data-state="open">
+<button class="task" type="button" aria-pressed="true" data-task="Inspect repair tools" aria-label="Inspect repair tools, Needs attention, 2 open checks">
+<span class="task-title">Inspect repair tools<span class="selection">Selected</span></span>
+<span class="task-state">Needs attention</span>
+<span class="task-count"><strong class="task-count-value">2</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+<li data-state="done">
+<button class="task" type="button" aria-pressed="false" data-task="Prepare workbenches" aria-label="Prepare workbenches, Ready, 0 open checks">
+<span class="task-title">Prepare workbenches<span class="selection">Selected</span></span>
+<span class="task-state">Ready</span>
+<span class="task-count"><strong class="task-count-value">0</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+<li data-state="open">
+<button class="task" type="button" aria-pressed="false" data-task="Confirm access needs" aria-label="Confirm access needs, Needs attention, 1 open checks">
+<span class="task-title">Confirm access needs<span class="selection">Selected</span></span>
+<span class="task-state">Needs attention</span>
+<span class="task-count"><strong class="task-count-value">1</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+</ul>
+<div class="empty" hidden><h4>No blocked tasks</h4><p>Nothing in this fictional queue is blocked. Show all tasks to continue.</p><button class="reset-filter" type="button">Show all tasks</button></div>
+<div class="queue-summary"><p class="status" role="status">3 tasks shown</p><p class="selection-note" aria-live="polite">Selected: Inspect repair tools</p></div>
+</article>
+</div>
+</section>
+<section class="material" id="public-poster" style="--ground:#fff5a7;--surface:#fffde8;--ink:#1e2524;--muted:#535943;--accent:#1e2524;--on_accent:#fff5a7;--focus:#1e2524;--font:&quot;Arial Black&quot;, sans-serif;--radius:0">
+<h2>Public Poster</h2>
+<p class="profile-note">A bold priority heading and yellow field lead into conventional, readable controls.</p>
+<dl class="legend" aria-label="Material legend">
+<div><dt>Surface</dt><dd><i class="swatch" aria-hidden="true"></i>Reading plane</dd></div>
+<div><dt>Accent</dt><dd><i class="swatch accent" aria-hidden="true"></i>Action and selection</dd></div>
+<div><dt>Type</dt><dd>Display voice, plain working text</dd></div>
+</dl>
+<div class="samples">
+<article class="sample">
+<div class="sample-heading"><h3>Choose a workshop</h3><p>One object, one session</p></div>
+<p class="intro">Learn to repair a small object. Bring one item and choose the session that suits you.</p>
+<form aria-label="Public Poster workshop preview">
+<label for="public-poster-session">Session</label>
+<select id="public-poster-session" required aria-describedby="public-poster-session-help public-poster-session-error">
+<option value="">Choose a session</option>
+<option>Saturday morning</option>
+<option>Sunday afternoon</option>
+</select>
+<p class="helper" id="public-poster-session-help">Local preview only. Nothing is booked or sent.</p>
+<p class="error" id="public-poster-session-error" role="alert"></p>
+<button class="preview-button" type="submit">Preview this session</button>
+<p class="status confirmation" role="status" aria-live="polite"></p>
+</form>
+</article>
+<article class="sample">
+<div class="sample-heading"><h3>Workshop operations</h3><p>Preparation queue · fictional data</p></div>
+<label for="public-poster-filter">Show tasks</label>
+<select id="public-poster-filter" class="filter">
+<option value="all">All tasks</option>
+<option value="open">Needs attention</option>
+<option value="done">Ready</option>
+<option value="blocked">Blocked</option>
+</select>
+<div class="queue-head" aria-hidden="true"><span>Task</span><span>Status</span><span>Open checks</span></div>
+<ul class="rows">
+<li data-state="open">
+<button class="task" type="button" aria-pressed="true" data-task="Inspect repair tools" aria-label="Inspect repair tools, Needs attention, 2 open checks">
+<span class="task-title">Inspect repair tools<span class="selection">Selected</span></span>
+<span class="task-state">Needs attention</span>
+<span class="task-count"><strong class="task-count-value">2</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+<li data-state="done">
+<button class="task" type="button" aria-pressed="false" data-task="Prepare workbenches" aria-label="Prepare workbenches, Ready, 0 open checks">
+<span class="task-title">Prepare workbenches<span class="selection">Selected</span></span>
+<span class="task-state">Ready</span>
+<span class="task-count"><strong class="task-count-value">0</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+<li data-state="open">
+<button class="task" type="button" aria-pressed="false" data-task="Confirm access needs" aria-label="Confirm access needs, Needs attention, 1 open checks">
+<span class="task-title">Confirm access needs<span class="selection">Selected</span></span>
+<span class="task-state">Needs attention</span>
+<span class="task-count"><strong class="task-count-value">1</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+</ul>
+<div class="empty" hidden><h4>No blocked tasks</h4><p>Nothing in this fictional queue is blocked. Show all tasks to continue.</p><button class="reset-filter" type="button">Show all tasks</button></div>
+<div class="queue-summary"><p class="status" role="status">3 tasks shown</p><p class="selection-note" aria-live="polite">Selected: Inspect repair tools</p></div>
+</article>
+</div>
+</section>
+<section class="material" id="civic-clarity" style="--ground:#f2f4f3;--surface:#ffffff;--ink:#172c27;--muted:#4b6059;--accent:#185442;--on_accent:#ffffff;--focus:#185442;--font:system-ui, sans-serif;--radius:0.2rem">
+<h2>Civic Clarity</h2>
+<p class="profile-note">Familiar controls, explicit outcomes, and complete status words make a restrained comparison.</p>
+<dl class="legend" aria-label="Material legend">
+<div><dt>Surface</dt><dd><i class="swatch" aria-hidden="true"></i>Reading plane</dd></div>
+<div><dt>Accent</dt><dd><i class="swatch accent" aria-hidden="true"></i>Action and selection</dd></div>
+<div><dt>Type</dt><dd>Display voice, plain working text</dd></div>
+</dl>
+<div class="samples">
+<article class="sample">
+<div class="sample-heading"><h3>Choose a workshop</h3><p>One object, one session</p></div>
+<p class="intro">Learn to repair a small object. Bring one item and choose the session that suits you.</p>
+<form aria-label="Civic Clarity workshop preview">
+<label for="civic-clarity-session">Session</label>
+<select id="civic-clarity-session" required aria-describedby="civic-clarity-session-help civic-clarity-session-error">
+<option value="">Choose a session</option>
+<option>Saturday morning</option>
+<option>Sunday afternoon</option>
+</select>
+<p class="helper" id="civic-clarity-session-help">Local preview only. Nothing is booked or sent.</p>
+<p class="error" id="civic-clarity-session-error" role="alert"></p>
+<button class="preview-button" type="submit">Preview this session</button>
+<p class="status confirmation" role="status" aria-live="polite"></p>
+</form>
+</article>
+<article class="sample">
+<div class="sample-heading"><h3>Workshop operations</h3><p>Preparation queue · fictional data</p></div>
+<label for="civic-clarity-filter">Show tasks</label>
+<select id="civic-clarity-filter" class="filter">
+<option value="all">All tasks</option>
+<option value="open">Needs attention</option>
+<option value="done">Ready</option>
+<option value="blocked">Blocked</option>
+</select>
+<div class="queue-head" aria-hidden="true"><span>Task</span><span>Status</span><span>Open checks</span></div>
+<ul class="rows">
+<li data-state="open">
+<button class="task" type="button" aria-pressed="true" data-task="Inspect repair tools" aria-label="Inspect repair tools, Needs attention, 2 open checks">
+<span class="task-title">Inspect repair tools<span class="selection">Selected</span></span>
+<span class="task-state">Needs attention</span>
+<span class="task-count"><strong class="task-count-value">2</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+<li data-state="done">
+<button class="task" type="button" aria-pressed="false" data-task="Prepare workbenches" aria-label="Prepare workbenches, Ready, 0 open checks">
+<span class="task-title">Prepare workbenches<span class="selection">Selected</span></span>
+<span class="task-state">Ready</span>
+<span class="task-count"><strong class="task-count-value">0</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+<li data-state="open">
+<button class="task" type="button" aria-pressed="false" data-task="Confirm access needs" aria-label="Confirm access needs, Needs attention, 1 open checks">
+<span class="task-title">Confirm access needs<span class="selection">Selected</span></span>
+<span class="task-state">Needs attention</span>
+<span class="task-count"><strong class="task-count-value">1</strong><span class="count-label">Open checks</span></span>
+</button>
+</li>
+</ul>
+<div class="empty" hidden><h4>No blocked tasks</h4><p>Nothing in this fictional queue is blocked. Show all tasks to continue.</p><button class="reset-filter" type="button">Show all tasks</button></div>
+<div class="queue-summary"><p class="status" role="status">3 tasks shown</p><p class="selection-note" aria-live="polite">Selected: Inspect repair tools</p></div>
+</article>
+</div>
+</section>
+</main>
+<script>
+
+for (const form of document.querySelectorAll('form')) {
+  const select = form.querySelector('select');
+  const error = form.querySelector('.error');
+  const status = form.querySelector('.confirmation');
+  form.noValidate = true;
+  select.addEventListener('change', () => {
+    error.textContent = '';
+    select.removeAttribute('aria-invalid');
+    status.replaceChildren();
+  });
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    status.replaceChildren();
+    if (!select.checkValidity()) {
+      error.textContent = 'Choose a session to preview your plan.';
+      select.setAttribute('aria-invalid', 'true');
+      select.focus();
+      return;
+    }
+    error.textContent = '';
+    select.removeAttribute('aria-invalid');
+    const title = document.createElement('strong');
+    title.textContent = select.value;
+    status.append(title, document.createTextNode('Session preview ready. No booking was sent.'));
+  });
+}
+for (const filter of document.querySelectorAll('.filter')) {
+  const card = filter.closest('article');
+  const rows = [...card.querySelectorAll('[data-state]')];
+  const buttons = [...card.querySelectorAll('.task')];
+  const selection = card.querySelector('.selection-note');
+  const render = () => {
+    let count = 0;
+    for (const row of rows) {
+      row.hidden = filter.value !== 'all' && row.dataset.state !== filter.value;
+      if (!row.hidden) count++;
+    }
+    card.querySelector('.empty').hidden = count !== 0;
+    card.querySelector('[role=status]').textContent = `${count} ${count === 1 ? 'task' : 'tasks'} shown`;
+    const selected = buttons.find(button => button.getAttribute('aria-pressed') === 'true');
+    selection.textContent = selected && !selected.closest('li').hidden
+      ? 'Selected: ' + selected.dataset.task
+      : 'No selected task in this view';
+  };
+  filter.addEventListener('change', render);
+  card.querySelector('.reset-filter').addEventListener('click', () => {
+    filter.value = 'all';
+    render();
+    filter.focus();
+  });
+  for (const button of buttons) button.addEventListener('click', () => {
+    for (const other of buttons) other.setAttribute('aria-pressed', String(other === button));
+    render();
+  });
+}
+
+</script>
+</body>
+</html>
