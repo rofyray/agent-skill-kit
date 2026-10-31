@@ -242,6 +242,17 @@ def init_vault(args: argparse.Namespace) -> int:
     if outcomes["automation/second_brain.py"] == "created":
         helper_destination.chmod(0o755)
 
+    from second_brain_graph import VIEWER_FILES, viewer_assets
+    outcomes["automation/second_brain_graph.py"] = create_or_preserve(
+        root/"automation/second_brain_graph.py",
+        (SCRIPT_DIR/"second_brain_graph.py").read_text(encoding="utf-8"),
+    )
+    for name in VIEWER_FILES:
+        destination = f"automation/brain-viewer/{name}"
+        outcomes[destination] = create_or_preserve(
+            root/destination, (viewer_assets()/name).read_text(encoding="utf-8"),
+        )
+
     config = {
         "version": 1,
         "name": replacements["VAULT_NAME"],
@@ -960,6 +971,16 @@ def parser() -> argparse.ArgumentParser:
     scan.add_argument("--json", action="store_true")
     scan.add_argument("--strict", action="store_true", help="exit 1 when any finding is present")
     scan.set_defaults(handler=scan_vault)
+
+    from second_brain_graph import visualize
+    graph = subparsers.add_parser("visualize", help="export a local 3D knowledge viewer without changing knowledge")
+    graph.add_argument("vault")
+    graph.add_argument("--output", help="new output directory outside the vault; defaults to .second-brain/visualization")
+    graph.add_argument("--serve", action="store_true", help="serve generated files on loopback until Ctrl+C")
+    graph.add_argument("--open", action="store_true", help="open the local URL in a browser (requires --serve)")
+    graph.add_argument("--port", type=int, default=0, help="local port; 0 selects a free port")
+    graph.add_argument("--json", action="store_true")
+    graph.set_defaults(handler=visualize)
     return root
 
 

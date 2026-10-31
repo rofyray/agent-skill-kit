@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Second Brain</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="viewer.css">
+</head>
+<body>
+  <a class="skip" href="#search">Skip to knowledge search</a>
+  <header>
+    <div class="identity"><span class="mark" aria-hidden="true"><i></i><i></i></span><div><span class="eyebrow">SECOND BRAIN</span><h1 id="vault-name">Your second brain</h1></div></div>
+    <div class="header-actions"><span id="snapshot-time" class="muted"></span><button id="reload">Reload snapshot</button></div>
+  </header>
+  <main>
+    <aside class="library" aria-label="Knowledge library">
+      <div class="library-intro"><div class="section-label">YOUR LIBRARY</div><h2 class="library-title">Find a connection.</h2></div>
+      <div class="search-block"><label for="search">Search pages</label>
+      <input id="search" type="search" placeholder="Title, concept, or tag" autocomplete="off"><a id="mobile-results" href="#library-results">View matches ↓</a></div>
+      <div class="library-filters"><div class="filter-row"><div><label for="domain">Region</label><select id="domain"><option value="">All regions</option></select></div><div><label for="status">Status</label><select id="status"><option value="">All statuses</option><option>current</option><option>provisional</option><option>contested</option><option>superseded</option><option>unknown</option></select></div></div>
+      <label class="check"><input type="checkbox" id="sources"> Include source files</label>
+      <label class="check"><input type="checkbox" id="orphans"> Only unconnected pages</label>
+      </div><div class="library-results" id="library-results"><div class="list-heading"><h2>Matching items</h2><span id="result-count" class="mono"></span></div>
+      <div id="node-list" class="node-list" aria-label="Matching pages"></div>
+      <button id="more" hidden>Show more results</button>
+      <details id="diagnostics"><summary id="diagnostic-count">Snapshot checks</summary><p class="muted">Structural findings only. This is not a semantic review or a raw-file integrity scan.</p><ul id="diagnostic-list"></ul></details></div>
+    </aside>
+    <section class="stage" aria-label="Interactive knowledge graph">
+      <div class="stage-top"><div class="view-tabs" role="group" aria-label="Graph view"><button id="brain" aria-pressed="true">Brain</button><button id="explore" aria-pressed="false">Explore</button></div><button id="reset">Reset view ↗</button></div>
+      <div class="stage-heading"><h2>Knowledge atlas</h2><span class="eyebrow" id="view-label">A MAP OF WHAT YOU KNOW</span></div>
+      <div id="graph" aria-label="3D graph. Use the knowledge list for keyboard navigation."></div>
+      <div id="message" class="message" role="status">Loading your knowledge…</div>
+      <div class="stage-caption"><p id="graph-count">Reading snapshot</p><p class="muted" id="view-hint">Drag to orbit · Scroll to zoom · Right-drag to pan</p></div>
+      <div class="stage-bottom"><label for="activity">Activity<select id="activity"><option value="ambient">Ambient pulses</option><option value="selected">Selected connections</option><option value="recent">Updated in 7 days</option><option value="off">Motion off</option></select></label><label class="check"><input id="glow" type="checkbox"> Glow</label><span class="metaphor">Anatomy is a visual metaphor.<br>Ambient pulses are decorative.</span></div>
+    </section>
+    <aside class="inspector" aria-label="Selected knowledge">
+      <div class="inspector-heading"><div class="section-label" id="inspector-label">AT A GLANCE</div><button id="close-selection" hidden aria-label="Close selected page">Close ×</button></div>
+      <div id="selection-empty"><h2>Your collection.</h2><p class="muted">Pages become points. References become connections you can follow.</p><dl class="atlas-stats"><div><dt>Wiki pages</dt><dd id="total-pages">0</dd></div><div><dt>Connections</dt><dd id="total-links">0</dd></div></dl><h3>Knowledge regions</h3><div id="region-key"></div><p class="muted small">Choose a region to narrow the atlas, or select a point to read its story.</p></div>
+      <div id="selection" hidden>
+        <div id="selected-kind" class="eyebrow"></div><h2 id="selected-title"></h2><p id="selected-summary"></p>
+        <div class="selection-actions"><button id="focus">Show neighborhood</button></div>
+        <h3>Evidence</h3><div id="evidence"></div>
+        <h3>Connected pages</h3><div id="connections"></div>
+<details class="note-details"><summary>Page details &amp; open original</summary>        <dl id="selected-meta"></dl><div id="selected-tags" class="tags"></div>
+        <div class="selection-actions"><a id="open-note" class="button">Open in Obsidian ↗</a></div>
+        <p class="muted small">Requires this vault in Obsidian. You can also find the file at the path below.</p><code id="selected-path"></code>
+</details>
+      </div>
+      <div class="inspector-foot"><span class="status-dot"></span> Local snapshot<span class="muted">Built from your Markdown. Nothing leaves this device.</span></div>
+    </aside>
+  </main>
+  <script src="viewer.js" defer></script>
+</body>
+</html>

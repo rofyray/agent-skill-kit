@@ -17,6 +17,8 @@ Use this contract when creating, adapting, or validating a second-brain vault.
 │   ├── lint-wiki.md             # Recurring lint prompt
 │   ├── recurring-ingest.md      # Recurring source-ingest prompt
 │   ├── second_brain.py           # Deterministic local helper
+│   ├── second_brain_graph.py     # Graph export and loopback viewer server
+│   ├── brain-viewer            # Prebuilt local viewer and dependency notices
 │   └── weekly-review.md         # Recurring review prompt
 ├── .second-brain/
 │   ├── config.json              # Vault preferences
@@ -31,6 +33,8 @@ Use this contract when creating, adapting, or validating a second-brain vault.
 ```
 
 Obsidian may create `.obsidian/`. Preserve it as user-owned application configuration. Do not require Obsidian plugins for the core loop.
+
+New vaults include the graph helper and viewer; older vaults can use them directly from the current skill installation without migrating their engines. Visualization output lives in `.second-brain/visualization/` when requested. It is disposable, derived state with a versioned `graph.json`, viewer files, and an ownership marker. It does not become wiki evidence or enter the index. Refreshing it leaves raw sources, wiki pages, index, and log unchanged. The viewer reads a snapshot; it is not a folder watcher.
 
 `.second-brain/config.json` stores the vault name, knowledge scope, writing voice, review mode, creation date, and optional ordered `domains` list. Domain headings organize an empty index without inventing knowledge pages.
 

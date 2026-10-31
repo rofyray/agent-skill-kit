@@ -30,6 +30,11 @@ REQUIRED_HELP_HEADINGS = (
     "## Examples",
 )
 TEXT_STYLE_EXCLUDED_PARTS = {".git", "__pycache__", "dist", "output"}
+# Generated dependency code embeds upstream shader comments and division syntax.
+# Validate the editable source, but do not rewrite vendor code to enforce prose style.
+TEXT_STYLE_EXCLUDED_FILES = {
+    "skills/build-and-maintain-a-second-brain/assets/brain-viewer/viewer.js",
+}
 EM_DASH = "\u2014"
 WHITESPACE_ADJACENT_TO_SLASH = re.compile(r"\s/|/\s")
 
@@ -222,6 +227,8 @@ def repository_text_paths(root: Path) -> list[Path]:
 def validate_text_style(root: Path) -> list[Issue]:
     issues: list[Issue] = []
     for path in repository_text_paths(root):
+        if path.relative_to(root).as_posix() in TEXT_STYLE_EXCLUDED_FILES:
+            continue
         try:
             lines = path.read_text(encoding="utf-8").splitlines()
         except (OSError, UnicodeDecodeError):

@@ -31,6 +31,7 @@ Desktop.ini
 .kilocode/
 .mcp/
 .mcp.json
+.playwright-mcp/
 .roo/
 .windsurf/
 AGENTS.md

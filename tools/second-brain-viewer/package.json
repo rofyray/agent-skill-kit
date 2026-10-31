@@ -1,0 +1,8 @@
+{
+  "name": "second-brain-viewer-build",
+  "private": true,
+  "type": "module",
+  "scripts": { "build": "node build.mjs", "test": "node --test layout.test.mjs" },
+  "dependencies": { "3d-force-graph": "1.80.1", "three": "0.187.0" },
+  "devDependencies": { "esbuild": "0.28.2" }
+}

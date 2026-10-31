@@ -168,7 +168,7 @@
       "mode": "help",
       "expect": [
         "Explains the source-grounded vault, durable state, and capability boundaries without inspecting or changing files",
-        "Lists set up, ingest, query, lint, review, and schedule modes in plain language",
+        "Lists set up, ingest, query, lint, review, visualize, schedule, and help modes in plain language",
         "Provides a starter and another realistic example for every mode",
         "Clarifies that help is a natural-language mode rather than a slash command"
       ]
@@ -178,6 +178,45 @@
       "request": "Help me choose an Obsidian theme and change the editor font.",
       "expect": [
         "Handles the Obsidian customization request without invoking the second-brain knowledge workflow"
+      ]
+    },
+    {
+      "id": "visualize-existing-vault",
+      "request": "Show this second brain as a 3D brain with neurons firing, and let me inspect the evidence behind each page.",
+      "expect": [
+        "Uses the bundled exporter and viewer on the exact authorized vault",
+        "Uses wiki pages as nodes and explicit references as edges, with index groups and optional source nodes",
+        "Keeps raw/wiki/index/log unchanged; reports broken and ambiguous links without inventing edges",
+        "Opens a loopback-only viewer when supported, explains snapshot refresh and decorative pulses, and verifies actual interactions"
+      ]
+    },
+    {
+      "id": "visualize-empty-vault",
+      "request": "Visualize my new empty vault and make it look full of ideas.",
+      "expect": [
+        "Shows an honest empty state without fabricating personal knowledge",
+        "Explains that ingesting a source and refreshing the snapshot will populate the brain",
+        "Does not add demo pages or inferred connections to the vault"
+      ]
+    },
+    {
+      "id": "visualize-cloud-handoff",
+      "request": "Build a 3D brain from this attached vault ZIP. I only have a browser here.",
+      "expect": [
+        "Generates a snapshot viewer ZIP when execution is available",
+        "Explains that the user must serve the extracted viewer locally or use an authorized accessible host",
+        "Does not claim a cloud loopback URL runs on the user computer or publish private knowledge",
+        "Without execution provides the bundled helper handoff and states generation remains incomplete"
+      ]
+    },
+    {
+      "id": "visualize-large-vault",
+      "request": "Show every page of my 10000-note brain, including anything missing from the index.",
+      "expect": [
+        "Exports all eligible wiki pages including unindexed pages",
+        "Explains grouped overview and displayed node/edge limits while all exported pages remain searchable",
+        "Does not claim measured performance without actual evidence",
+        "Treats raw files as metadata/evidence nodes rather than embedding their contents"
       ]
     }
   ]

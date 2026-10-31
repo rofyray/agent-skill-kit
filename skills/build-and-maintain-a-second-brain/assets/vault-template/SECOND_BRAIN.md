@@ -23,6 +23,7 @@ This vault is a persistent, source-grounded knowledge wiki. Obsidian is an optio
 - `reports/reviews/`: dated periodic reviews.
 - `automation/`: durable prompts for recurring maintenance.
 - `automation/second_brain.py`: deterministic setup, raw-integrity, and structural scan helper.
+- `automation/second_brain_graph.py` and `automation/brain-viewer/`: portable graph exporter and local 3D viewer.
 - `.second-brain/`: configuration and recorded raw-source hashes.
 - `.second-brain/ingest-schedules.json`: approved recurring-source definitions and successful checkpoints; never store credentials.
 
@@ -44,7 +45,7 @@ This vault is a persistent, source-grounded knowledge wiki. Obsidian is an optio
 Before modifying the vault:
 
 1. Read this file, `.second-brain/config.json`, `index.md`, and recent `log.md` entries.
-2. Identify the requested operation: setup, ingest, query, lint, review, or migration.
+2. Identify the requested operation: setup, ingest, query, lint, review, visualize, or migration.
 3. Inspect the relevant wiki pages and raw evidence.
 4. Determine the complete intended change set.
 
@@ -117,3 +118,15 @@ For the configured period, defaulting to seven days:
 4. Save a collision-safe timestamped report in `reports/reviews/` and append a `review` event to `log.md`.
 
 Recommendations are not facts and should not be ingested as evidence.
+
+## VISUALIZE
+
+When asked to visualize or explore this brain:
+
+1. Run `python3 automation/second_brain.py visualize <vault-path> --json` using the helper from this vault, or the current skill installation if this vault has older helpers.
+2. Inspect counts and structural diagnostics. Wiki pages are nodes, explicit links are references, and source metadata supplies evidence links. The index supplies regions, not evidence. Never invent knowledge or connections to populate a scene.
+3. When local execution is available, add `--serve --open` to generate and open the bundled viewer. It binds only to loopback and serves only generated files. Keep the process alive while viewing and stop it with Ctrl+C.
+4. Offer Brain/Explore views, search, filters, neighborhoods, evidence details, and optional motion. Brain anatomy and ambient pulses are visual metaphors. Recent highlights use page update dates, not live reasoning or a historical replay.
+5. Refresh by rerunning the export and using Reload snapshot. Explain the snapshot date and any rendered subset limits. Without a local browser or runtime, provide the complete generated viewer directory and a local-server handoff without claiming it is running on the user's device.
+
+Visualization writes only disposable `.second-brain/visualization/` output. Unlike knowledge operations, it does not modify raw/wiki/index/log files. Do not publish the snapshot, install a plugin, create a watcher, or change the knowledge to improve appearance.

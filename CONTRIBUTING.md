@@ -62,6 +62,10 @@ python3 scripts/package_skills.py
 
 Inspect each generated archive in `dist/skills/`. It must contain one top-level folder whose name matches the skill and must exclude development files, evals, caches, and repository documentation.
 
+The second-brain viewer's editable source and pinned build dependencies are in `tools/second-brain-viewer/`, outside the installable skill. After changing that source, run `npm ci`, `npm test`, and `npm run build` in that directory. The build writes the prebuilt browser files and complete bundled-dependency license notices to the skill's `assets/brain-viewer/`. Commit the source, lockfile, and rebuilt assets together. End users need only Python and a browser. Generate a synthetic verification vault with `python3 tools/second-brain-viewer/demo.py <new-output-directory>`; never use the demo generator on a real vault.
+
+The generated `assets/brain-viewer/viewer.js` bundle is exempt from prose-style validation because it contains upstream shader code. Its editable source remains validated; do not manually rewrite bundled dependencies to satisfy prose punctuation rules.
+
 For each non-trivial skill, test:
 
 - requests that should and should not trigger it;

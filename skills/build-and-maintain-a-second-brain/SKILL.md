@@ -1,6 +1,6 @@
 ---
 name: build-and-maintain-a-second-brain
-description: Build and maintain an Obsidian-compatible second brain. Use when setting up a vault, ingesting sources, querying knowledge, linting or reviewing a wiki, or scheduling ingestion and maintenance.
+description: Build and maintain an Obsidian-compatible second brain. Use when setting up, ingesting, querying, linting, reviewing, visualizing a 3D knowledge graph, or scheduling vault maintenance.
 ---
 
 # Build and Maintain a Second Brain
@@ -22,6 +22,7 @@ Choose the smallest applicable operation:
 - **Query**: Synthesize an answer from the wiki and its raw evidence; file durable analysis back when useful.
 - **Lint**: Find structural and semantic health problems without silently changing meaning or deleting content.
 - **Review**: Summarize recent additions, connections, hubs, interests, gaps, and next explorations.
+- **Visualize**: Generate and explore a local 3D brain from wiki pages, links, index groups, and source references.
 - **Schedule**: Configure verified recurring ingestion or maintenance when the runtime can reach the sources and vault, or an honest reminder when it cannot.
 
 If the user only wants a design or explanation, do not create files, install software, or schedule tasks.
@@ -51,8 +52,8 @@ Read [vault-contract.md](references/vault-contract.md) before creating or adapti
    ```
 
    Repeat `--domain` for multiple top-level areas or omit it for the general index. The command is idempotent and preserves conflicting files. Inspect its report rather than assuming every file was written.
-4. Without shell access but with local file creation, copy the files from `assets/vault-template/`, copy the bundled helper to `automation/second_brain.py`, substitute every template placeholder including domain headings, generate the three `.second-brain/*.json` state files, and create the directories specified in the vault contract.
-5. Without direct local access or a functioning desktop bridge, generate a downloadable starter folder or ZIP from `assets/vault-template/` plus the bundled helper at `automation/second_brain.py`. Substitute every template placeholder, generate `.second-brain/config.json`, `.second-brain/raw-manifest.json`, and `.second-brain/ingest-schedules.json`, preserve the required empty directories in the archive, and verify the result against the vault contract. Tell the user to extract it, open the folder as an Obsidian vault, and return with the vault attached or connected for further work. Do not report local setup as complete.
+4. Without shell access but with local file creation, copy the files from `assets/vault-template/`, copy both bundled Python scripts to `automation/`, copy `assets/brain-viewer/` to `automation/brain-viewer/`, substitute every template placeholder including domain headings, generate the three `.second-brain/*.json` state files, and create the directories specified in the vault contract.
+5. Without direct local access or a functioning desktop bridge, generate a downloadable starter folder or ZIP from `assets/vault-template/` plus both Python scripts and the viewer assets at the paths above. Substitute every template placeholder, generate `.second-brain/config.json`, `.second-brain/raw-manifest.json`, and `.second-brain/ingest-schedules.json`, preserve the required empty directories in the archive, and verify the result against the vault contract. Tell the user to extract it, open the folder as an Obsidian vault, and return with the vault attached or connected for further work. Do not report local setup as complete.
 6. Create one canonical engine, `SECOND_BRAIN.md`, plus thin host adapters: `AGENTS.md`, `CLAUDE.md`, and `.cursor/rules/second-brain.mdc`. Keep shared policy only in the canonical engine so the adapters cannot drift.
 7. Open the folder in Obsidian when desktop control is available and authorized, including through an explicitly connected desktop bridge. If Obsidian is missing, offer the official installer; install it only after confirmation. Obsidian is optional - the files must remain usable without it.
 8. Run `python3 <vault-path>/automation/second_brain.py scan <vault-path>` when shell access exists. Resolve setup defects and summarize created, preserved, and deferred items.
@@ -81,6 +82,15 @@ Read [operations.md](references/operations.md) before an ingest, query, lint, or
 - Run the deterministic scan first when available, then perform the semantic checks described in `operations.md`.
 - Save dated reports under `reports/lint/` and `reports/reviews/` and append an event to `log.md`.
 - Report contradictions, stale claims, orphans, broken links, weak provenance, missing concepts, and suggested fixes. Do not auto-delete or silently adjudicate disputed claims.
+
+## Visualize the second brain
+
+Read [visualization.md](references/visualization.md) for `visualize`, “show my brain,” “map my knowledge,” or a request for an interactive 3D graph. Use the bundled deterministic exporter and viewer; do not generate a replacement app or invent knowledge to fill the scene.
+
+- Export all eligible wiki pages, explicit connections, and source-file metadata from the exact connected vault. The index supplies groups, not evidence or a central knowledge node.
+- Offer Brain and Explore views, search, filters, neighborhoods, evidence details, and optional motion. Distinguish decorative pulses and anatomical placement from actual recorded knowledge.
+- Keep Markdown authoritative. Visualization writes only disposable output, leaves raw/wiki/index/log content unchanged, and does not install plugins or publish private content.
+- Verify export counts, structural diagnostics, and the actual viewer when possible. Report the snapshot time, local URL or downloadable output, launch requirements, and any rendering or access limitation.
 
 ## Schedule recurring work
 

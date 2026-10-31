@@ -17,6 +17,7 @@ The vault - not the chat - is the durable state. The skill can work through a lo
 | `query` | Ask a question across the wiki and underlying evidence; save durable synthesis when useful. |
 | `lint` | Find broken links, weak provenance, contradictions, stale claims, or structural drift without destructive cleanup. |
 | `review` | Summarize recent learning, connections, emerging hubs, gaps, and next explorations. |
+| `visualize` | Explore a local 3D brain with wiki pages as nodes, explicit links, evidence, search, and optional pulses. |
 | `schedule` | Configure recurring ingestion, lint, or review - or an honest reminder when automatic access is unavailable. |
 | `help` | Display this guide without inspecting or changing a vault. |
 
@@ -37,6 +38,7 @@ The skill will check file, shell, browser, desktop, and scheduling capabilities 
 | `query` | `What does my vault say about deliberate practice, and where do the sources disagree?` | `Find the non-obvious connection between feedback loops and organizational learning and save it if useful.` |
 | `lint` | `Lint the wiki and report anything that needs attention without deleting content.` | `Check raw-source integrity, provenance, broken links, stale claims, and orphaned pages.` |
 | `review` | `Review what I added this week and recommend the strongest thread to explore next.` | `Show the main hubs forming in my vault and the most important missing concept.` |
+| `visualize` | `Show my second brain as an interactive 3D brain.` | `Visualize my vault, focus on learning, and show the sources behind the connected pages with motion off.` |
 | `schedule` | `Schedule a local lint every Sunday and run the review afterward.` | `Every weekday at 6 PM, ingest new files from this exact inbox with safe checkpoints.` |
 | `help` | `Help` | `Show me every second-brain mode and examples without opening a vault.` |
 

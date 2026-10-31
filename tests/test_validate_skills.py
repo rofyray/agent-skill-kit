@@ -183,6 +183,16 @@ class ValidateSkillsTests(unittest.TestCase):
         messages = [issue.message for issue in validate_skills.validate_root(self.root)]
         self.assertTrue(any("forbidden em dash" in message for message in messages))
 
+    def test_generated_viewer_is_exempt_but_authored_files_are_not(self) -> None:
+        generated = self.root/"skills/build-and-maintain-a-second-brain/assets/brain-viewer/viewer.js"
+        generated.parent.mkdir(parents=True)
+        code = "x " + "/" + " y"
+        generated.write_text(code)
+        authored = generated.with_name("index.html")
+        authored.write_text(code)
+        issues = validate_skills.validate_text_style(self.root)
+        self.assertEqual([issue.path for issue in issues], [authored])
+
     def test_rejects_whitespace_adjacent_to_forward_slash(self) -> None:
         skill_dir = self.write_skill("focused-task")
         skill_path = skill_dir/"SKILL.md"
