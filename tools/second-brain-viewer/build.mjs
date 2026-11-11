@@ -16,7 +16,7 @@ const packages = new Set(Object.keys(result.metafile.inputs).filter(p => p.start
   const parts = p.split('/');
   return parts[1].startsWith('@') ? `${parts[1]}/${parts[2]}` : parts[1];
 }));
-const notices = ['Bundled second-brain viewer dependencies. Source versions are pinned in tools/second-brain-viewer/package-lock.json.'];
+const notices = ['Bundled second-brain viewer dependencies. Source versions are pinned in tools/second-brain-viewer/package-lock.json.', await readFile(path.join(here, 'anatomy/NOTICE.txt'), 'utf8')];
 for (const name of [...packages].sort()) {
   const directory = path.join(here, 'node_modules', name);
   const metadata = JSON.parse(await readFile(path.join(directory, 'package.json'), 'utf8'));

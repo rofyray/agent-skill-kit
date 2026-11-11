@@ -173,3 +173,5 @@ details li { margin: 10px 0; }
 .node-annotation { color: #cad7ce; background: #0b1112e6; padding: 4px 6px; border-radius: 3px; font-size: 11px; max-width: 145px; text-align: center; line-height: 1.4; pointer-events: none; }
 .node-annotation.is-selected { color: #f1d4a9; border-bottom: 1px solid #dfbd89; }
 @media(max-width:600px) { .node-annotation { font-size: 10px; max-width: 100px; } }
+
+@media(max-width:600px) { .stage-bottom { gap: 12px; } .stage-bottom > label:first-child { width: 150px; } }

@@ -1,0 +1,30 @@
+Brain anatomy mesh
+
+Author: Innerscene Corp
+License: CC0 1.0 Universal Public Domain Dedication
+License URL: https://creativecommons.org/publicdomain/zero/1.0/
+Source page: https://www.innerscene.com/tools/library/3d-parts/brain-10d8f88f
+Download URL: https://files.innerscene.com/library/brain-10d8f88f/d62e30032a36fa53fa70/brain.glb
+Source SHA256: f281f4767fc032fbd29011f987e19567f003fe82fa7b5d8e0973c5792a2a30f6
+Source size: 4650492 bytes
+Retrieved: 2026-11-10
+
+The source GLB embeds this copyright statement:
+"Authored by Innerscene Corp (innerscene.com). Public domain: dedicated under CC0 1.0 Universal, https://creativecommons.org/publicdomain/zero/1.0/. Free to use, modify and redistribute for any purpose, with no credit required."
+
+The library page identifies MakeHuman CC0 assets as upstream material. The GLB
+identifies its geometry as Innerscene original CC0 geometry. The source page and
+library terms explicitly permit modification and redistribution for any purpose.
+Library terms: https://www.innerscene.com/tools/library/terms
+
+brain-mesh.json retains the five named anatomical parts, 7353 vertices and 14686
+triangles. Textures, materials and normals were omitted. Coordinates were scaled
+from meters to millimeters, centered vertically by subtracting 0.063822 meters,
+and rounded to three decimal places. Y points up; posterior is negative Z.
+The viewer computes normals and applies its own material styling.
+
+To reproduce, download the GLB from the URL above, verify its SHA256, then run:
+python3 tools/second-brain-viewer/prepare-anatomy.py brain.glb
+An optional second argument selects the output JSON path.
+
+This is an illustrative anatomical model, not a patient scan or clinical atlas.

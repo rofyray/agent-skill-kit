@@ -1,3 +1,6 @@
+import anatomy from './anatomy/brain-mesh.json' with { type: 'json' };
+
+const cortex = anatomy.parts.filter(part => part.name.includes('cerebral'));
 //Stable coordinates depend on identity, never array order or graph size.
 export function randomFor(value) {
   let seed = 2166136261;
@@ -10,29 +13,26 @@ export function randomFor(value) {
   };
 }
 
-export function brainSurface(side, theta, phi, folded = true) {
-  const fold = folded ? 1 + .035 * Math.sin(theta * 19 + 2 * Math.sin(phi * 5)) * Math.sin(phi * 13) : 1;
-  return {
-    x: side * 38 + 35 * Math.sin(theta) * Math.cos(phi) * fold,
-    y: 58 * Math.cos(theta) * fold,
-    z: 83 * Math.sin(theta) * Math.sin(phi) * fold,
-  };
-}
-
 export function positionFor(node, mode = 'brain') {
   const group = randomFor(node.group);
   const random = randomFor(node.id);
   const side = group() > .5 ? 1 : -1;
   const theta = .55 + group() * 2.0;
   const phi = group() * Math.PI * 2;
-  const center = brainSurface(side, theta, phi, false);
+  const center = { x: side * 38 + 35 * Math.sin(theta) * Math.cos(phi), y: 58 * Math.cos(theta), z: 83 * Math.sin(theta) * Math.sin(phi) };
   const a = random() * Math.PI * 2;
   const z = random() * 2 - 1;
   const radius = Math.cbrt(random());
   if (mode === 'brain') {
-    const gx = (center.x - side * 38)/35, gy = center.y/58, gz = center.z/83;
-    const ux = radius * Math.sqrt(1 - z * z) * Math.cos(a), uy = radius * z, uz = radius * Math.sqrt(1 - z * z) * Math.sin(a);
-    return { x: side * 38 + 35 * (.35 * gx + .64 * ux), y: 58 * (.35 * gy + .64 * uy), z: 83 * (.35 * gz + .64 * uz) };
+//Sample the cortical geometry in its own frame, then move inward.
+//Topics have no biological localization; positions are a stable visual layout.
+    const part = cortex[side < 0 ? 0 : 1];
+    const count = part.positions.length/3;
+    const anchor = Math.floor(group() * count) * 3;
+    const sample = Math.floor(random() * count) * 3;
+    const core = [side * 28, 13, 0];
+    return Object.fromEntries(['x', 'y', 'z'].map((axis, i) => [axis,
+      .1 * part.positions[anchor + i] + .75 * part.positions[sample + i] + .15 * core[i]]));
   }
   const spread = 39;
   const factor = 2.15;

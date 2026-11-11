@@ -64,6 +64,8 @@ Inspect each generated archive in `dist/skills/`. It must contain one top-level 
 
 The second-brain viewer's editable source and pinned build dependencies are in `tools/second-brain-viewer/`, outside the installable skill. After changing that source, run `npm ci`, `npm test`, and `npm run build` in that directory. The build writes the prebuilt browser files and complete bundled-dependency license notices to the skill's `assets/brain-viewer/`. Commit the source, lockfile, and rebuilt assets together. End users need only Python and a browser. Generate a synthetic verification vault with `python3 tools/second-brain-viewer/demo.py <new-output-directory>`; never use the demo generator on a real vault.
 
+The anatomical mesh source, CC0 provenance, and reproduction instructions live in `tools/second-brain-viewer/anatomy/`. The standard-library `prepare-anatomy.py` converter extracts geometry from the documented GLB without textures. The build embeds the geometry into the viewer bundle and includes its notice, so rendering the anatomy needs no network requests or extra server routes.
+
 The generated `assets/brain-viewer/viewer.js` bundle is exempt from prose-style validation because it contains upstream shader code. Its editable source remains validated; do not manually rewrite bundled dependencies to satisfy prose punctuation rules.
 
 For each non-trivial skill, test:

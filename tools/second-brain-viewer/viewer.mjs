@@ -1,12 +1,13 @@
 import ForceGraph3D from '3d-force-graph';
-import { BufferGeometry, Float32BufferAttribute, LineBasicMaterial, LineSegments, Group, Vector2, Color } from 'three';
+import { Vector2, Color, DirectionalLight, HemisphereLight } from 'three';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
-import { brainSurface, positionFor, randomFor, neighborhood, endpoint, cameraForNodes } from './layout.mjs';
+import { makeBrain, setBrainOpacity } from './brain-model.mjs';
+import { positionFor, randomFor, neighborhood, endpoint, cameraForNodes } from './layout.mjs';
 
 const $ = id => document.getElementById(id);
-const palette = ['#e7b680', '#9bcbb7', '#b9b3db', '#d9998c', '#9dbfd1', '#d0c68b'];
+const palette = ['#efb566', '#78d8bc', '#bca7e8', '#ed9986', '#8ccbe5', '#ddd188'];
 const MAX_NODES = 1200, MAX_LINKS = 6000;
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 let snapshot, graph, shell, bloom, annotation, selected, focusId, mode = 'brain', pageSize = listBatchSize();
@@ -28,30 +29,6 @@ function element(tag, text, className) {
 function colorFor(group) {
   if (!colors.has(group)) colors.set(group, palette[Math.floor(randomFor(group)() * palette.length)]);
   return colors.get(group);
-}
-
-function makeShell() {
-  const object = new Group();
-  const vertices = [];
-  for (const side of [-1, 1]) {
-    for (let ring = 1; ring < 39; ring++) {
-      const theta = ring/39 * Math.PI;
-      for (let j = 0; j < 140; j++) {
-        const a = brainSurface(side, theta, j/140 * Math.PI * 2);
-        const b = brainSurface(side, theta, (j + 1)/140 * Math.PI * 2);
-        vertices.push(a.x, a.y, a.z, b.x, b.y, b.z);
-      }
-    }
-
-  }
-  const geometry = new BufferGeometry();
-  geometry.setAttribute('position', new Float32BufferAttribute(vertices, 3));
-  const material = new LineBasicMaterial({ color: '#7faaa1', transparent: true, opacity: .055, depthWrite: false });
-  const lines = new LineSegments(geometry, material);
-//The anatomical outline is not knowledge and must not capture selection.
-  lines.raycast = () => {};
-  object.add(lines);
-  return object;
 }
 
 function initGraph() {
@@ -76,7 +53,16 @@ function initGraph() {
     graph.controls().dampingFactor = .12;
     graph.controls().minDistance = 20;
     graph.controls().maxDistance = 1600;
-    shell = makeShell();
+    shell = makeBrain();
+    requestAnimationFrame(() => graph.scene().traverse(object => {
+      if (object.isLight && !object.name.startsWith('Atlas')) object.intensity = object.isAmbientLight ? .35 : .4;
+    }));
+    const key = new DirectionalLight('#fff0d9', 1.7);
+    key.name = 'Atlas key';
+    key.position.set(120, 160, 90);
+    const fill = new HemisphereLight('#c9e2db', '#182626', .45);
+    fill.name = 'Atlas fill';
+    graph.scene().add(key, fill);
     graph.scene().add(shell);
     bloom = new UnrealBloomPass(new Vector2(512, 512), .65, .5, .45);
     bloom.enabled = false;
@@ -96,6 +82,7 @@ function initGraph() {
     hasGPU = false;
     $('message').textContent = '3D graphics are unavailable in this browser. Explore every page through the knowledge list below or beside this view.';
     $('glow').disabled = true;
+    $('xray').disabled = true;
     $('activity').disabled = true;
   }
 }
@@ -104,7 +91,7 @@ function homeCamera() {
   if (!hasGPU || !graph) return;
   const aspect = $('graph').clientWidth/Math.max(1, $('graph').clientHeight);
   const scale = (mode === 'brain' ? (innerWidth <= 600 ? .82 : 1) : 2.5) * Math.max(1, .9/aspect);
-  graph.cameraPosition({ x: 150 * scale, y: 73 * scale, z: 185 * scale }, { x: 0, y: 0, z: 0 }, reduced.matches ? 0 : 650);
+  graph.cameraPosition({ x: 240 * scale, y: 80 * scale, z: 105 * scale }, { x: 0, y: 0, z: 0 }, reduced.matches ? 0 : 650);
 }
 
 function currentMatches() {
@@ -162,7 +149,8 @@ function rebuild() {
     graph.graphData({ nodes: visibleNodes, links: visibleLinks });
     updateAnnotation();
     shell.visible = mode === 'brain' && matching.length > 0 && !focusId;
-    shell.children[0].material.opacity = selected ? .025 : .055;
+    setBrainOpacity(shell, $('xray').checked ? .12 : selected ? .3 : .56);
+    $('xray').disabled = mode !== 'brain' || !!focusId;
     setActivity();
     $('message').textContent = matching.length ? '' : snapshot.nodes.some(n => n.kind === 'page') ? 'No matching pages. Try another search or reset the view.' : 'Your brain is ready for its first idea. Ingest a source, then regenerate this snapshot.';
   }
@@ -268,7 +256,7 @@ function clearSelection() {
   $('selection').hidden = true;
   $('selection-empty').hidden = false;
   renderList();
-  if (hasGPU && graph) { graph.linkColor(graph.linkColor()); graph.nodeColor(graph.nodeColor()); updateAnnotation(); graph.linkWidth(graph.linkWidth()); shell.children[0].material.opacity = .055; setActivity(); }
+  if (hasGPU && graph) { graph.linkColor(graph.linkColor()); graph.nodeColor(graph.nodeColor()); updateAnnotation(); graph.linkWidth(graph.linkWidth()); setBrainOpacity(shell, $('xray').checked ? .12 : .56); setActivity(); }
 }
 
 function validate(data) {
@@ -357,6 +345,7 @@ matchMedia('(max-width: 600px)').addEventListener('change', () => { pageSize = l
 $('reload').onclick = load;
 $('close-selection').onclick = () => { clearSelection(); rebuild(); homeCamera(); };
 $('activity').onchange = setActivity;
+$('xray').onchange = () => { if (shell) setBrainOpacity(shell, $('xray').checked ? .12 : selected ? .3 : .56); };
 $('glow').onchange = () => { if (bloom) bloom.enabled = $('glow').checked; };
 if (reduced.matches) $('activity').value = 'off';
 reduced.addEventListener('change', () => { if (reduced.matches) { $('activity').value = 'off'; setActivity(); } });

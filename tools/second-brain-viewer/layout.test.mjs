@@ -35,3 +35,32 @@ test('neighborhood framing keeps every endpoint inside landscape and portrait vi
   }
   assert.equal(cameraForNodes([], 1), null);
 });
+
+test('anatomical model includes cortex, cerebellum and brainstem with valid normals', async () => {
+  const { makeBrain, setBrainOpacity } = await import('./brain-model.mjs');
+  const brain = makeBrain();
+  assert.equal(brain.children.length, 5);
+  assert.equal(brain.children.filter(p => p.name.includes('cerebral')).length, 2);
+  assert.equal(brain.children.filter(p => p.name.includes('cerebellar')).length, 2);
+  assert.equal(brain.children.filter(p => p.name.includes('brainstem')).length, 1);
+  for (const part of brain.children) {
+    assert.ok([...part.geometry.attributes.normal.array].every(Number.isFinite));
+    const hits = [];
+    part.raycast(null, hits);
+    assert.equal(hits.length, 0);
+  }
+  setBrainOpacity(brain, .12);
+  assert.ok(brain.children.every(part => part.material.opacity === .12 && !part.material.depthWrite));
+});
+
+test('sampled knowledge nodes stay inside the cortical surfaces in the shared coordinate frame', async () => {
+  const { makeBrain } = await import('./brain-model.mjs');
+  const { Mesh, MeshBasicMaterial, DoubleSide, Raycaster, Vector3 } = await import('three');
+  const parts = makeBrain().children.filter(p => p.name.includes('cerebral')).map(p => new Mesh(p.geometry, new MeshBasicMaterial({ side: DoubleSide })));
+  parts.forEach(part => part.updateMatrixWorld());
+  for (let i = 0; i < 400; i++) {
+    const p = positionFor({ id: String(i), group: String(i % 9) });
+    const ray = new Raycaster(new Vector3(p.x, p.y, p.z), new Vector3(.22, .73, .47).normalize());
+    assert.equal(ray.intersectObjects(parts).length % 2, 1, `Node ${i} lies outside the cortex`);
+  }
+});
