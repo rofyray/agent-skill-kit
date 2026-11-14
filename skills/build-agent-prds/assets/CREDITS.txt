@@ -1,0 +1,11 @@
+Build Agent PRDs
+
+Adapted from the user-supplied Test Suite Design Guidelines and Build Loop
+Prompt Template (implement-loop-prompt-template.md). Author and public URL
+were not supplied. The former informs layered testing and change-impact
+rules; the latter informs task identity, verification, Git handoff, and resume
+records. Serial one-task prompting was replaced by dependency-based parallel
+planning. These references were supplied by the user for adaptation.
+
+The user-supplied Jev System One reference was reviewed for relevance; no
+Jev implementation, SDK, model claims, or dependency is included.

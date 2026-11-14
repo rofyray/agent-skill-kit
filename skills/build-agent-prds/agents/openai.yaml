@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build Agent PRDs"
+  short_description: "Plan complete, testable coding-agent PRD handoffs"
+  default_prompt: "Create an agent-ready PRD from this project context, preserving reusable assets and defining parallel tasks, feature branches, and end-to-end acceptance. Package a multi-file handoff as one ZIP."

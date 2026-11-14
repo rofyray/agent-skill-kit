@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "items": [
+    {"id": "item-01", "title": "Example reading", "url": "https://example.com/reading", "tags": ["design", "reference"], "read": false},
+    {"id": "item-02", "title": "A second example", "url": "https://example.com/second", "tags": ["reference"], "read": true}
+  ]
+}
