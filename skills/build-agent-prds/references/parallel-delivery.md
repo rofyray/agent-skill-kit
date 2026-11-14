@@ -26,7 +26,7 @@ Distinguish saving a commit, pushing a branch, opening a PR, and merging. State 
 
 ## Completion, blockers, and resume
 
-Check a task only when its acceptance criteria and required checks pass and its changes are integrated into its designated feature branch. A phase additionally requires its combined exit behavior. Final product completion requires the integrated acceptance gate, even if every worker task has passed.
+Check a task only when its acceptance criteria and selected required checks pass and its changes are integrated into its designated feature branch. A phase additionally requires its exit behavior. Final completion requires the complete in-scope acceptance gate, including integration and E2E wherever selected, even if every worker task has passed. Git integration into a branch does not by itself require a separate integration-test level; test selection follows behavioral boundaries and impact.
 
 Keep a compact durable record of task states, active branch or worktree, commit references, integration status, evidence locations, blockers, and next eligible tasks. A single small PRD may hold this inline. Preserve unfinished work in isolation before assigning a different task.
 

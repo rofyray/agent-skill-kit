@@ -1,11 +1,11 @@
 ---
 name: build-agent-prds
-description: Create, revise, or audit PRDs for coding agents. Use when defining phased requirements, parallel tasks, reusable assets, and end-to-end acceptance in a portable implementation handoff.
+description: Create, revise, or audit PRDs for coding agents. Use when defining phased requirements, parallel tasks, reusable assets, and scope-appropriate tests in a portable implementation handoff.
 ---
 
 # Build Agent PRDs
 
-Produce a PRD that another coding agent can implement completely, verify end to end, and resume without the originating conversation. Preserve product intent and existing resources while keeping each worker's reading focused.
+Produce a PRD that another coding agent can implement and verify completely within its agreed scope, and resume without the originating conversation. Select unit, integration, and E2E coverage according to requirements and change impact. Preserve product intent and existing resources while keeping each worker's reading focused.
 
 ## Help mode
 
@@ -41,19 +41,21 @@ Read [resource handoff](references/resource-handoff.md) whenever sources contain
 
 Read [parallel delivery](references/parallel-delivery.md) to write or audit the driver's execution contract, ownership boundaries, branch map, and resume rules. Explicitly instruct the implementing coordinator to spawn as many useful subagents as available capacity and independent ready tasks allow, and refill capacity as work finishes. Define prerequisites, shared interfaces, exclusive writers, worker handoffs, and integration gates so the instruction is feasible. If delegation is unavailable, preserve the dependency plan and run sequentially.
 
-Read [testing and acceptance](references/testing-and-acceptance.md) for every newly written or materially changed verification plan. Each task must be verified against all its acceptance criteria and affected behavior. Use layered checks during development and broader integration gates. Always include explicit final integration and whole-product end-to-end acceptance tasks, the full applicable suite, and evidence tied to the integrated code state. Missing required checks remain blocked.
+Read [testing and acceptance](references/testing-and-acceptance.md) for every newly written or materially changed verification plan. Explicitly assess unit, integration, and E2E as required, not applicable, or pending discovery, with scope/impact reasons and requirement/task references. Preserve existing mandatory gates. Missing tools or access block a required test; they never make it not applicable. Resolve pending selection before accepting affected work. Map tasks to the checks they own, reusing verified existing coverage instead of duplicating tests.
+
+Always include final acceptance of the complete in-scope deliverable and the full applicable suite. Add integration and E2E tasks when the selected levels require them; a unit-only PRD does not need an invented application or E2E harness. Use layered execution and evidence tied to the final relevant code state. Required checks that fail, are blocked, or remain unrun prevent completion.
 
 Write the completion and continuation rules into the delivered PRD; the implementing agent may not have this skill. Continue ready work within authorized scope rather than requiring repeated “next task” prompts. Do not mark tasks complete from worker assertions alone. Keep task completion, integrated milestone completion, verification completion, and release status distinct.
 
 ## Revise and audit
 
-Trace changed requirements, resources, and contracts to affected tasks, dependencies, branch groups, and test evidence. Preserve IDs for the same work; assign new IDs to new work. Reopen affected completed tasks when their acceptance changes, retaining historical evidence as superseded. Retire removed scope explicitly. Check for cycles, missing prerequisites, conflicting ownership, and stale links. Regenerate the delivery ZIP after revisions so it matches the current files.
+Trace changed requirements, resources, and contracts to affected tasks, dependencies, branch groups, test-level applicability, and evidence. Preserve IDs for the same work; assign new IDs to new work. Reopen affected completed tasks when their acceptance changes, retaining historical evidence as superseded. Retire removed scope explicitly. Check for cycles, missing prerequisites, conflicting ownership, and stale links. Regenerate the delivery ZIP after revisions so it matches the current files.
 
 For Audit, prioritize omissions that prevent implementation, reuse, integration, or verification. Report the affected requirement or task, evidence, consequence, and concrete correction. Separate blockers from quality improvements. Do not turn an audit request into implementation or an unsolicited rewrite.
 
 ## Verify and deliver
 
-Before delivery, trace every in-scope requirement to implementation and acceptance evidence requirements. Check task IDs and dependencies, realistic parallelism, canonical status locations, branch scopes, valid resource references, actual versus proposed commands, and the final integrated acceptance gate. Reconcile contradictions rather than burying them in separate documents.
+Before delivery, trace every in-scope requirement to implementation and acceptance evidence requirements. Check all three test-level decisions and reasons, unresolved discovery, actual versus proposed commands, and the final scope-appropriate acceptance gate. Also check task IDs and dependencies, realistic parallelism, canonical status locations, branch scopes, and resource references. Reconcile contradictions rather than burying them in separate documents.
 
 Read [packaging](references/packaging.md) when delivering or revising files. **Deliver the complete PRD set as one downloadable ZIP whenever it contains multiple files, including companion assets.** Only a single small self-contained Markdown file may be delivered alone. Keep the editable sources too when supported. A ZIP of the skill itself does not satisfy delivery of a generated PRD set.
 

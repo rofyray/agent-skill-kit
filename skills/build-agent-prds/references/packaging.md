@@ -29,7 +29,7 @@ Extract the archive to a fresh temporary directory and start at `PRD.md`. Check 
 - images and binary files open or match their originals;
 - required external and repository inputs are clearly declared, with access checks reported honestly;
 - each task leads directly to its needed specifications, resources, and tests;
-- the driver contains execution, resume, branch, and final integrated acceptance rules without assuming this skill is installed.
+- the driver contains execution, resume, branch, and final acceptance rules, with unit/integration/E2E applicability decisions present or directly linked, without assuming this skill is installed.
 
 When revising, verify the regenerated archive against the current sources, not a prior package. Keep structural checks separate from product implementation tests.
 

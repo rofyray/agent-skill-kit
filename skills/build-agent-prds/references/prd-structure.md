@@ -40,7 +40,7 @@ Use stable IDs such as `AC-03`, independent of phase numbering. Every task inclu
 - explicit dependencies by ID and any external blockers;
 - input specifications, contracts, reusable resources, and their locations;
 - a bounded implementation scope, ownership or conflict notes where needed;
-- feature branch group and task-specific verification;
+- feature branch group and task-specific verification, identifying selected test levels and any shared acceptance gate;
 - state and evidence location, initially pending.
 
 Use compact records for small tasks and more detail when ambiguity warrants it. File ownership may be provisional until repository discovery. Verification may be manual when that is the appropriate observable check; do not manufacture unit tests for prose edits.
@@ -53,8 +53,8 @@ A feature is a product capability. A phase is a milestone with entry conditions 
 
 Decompose around independently verifiable outcomes. Avoid separate “write tests later” tasks that leave implementation tasks unchecked by evidence. A shared test harness or final cross-feature integration can be its own task, while each implementation task still owns relevant tests.
 
-Review the requirements-to-tasks-to-verification map for missing behavior, orphan tasks, dependency cycles, dangling IDs, conflicting ownership, and scope changes. Include explicit final integration and end-to-end acceptance tasks. A checklist of finished files is not a working-product milestone.
+Review the requirements-to-tasks-to-verification map for missing behavior, orphan tasks, dependency cycles, dangling IDs, conflicting ownership, and scope changes. Record unit, integration, and E2E applicability with reasons at the PRD level, adding feature-specific decisions where scope differs. Include explicit final acceptance work, with integration and E2E tasks only where required. A checklist of finished files is not proof of completed behavior.
 
 ## Revisions
 
-Preserve IDs and genuine historical completion. When a requirement or resource changes, identify all consumers and mark affected verification stale. Reopen tasks whose acceptance no longer holds; retain the prior result as history. Add new IDs for new work and mark removed scope retired rather than silently dropping it. Keep dependent schedules, branch maps, and packaged files consistent.
+Preserve IDs and genuine historical completion. When a requirement or resource changes, identify all consumers, reassess test-level applicability, and mark affected verification stale. Reopen tasks whose acceptance no longer holds; retain the prior result as history. Add new IDs for new work and mark removed scope retired rather than silently dropping it. Keep dependent schedules, branch maps, and packaged files consistent.

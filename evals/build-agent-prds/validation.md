@@ -1,6 +1,6 @@
 # Validation record
 
-Validated November 13, 2026. The evaluation artifacts are synthetic and contain no customer data. Product implementation was deliberately outside the evaluation scope.
+Initial release validated November 13, 2026; testing-selection update validated November 14, 2026 as recorded below. The evaluation artifacts are synthetic and contain no customer data. Product implementation was deliberately outside the evaluation scope.
 
 ## Executed checks
 
@@ -39,3 +39,25 @@ This is one qualitative paired exercise, not a benchmark or proof of a general q
 These behavior checks ran through the available Codex agent runtime. Claude, Cursor, Gemini, ChatGPT Web, and desktop import behavior were not exercised. Remaining cases in cases.json, including a standalone no-subagent-resume scenario and embedded source-instruction/non-trigger routing cases, are prepared for future runs and are not claimed as executed model evaluations. Some equivalent boundaries were inspected in generated outputs and source, which is weaker evidence than running each case.
 
 Local working artifacts are retained under `output/build-agent-prds-evaluation/`, outside the installable package and version control: skill-assisted creation, single-file and audit results, edge cases, baseline, and recipient intake. The reusable fixture inputs and case expectations are versioned here. The distributable skill is `dist/skills/build-agent-prds.zip`.
+
+## Testing-selection update: November 14, 2026
+
+Replaced unconditional integration/E2E requirements with explicit unit, integration, and E2E applicability decisions based on scope, boundaries, impact, and existing project gates. Final acceptance still covers the entire agreed scope. Required, not applicable, and pending discovery are distinct from execution status; unavailable required checks remain blocked. Updated all output templates, related guidance, metadata, Help, and the catalog entry consistently.
+
+Three fresh evaluating agents used the revised skill for seven requests, without access to case expectations or each other's outputs. The primary agent inspected the generated artifacts against the expected behavior:
+
+| Case ID | Observed result |
+| --- | --- |
+| unit-only-contract | Selected required unit coverage for the complete clamp contract; integration and E2E were not applicable with concrete reasons. Final acceptance did not invent an application or workflow harness. |
+| adapter-unit-integration | Selected unit checks for pure key validation and integration checks against actual SQLite, including rollback and persistence; no separate E2E workflow was invented. |
+| all-three-service-workflow | Required all three levels and used actual public HTTP workflows for E2E without browser tests. Produced a six-file ZIP with concrete unit, boundary, and workflow scenarios; commands and fixture access remained setup work. Independently verified extracted bytes and all 36 local file links. |
+| blocked-is-not-inapplicable | Rejected the checkout completion claim; actual provider and complete checkout checks remained required and blocked by missing sandbox access. Preserved unit results as limited evidence. |
+| shared-change-existing-gates | Expanded a one-line helper change to dependent API/worker coverage and required access-control workflows. Preserved mandatory gates and reused existing coverage subject to assertion/boundary inspection; did not invent commands or prior evidence. |
+| pending-impact-discovery | Required parser units while leaving integration/E2E pending caller and policy discovery with an owner/task. Required resolved selection before final acceptance. |
+| revision-new-boundary | Preserved reported FM-01 identity/history for unchanged formatter behavior, introduced new CLI task IDs, and required actual file-boundary and CLI workflow coverage for expanded scope. Historical units did not count as final CLI acceptance. |
+
+All seven artifacts met the evaluated test-selection expectations. They are plans, not evidence that the described products have been implemented or that their future tests pass. The executed requests are now included in cases.json, which contains 18 cases in total; this update does not claim that all 18 were rerun.
+
+Technical checks: repository validator passed for all 18 skills; skill-creator quick validation passed with cached PyYAML; the repository suite discovered 185 tests, with 167 passed and the same 18 optional detector integration tests skipped. All 18 skill archives passed integrity/layout checks. The updated 13-file archive matched source bytes, all skill-local links resolved, and its extracted standard-library helper successfully created and verified a sample PRD ZIP. The core is now 66 lines. No executable helper code changed in this update.
+
+Current artifacts are retained locally under `output/build-agent-prds-testing-evaluation/`. No new without-skill comparison or other-client runtime/import test was performed for this correction; the earlier baseline exercise and client limitations above remain historical evidence only.

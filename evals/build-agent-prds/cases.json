@@ -19,7 +19,7 @@
       "mode": "create",
       "request": "Draft a single small PRD for adding a Clear completed button to an existing local to-do list. It removes only completed items, preserves active items, and persists after reload. No repository is available. Do not invent its framework.",
       "expect": [
-        "Returns one compact PRD with a phase, checkbox tasks, and explicit integration/acceptance work",
+        "Returns one compact PRD with a phase, checkbox tasks, test-level decisions, and explicit final acceptance appropriate to UI and persistence behavior",
         "Does not invent repository facts or verified commands",
         "Includes empty-list, preservation, and reload behavior in verification",
         "Does not create unnecessary companion files or require ZIP for one small self-contained file"
@@ -98,12 +98,92 @@
     {
       "id": "non-trigger-code-fix",
       "request": "Fix the off-by-one error in this function and run its existing tests.",
-      "expect": ["Does not impose PRD creation on a direct implementation request"]
+      "expect": [
+        "Does not impose PRD creation on a direct implementation request"
+      ]
     },
     {
       "id": "non-trigger-brief",
       "request": "Write a brief for an agent to summarize our quarterly customer interviews.",
-      "expect": ["Does not turn a general research brief into a phased software PRD"]
+      "expect": [
+        "Does not turn a general research brief into a phased software PRD"
+      ]
+    },
+    {
+      "id": "unit-only-contract",
+      "mode": "create",
+      "request": "Write one compact PRD for a new standalone Python function clamp(value, lower, upper). Inputs are finite numbers; return lower below the interval, upper above it, or value within it. Reversed bounds raise ValueError, and NaN or infinite inputs are rejected. No I/O, application, consumers, or existing project gates are in scope. Select the necessary testing and define final acceptance. Do not implement the function.",
+      "expect": [
+        "Selects unit as required and integration/E2E as not applicable with concrete reasons",
+        "Covers boundaries, equal bounds, reversed bounds, and non-finite inputs",
+        "Defines final acceptance through complete contract coverage without inventing an app, browser, or E2E task",
+        "Uses canonical checkbox tasks and does not invent verified commands"
+      ]
+    },
+    {
+      "id": "adapter-unit-integration",
+      "mode": "create",
+      "request": "Write one compact PRD for a new SQLite data-access adapter, with insert and lookup by unique key, a pure key validation helper, parameterized statements, rollback on failed multi-row inserts, and round-trip persistence. This deliverable is only the adapter module and its helper: no service endpoint, app, CLI, or consumers exist yet. A disposable real SQLite database is available. Select appropriate tests and define final acceptance without implementing it.",
+      "expect": [
+        "Requires unit coverage for isolated validation and integration coverage against real SQLite",
+        "Explains why a separate E2E workflow is not applicable to the supplied scope",
+        "Covers duplicate keys, rollback without partial writes, and actual persistence",
+        "Does not substitute mocked database tests for boundary verification or invent a product UI"
+      ]
+    },
+    {
+      "id": "all-three-service-workflow",
+      "mode": "create",
+      "request": "Create a multi-file PRD ZIP for a new HTTP service that accepts a reservation, validates dates and availability, persists it in PostgreSQL, and lets an authenticated caller retrieve or cancel it through the public API. Authentication middleware, service rules, and persistence must work together. Include failed authentication, conflicting reservations, and cancellation persistence. No UI or browser is in scope. Test database and authentication fixtures will be available; commands must be established during setup. Do not implement the service.",
+      "expect": [
+        "Requires unit, integration, and E2E with behavior-based reasons",
+        "Uses public HTTP entry points for E2E and actual downstream effects, without requiring browser automation",
+        "Maps isolated validation, actual database/middleware boundaries, and complete reservation workflows to owned checks",
+        "Produces a complete ZIP and final required-level gates with proposed commands labeled honestly"
+      ]
+    },
+    {
+      "id": "blocked-is-not-inapplicable",
+      "mode": "audit",
+      "request": "Audit only: a checkout PRD marks integration and E2E not applicable because payment sandbox credentials are unavailable. Unit tests mock every provider call and pass. The PRD claims checkout is fully verified. Is its test plan adequate?",
+      "expect": [
+        "Keeps needed real-boundary and complete-checkout verification required and blocked",
+        "Separates applicability from execution outcome",
+        "Does not require production transactions or accept mocked results as full checkout proof"
+      ]
+    },
+    {
+      "id": "shared-change-existing-gates",
+      "mode": "revise",
+      "request": "Revise the test plan for a one-line change to a shared authorization helper. The old PRD lists only unit tests. Two API endpoints and a background worker consume it; changes can affect who may read or export records. Project policy requires its existing API integration suite and critical access-control workflow tests before merge. Preserve and reuse existing coverage where it proves the criteria. Do not implement the change.",
+      "expect": [
+        "Widens selection beyond unit-only based on actual consumers and mandatory gates despite the small diff",
+        "Maps relevant existing tests to changed criteria and adds coverage only for gaps",
+        "Includes required complete access-control workflows and does not waive project gates",
+        "Reopens affected prior evidence and labels unavailable commands rather than inventing them"
+      ]
+    },
+    {
+      "id": "pending-impact-discovery",
+      "mode": "create",
+      "request": "Draft a PRD for changing how our shared identifier parser handles empty input. It currently throws; it should return a typed error. Repository, callers, runtime boundaries, and existing test policy are unavailable. Do not guess whether it affects a user workflow. Include a test plan and discovery work without implementation.",
+      "expect": [
+        "Requires isolated behavior checks and records integration/E2E applicability as pending discovery where impact is unknown",
+        "Names discovery owner/task and questions about callers/contracts/project gates",
+        "Does not mark higher levels not applicable solely because the repository is absent",
+        "Requires resolved selection and relevant passing evidence before final completion"
+      ]
+    },
+    {
+      "id": "revision-new-boundary",
+      "mode": "revise",
+      "request": "An existing PRD has completed task FM-01 for a pure formatter with passing unit evidence and integration/E2E marked not applicable. Revise it so the formatter is also exposed by a new CLI that reads a file, formats every line, writes the result, and exits nonzero without partial output on invalid data. Preserve the formatter task identity and valid history, and define tests for the expanded scope. No code changes.",
+      "expect": [
+        "Preserves valid isolated formatter evidence without treating it as proof of the new CLI",
+        "Reassesses integration and E2E for file and CLI boundaries and adds new task IDs",
+        "Defines full CLI input/output/error acceptance without browser tests",
+        "Does not blindly reopen unchanged unit behavior or preserve obsolete not-applicable decisions"
+      ]
     }
   ]
 }

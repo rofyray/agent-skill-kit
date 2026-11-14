@@ -2,9 +2,9 @@
 
 ## What this skill does
 
-Creates product requirements that coding agents can implement through phased checkbox tasks, parallel workstreams, feature branches, and complete end-to-end acceptance. Preserves existing code, data, images, and links so a new agent can use the handoff without the original chat. Delivers a small PRD as one file or a larger set with its resources as one ZIP.
+Creates product requirements that coding agents can implement through phased checkbox tasks, parallel workstreams, feature branches, and complete acceptance of the agreed scope. Selects unit, integration, and E2E tests according to behavior, boundaries, and impact: an isolated function may need unit tests only, while an application workflow may need all three. Preserves existing code, data, images, and links so a new agent can use the handoff without the original chat. Delivers a small PRD as one file or a larger set with its resources as one ZIP.
 
-It writes and assesses the implementation plan; it does not start building the product unless separately requested. A PRD can define tests without claiming they have already passed.
+It writes and assesses the implementation plan; it does not start building the product unless separately requested. Every test level is required, not applicable with a reason, or pending discovery. Missing access blocks required checks rather than removing them. A PRD can define tests without claiming they have already passed.
 
 ## Modes
 
@@ -25,7 +25,7 @@ The skill first uses accessible evidence, then asks about material gaps. It can 
 
 | Mode | Starter | Additional example |
 | --- | --- | --- |
-| Create | “Write a small PRD for adding CSV export to our task list.” | “Turn this project chat, API example, approved mockup, and sample records into a phased PRD. Plan parallel feature branches and package everything as a ZIP.” |
+| Create | “Write a small PRD for a standalone formatting function and select the tests its scope needs.” | “Turn this project chat, API example, approved mockup, and sample records into a phased PRD. Select unit, integration, and E2E coverage, plan parallel feature branches, and package everything as a ZIP.” |
 | Revise | “Add password recovery to this PRD and update its acceptance tests.” | “Replace the old design with the approved assets, preserve completed task IDs, reopen affected verification, and rebuild the PRD ZIP.” |
 | Audit | “Audit this PRD for gaps before an agent implements it.” | “Check whether a new agent can use this ZIP without our chat, build the parallel workstreams, and prove the full product works end to end.” |
 | Help | “help” | “Show how to use this skill to turn an existing project conversation into an implementation handoff.” |

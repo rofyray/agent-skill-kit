@@ -12,7 +12,7 @@ Status: {{reviewable draft or implementation-ready; blockers}}
 | --- | --- | --- |
 | {{relative feature link}} | {{task IDs or behavior}} | {{requirements and canonical task checkboxes}} |
 | {{relative contract link, if needed}} | {{producer or consumer change}} | {{shared interface}} |
-| {{testing link}} | {{selecting checks or accepting integrated work}} | {{commands, impact policy, final acceptance}} |
+| {{testing link}} | {{selecting checks or accepting work}} | {{unit/integration/E2E applicability, coverage, commands, impact policy, final acceptance}} |
 | {{resource inventory, if needed}} | {{selecting supplied code, data, or assets}} | {{versions, use, provenance, access}} |
 | {{progress location}} | {{resuming or integrating work}} | {{branches, evidence, blockers}} |
 
@@ -39,11 +39,15 @@ Status: {{reviewable draft or implementation-ready; blockers}}
 
 Branch policy: {{repository conventions, feature groups, base discovery, dependent/stacked branch rules, integration owner, and existing publication authorization. Use codex/<feature-slug> only as a fallback.}}
 
-## Whole-product completion
+## Test selection and complete acceptance
 
-{{Link to explicit final integration and acceptance tasks with prerequisites and owner.}}
+{{Include the canonical applicability table here or link directly to it in the testing document: unit, integration, and E2E each required, not applicable, or pending discovery, with scope/impact reasons and requirement/task/scenario references. Feature-specific differences must be explicit. Name the owner/task for pending decisions.}}
 
-Completion requires every in-scope requirement implemented, feature work combined and running, required resources functioning, all defined end-to-end journeys and the full applicable suite passing, and required nonfunctional checks satisfied on the integrated revision. Required service boundaries must be exercised in an authorized test environment. Mocked-only results, missing checks, and unavailable required services cannot establish completion.
+{{Link to explicit final acceptance work with prerequisites and owner; add integration and E2E tasks where selected. Reuse suitable existing coverage. Do not force all three levels onto every task or invent an application/E2E harness for isolated logic.}}
+
+Missing access or tools leave required checks blocked, not not-applicable. Resolve pending applicability before accepting affected work. Preserve existing mandatory gates and broaden verification when shared consumers or workflows are affected.
+
+Completion requires every in-scope requirement implemented and verified, test-level decisions resolved with omission reasons, the deliverable functioning in its stated environment, required resources working, and all required test levels, acceptance checks, the full applicable suite, and nonfunctional checks passing on the final relevant code state. The full applicable suite can be entirely unit tests for genuinely isolated scope. Where integration or E2E is required, verify combined behavior and actual service boundaries in an authorized test environment. Mocked-only substitutes, missing checks, and unavailable required services cannot establish that completion.
 
 Fix integration failures and rerun affected checks. Record revision, environment, checks, outcomes, and evidence. Keep implementation, verification, and release status separate. Scope changes must be explicit; do not silently defer requirements or weaken acceptance.
 
