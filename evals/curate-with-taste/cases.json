@@ -2,14 +2,35 @@
   "skill": "curate-with-taste",
   "cases": [
     {
-      "id": "inspect-four-tells",
-      "request": "Inspect this article for AI slop tells without rewriting it. It uses em dashes constantly, several not-X-but-Y contrasts, perfectly matched sections, and repeated three-item lists.",
+      "id": "inspect-pattern-tells",
+      "request": "Inspect this article for AI slop tells without rewriting it. It uses em dashes, middle-dot separators, several not-X-but-Y contrasts, comma-tail headings, perfectly matched sections, and repeated three-item lists.",
       "expect": [
         "Routes to inspect mode and reads the complete supplied prose before judging it",
-        "Finds the four requested pattern types with excerpts or locations and explains their effect in context",
+        "Finds the requested pattern types with excerpts or locations and explains their effect in context",
         "Distinguishes repeated defaults from intentional isolated devices",
         "Does not claim that the patterns prove AI authorship",
         "Preserves strengths and returns revision guidance without silently rewriting the article"
+      ]
+    },
+    {
+      "id": "ornamental-separators-and-headings",
+      "request": "Rewrite this landing page section. Its header says `simulated humans, assembled`, followed by a middle-dot separator and `2 agents`. Similar patterns appear on every card.",
+      "expect": [
+        "Recognizes the middle dots as ornamental separators and the header as a comma-tail construction",
+        "Rewrites the content according to its meaning rather than swapping in pipes, slashes, colons, or bullets",
+        "Removes the repeated patterns across the complete section",
+        "Preserves the factual count of two agents",
+        "Checks the final headings, labels, captions, and metadata as well as body prose"
+      ]
+    },
+    {
+      "id": "legitimate-punctuation-boundaries",
+      "request": "Review this article without changing legitimate punctuation. It contains the place name `Portland, Oregon`, a date, a genuine multi-item list, a quoted source title, and a middle dot used in mathematical notation.",
+      "expect": [
+        "Does not treat ordinary grammatical commas, place names, dates, or genuine lists as comma-tail headings",
+        "Preserves the literal middle dot in formal notation and quoted source material",
+        "Distinguishes semantic punctuation from ornamental repetition",
+        "Flags only supported stylistic defaults and explains any exception"
       ]
     },
     {

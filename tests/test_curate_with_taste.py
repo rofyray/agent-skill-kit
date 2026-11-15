@@ -26,6 +26,41 @@ class ProseScanTests(unittest.TestCase):
         self.assertEqual(matches[0]["line"], 2)
         self.assertEqual(matches[0]["column"], 10)
 
+    def test_reports_middle_dot_and_comma_tail_heading(self) -> None:
+        text = "# Simulated humans, assembled " + chr(0x00B7) + " 2 agents\n"
+        report = prose_scan.scan_text(text)
+        middle_dots = [item for item in report["signals"] if item["kind"] == "middle_dot"]
+        comma_tails = [
+            item for item in report["signals"] if item["kind"] == "comma_tail_heading"
+        ]
+        self.assertEqual(len(middle_dots), 1)
+        self.assertEqual(middle_dots[0]["status"], "exact")
+        self.assertEqual(middle_dots[0]["line"], 1)
+        self.assertEqual(len(comma_tails), 1)
+        self.assertEqual(comma_tails[0]["status"], "candidate")
+        self.assertEqual(comma_tails[0]["line"], 1)
+
+    def test_reports_standalone_comma_tail_title(self) -> None:
+        text = "Systems, reimagined\n\nThe new architecture reduces queue latency.\n"
+        report = prose_scan.scan_text(text)
+        matches = [
+            item for item in report["signals"] if item["kind"] == "comma_tail_heading"
+        ]
+        self.assertEqual(len(matches), 1)
+        self.assertEqual(matches[0]["line"], 1)
+
+    def test_ignores_legitimate_heading_commas(self) -> None:
+        text = (
+            "# Portland, Oregon\n\n"
+            "# Research, Design, and Engineering\n\n"
+            "The team met in Portland, Oregon, before the launch.\n"
+        )
+        report = prose_scan.scan_text(text)
+        matches = [
+            item for item in report["signals"] if item["kind"] == "comma_tail_heading"
+        ]
+        self.assertEqual(matches, [])
+
     def test_surfaces_semantic_candidates_without_authorship_claim(self) -> None:
         text = (
             "This is not just a tool but a new habit.\n"

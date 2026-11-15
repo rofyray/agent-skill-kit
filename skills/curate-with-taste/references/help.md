@@ -31,8 +31,8 @@ A rough starting point is enough. The skill asks only for missing context that w
 
 | Mode | Starter | Another example |
 | --- | --- | --- |
-| `inspect` | `Inspect this launch announcement for AI slop tells without rewriting it.` | `Review this essay for repeated negative contrasts, overly tidy structure, automatic triads, and places where my voice disappears.` |
-| `write` | `Rewrite this email in my direct, warm voice with no em dashes or formulaic contrasts.` | `Draft a founder update for skeptical customers using these facts and this voice sample. Keep the prose natural and specific.` |
+| `inspect` | `Inspect this launch announcement for AI slop tells without rewriting it.` | `Review this page for middle-dot separators, comma-tail headings, repeated negative contrasts, automatic triads, and places where my voice disappears.` |
+| `write` | `Rewrite this email in my direct, warm voice with no em dashes, ornamental middle dots, or comma-tail headings.` | `Draft a founder update for skeptical customers using these facts and this voice sample. Keep the prose natural and specific.` |
 | `critique` | `Critique these homepage options using my reaction and the audience feedback.` | `Compare these presentation openings and explain whether each problem is taste, craft, or audience fit.` |
 | `workshop` | `Workshop a homepage hero with me and pause before selecting a direction.` | `Guide me through the full better workflow for this product announcement, including a genuinely different second exploration.` |
 | `calibrate` | `Build a taste profile from these examples I love and hate.` | `Update my writing taste profile using the edits I accepted, the ones I rejected, and the campaign feedback.` |

@@ -46,7 +46,7 @@ When the user supplies their own voice sample, infer attributes such as directne
 - Preserve the user's voice rather than replacing it with polished sameness.
 - Keep the user responsible for consequential creative selection. The agent may recommend a direction and explain why.
 
-For prose created or revised by this skill, run a strict final check: use no em dashes, remove stock negative parallelisms, avoid ornamental symmetry, and do not force ideas into groups of three. Read [the writing guide](references/writing.md) for `inspect`, `write`, or any prose refinement.
+For prose created or revised by this skill, run a strict final check: use no em dashes or ornamental middle dots, remove stock negative parallelisms, avoid comma-tail headings and ornamental symmetry, and do not force ideas into groups of three. Read [the writing guide](references/writing.md) for `inspect`, `write`, or any prose refinement.
 
 ## Load only the active playbook
 
@@ -65,7 +65,7 @@ For a long local text file, and only when Python and file access are available, 
 python3 <installed-skill-directory>/scripts/prose_scan.py <path> --format json
 ```
 
-The scanner is read-only. It finds exact em dashes and surfaces candidates for negative parallelism, triads, and overly orderly transitions. Candidate matches require contextual judgment and are not authorship detection. Do not assume the user's workspace contains the script. If execution is unavailable, perform the same review directly.
+The scanner is read-only. It finds exact em dashes and middle-dot characters, then surfaces candidates for negative parallelism, triads, overly orderly transitions, and comma-tail headings. Candidate matches require contextual judgment and are not authorship detection. Do not assume the user's workspace contains the script. If execution is unavailable, perform the same review directly.
 
 ## Complete the selected mode
 

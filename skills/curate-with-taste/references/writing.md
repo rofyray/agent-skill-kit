@@ -2,7 +2,7 @@
 
 Use this guide for prose inspection, drafting, rewriting, or final prose verification.
 
-## Interpret the four tells
+## Interpret the pattern checks
 
 Treat the tells as patterns of accumulated defaults. A single intentional device in source prose is not proof of poor writing or AI authorship. Prose created or revised by this skill uses the strict output policy below.
 
@@ -39,11 +39,27 @@ Restore natural emphasis. Let important ideas take the space they need, combine 
 
 Find repeated three-item lists, three-adjective stacks, and conclusions that habitually resolve into three beats. Use the number of items the content actually supports. A factual three-part set can remain when all three members are necessary; do not manufacture or delete an item solely to change the count.
 
+### Ornamental middle dots
+
+Generated or revised prose, headings, interface labels, captions, and metadata must not use middle dots as decorative separators. Their repeated use can make an artifact feel assembled from a familiar AI design vocabulary.
+
+Rewrite the information according to its meaning. Separate metadata through layout, place supporting detail on another line, use parentheses when the detail is genuinely secondary, or state the relationship directly. Do not mechanically replace every middle dot with a pipe, slash, colon, bullet, or another decorative separator.
+
+Preserve a literal middle dot when it belongs to a quotation, mathematical notation, code, source data, or an established name. Identify the exception rather than silently altering the source.
+
+### Comma-tail headings
+
+Watch for short titles, headings, card labels, captions, and callouts shaped as `subject, modifier`. Common forms end with a participle or compressed status, such as `simulated humans, assembled`. Repetition makes unrelated sections share the same faux-editorial cadence.
+
+Rewrite the actual message directly. Use a natural noun phrase, a concrete statement, or a layout that gives status information its own field. Do not standardize every correction into another inverted adjective pattern.
+
+Preserve commas that serve normal grammar or factual identity, including names, places, dates, quotations, appositives, and genuine lists. Judge a comma-tail construction from its role and repetition across the artifact rather than from punctuation alone.
+
 ## Inspect prose
 
 1. Read the full text and establish its genre, purpose, audience, and intended voice.
 2. Identify what already works and must survive revision.
-3. Locate the four tells with exact excerpts or positions. Explain the effect of each pattern in context.
+3. Locate relevant pattern checks with exact excerpts or positions. Explain the effect of each pattern in context.
 4. Look beneath the surface for the underlying default: vague claims, generic transitions, repeated cadence, unnecessary abstraction, missing audience knowledge, or polished language without a decision behind it.
 5. Distinguish high-impact patterns from harmless isolated uses. State confidence and avoid an overall AI-authorship verdict.
 6. Recommend the smallest changes that restore specificity, rhythm, voice, and audience fit.
@@ -70,6 +86,8 @@ For a rewrite, compare the result with the source. Confirm that names, numbers, 
 Reread the final artifact itself and confirm:
 
 - No em dash appears in generated or revised prose.
+- No ornamental middle dot appears in prose, headings, labels, captions, or metadata.
+- No comma-tail heading uses a trailing fragment as automatic polish.
 - Negative constructions express a necessary exclusion rather than a stock reveal.
 - Paragraph and section shapes follow the ideas instead of a template.
 - Lists contain the items the content requires rather than defaulting to three.
@@ -81,4 +99,4 @@ Do not add a verbose audit after a short piece. Return the ready-to-use prose fi
 
 ## Optional scanner
 
-When a long file is locally available, run `<installed-skill-directory>/scripts/prose_scan.py` as a candidate finder. Exact em-dash matches are deterministic. Negative contrasts, triads, and orderly transitions are only leads for human judgment. Inspect every reported excerpt in context and review the full final text even when the scanner reports no candidates.
+When a long file is locally available, run `<installed-skill-directory>/scripts/prose_scan.py` as a candidate finder. Exact em-dash and middle-dot matches are deterministic. Negative contrasts, triads, orderly transitions, and comma-tail headings are leads for human judgment. Inspect every reported excerpt in context and review the full final text even when the scanner reports no candidates.
