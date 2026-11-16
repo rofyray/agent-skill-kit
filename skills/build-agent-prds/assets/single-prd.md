@@ -16,11 +16,13 @@ Status: {{reviewable draft or implementation-ready; unresolved inputs}}
 
 ## Execution and branch plan
 
-{{Branch groups, task IDs, bases, dependency gates, ownership, and integration owner.}}
+{{Branch groups with lowercase proposed names and purposes, canonical task/ticket mappings, bases, dependency gates, ownership, and integration owner.}}
 
 The coordinator starts every ready independent workstream that fits available subagent capacity and refills capacity as work finishes. Use explicit dependencies, agreed interfaces, and exclusive file ownership. Isolate concurrent changes where supported; serialize conflicting writers. If subagents are unavailable, follow the same plan sequentially. Workers receive their task scope, inputs, acceptance criteria, and tests, and return changes, evidence, commit or patch, and blockers. The coordinator integrates results and owns canonical task status.
 
-Commit each verified task or inseparable group with its tests and tracking on the designated feature branch. Follow repository conventions and existing publication authorization. Distinguish commits, pushes, PRs, merges, and release. Continue eligible authorized work without another kickoff prompt; stop when complete or no eligible work remains.
+Commit each verified task or inseparable group with its tests and tracking on the designated feature branch. Follow the lowercase naming contract below and existing publication authorization; surface conflicts with enforced repository rules before affected Git mutations. Distinguish commits, pushes, PRs, merges, and release. Continue eligible authorized work without another kickoff prompt; stop when complete or no eligible work remains.
+
+{{Insert the complete assets/git-conventions.md output block from the skill here, resolving its project-specific prompt. Include all eleven commit types and meanings, lowercase complete messages and branch names, optional scope, optional branch IDs with canonical mappings, hotfix/release distinctions, and examples. Do not leave an installed-skill link or create a companion file solely for this block.}}
 
 ## Phase {{A}}: {{Milestone}}
 

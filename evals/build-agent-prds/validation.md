@@ -1,6 +1,6 @@
 # Validation record
 
-Initial release validated November 13, 2026; testing-selection update validated November 14, 2026 as recorded below. The evaluation artifacts are synthetic and contain no customer data. Product implementation was deliberately outside the evaluation scope.
+Initial release validated November 13, 2026; testing-selection update validated November 14, 2026; Git naming update validated November 15, 2026 as recorded below. The evaluation artifacts are synthetic and contain no customer data. Product implementation was deliberately outside the evaluation scope.
 
 ## Executed checks
 
@@ -61,3 +61,24 @@ All seven artifacts met the evaluated test-selection expectations. They are plan
 Technical checks: repository validator passed for all 18 skills; skill-creator quick validation passed with cached PyYAML; the repository suite discovered 185 tests, with 167 passed and the same 18 optional detector integration tests skipped. All 18 skill archives passed integrity/layout checks. The updated 13-file archive matched source bytes, all skill-local links resolved, and its extracted standard-library helper successfully created and verified a sample PRD ZIP. The core is now 66 lines. No executable helper code changed in this update.
 
 Current artifacts are retained locally under `output/build-agent-prds-testing-evaluation/`. No new without-skill comparison or other-client runtime/import test was performed for this correction; the earlier baseline exercise and client limitations above remain historical evidence only.
+
+## Git naming update: November 15, 2026
+
+Added a complete lowercase commit and branch naming contract to the generated driver and single-file PRD templates, with all eleven commit types, purpose-based selection, optional branch ticket IDs, canonical ID mapping, history preservation, and explicit handling of conflicting repository rules. Removed the previous codex branch-prefix fallback. Generated handoffs contain the contract inline and require no access to the installed skill.
+
+Three fresh evaluating agents used the revised skill for six requests without case expectations or access to each other's outputs. The primary agent inspected the resulting documents:
+
+| Case ID | Observed result |
+| --- | --- |
+| git-no-ticket | Kept F-01/F-02 task IDs while proposing `feat/format-integers-with-commas`, with no invented ticket. Included the complete lowercase contract and selected unit-only coverage for the standalone helper. |
+| git-ticket-bundle | Mapped canonical PROJ-42 and AUTH-01/AUTH-02/AUTH-03 to one `feat/proj-42-google-sign-in` branch. Produced a four-file ZIP with full inline naming guidance, lowercase proposed commits, required unit/integration/E2E coverage, and explicit repository/access blockers. Independently verified ZIP integrity, inventory, and source-byte equality; the evaluator also verified all 20 relative file/anchor links. |
+| git-purpose-selection | Correctly selected feat for a UI feature with tests, fix for a visual bug, style for indentation, build for a dependency, test for test-only changes, and ci for CI caching. Used hotfix and release as branch categories with valid commit types. Preserved actual product-copy and source-path casing. |
+| git-conflicting-repository-rule | Identified the enforced feature prefix, uppercase ticket requirement, and exact Signed-off-by trailer as conflicts. Required an authoritative resolution before affected mutations without bypassing hooks or corrupting metadata. |
+| git-existing-history | Preserved the existing mixed-case branch, historical commit, completed AUTH-01, and canonical PROJ-42. Applied lowercase naming only to the new password-recovery work and did not invent implementation scope or historical evidence. |
+| git-id-preference-unclear | Asked one concise ticket-inclusion question, retained canonical TASK-88, and delivered a draft using an explicitly provisional ID-free branch. Did not assume that an available ticket automatically belonged in the branch. |
+
+All six artifacts met the evaluated naming expectations. Proposed product tests were not executed and do not constitute product implementation evidence. The catalog now contains 24 cases; this update does not claim that all earlier cases were rerun.
+
+Technical checks: all 18 skills passed repository validation; skill-creator quick validation passed with cached PyYAML. The full repository suite discovered 188 tests: 170 passed and 18 optional detector integrations skipped because their dedicated runtime was not configured. All 18 skill archives passed integrity/layout checks. The updated skill archive contains 14 installable files, matches source bytes, and excludes evaluation artifacts. All skill-local links resolve; its freshly extracted helper successfully produced a sample PRD ZIP. Fourteen commit examples and eleven branch examples in the new contract passed lowercase and read-only Git branch-syntax checks. Generated outputs were also inspected for lowercase examples, resolved template prompts, and independence from installed-skill links. No executable helper code changed.
+
+Current artifacts are retained locally under `output/build-agent-prds-git-evaluation/`. No new without-skill comparison or other-client runtime/import test was performed; prior baseline and client limitations remain historical evidence only.

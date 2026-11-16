@@ -184,6 +184,70 @@
         "Defines full CLI input/output/error acceptance without browser tests",
         "Does not blindly reopen unchanged unit behavior or preserve obsolete not-applicable decisions"
       ]
+    },
+    {
+      "id": "git-no-ticket",
+      "mode": "create",
+      "request": "Create one compact PRD for a standalone number-formatting helper. It must format integers with comma separators and preserve the sign; no I/O or application is involved. We have no external tickets and do not want internal PRD task IDs in branch names. Include a concrete branch plan and example implementation and test-only commit messages. Do not implement it.",
+      "expect": [
+        "Includes the complete lowercase Git contract and all eleven commit types with meanings inside the delivered PRD",
+        "Keeps stable internal task IDs but proposes an ID-free feat branch",
+        "Uses lowercase feat implementation and test-only test commit examples",
+        "Preserves unit-only test selection and complete scope acceptance without inventing E2E"
+      ]
+    },
+    {
+      "id": "git-ticket-bundle",
+      "mode": "create",
+      "request": "Create a multi-file PRD ZIP for adding Google sign-in to a web app. Canonical feature ticket is PROJ-42; include it in the feature branch name. Tasks AUTH-01, AUTH-02, and AUTH-03 cover provider configuration, callback/session integration, and verification. Group them as one feature branch. No repository or credentials are available yet, so mark discovery and implementation-time access honestly. Include lowercase Git naming instructions and suggested commits. Do not implement authentication.",
+      "expect": [
+        "Maps PROJ-42 to a lowercase branch ID while preserving the exact canonical ticket and supplied task IDs",
+        "Uses one feature branch without concatenating the three task IDs",
+        "Embeds full commit/type/branch rules in the central driver rather than linking installed skill resources",
+        "Preserves asset/access limitations, scope-based tests, ZIP delivery, and entirely lowercase authored commit examples"
+      ]
+    },
+    {
+      "id": "git-purpose-selection",
+      "mode": "revise",
+      "request": "Revise the proposed Git plan for these independent changes: add a dark-mode UI toggle with its tests; fix a broken contrast state; fix indentation only; update an external build dependency; add expired-session tests only; add CI caching; urgently fix a payment crash; prepare release v1.2.0. No ticket IDs. Give planned branches and commits under the lowercase PRD convention. The user-facing UI says Dark Mode and existing source paths use camel case; preserve those actual contents. Do not implement or create branches.",
+      "expect": [
+        "Uses feat for visual feature plus tests, fix for visual bug, style only for indentation, build for dependency, test for tests only, and ci for pipeline work",
+        "Uses hotfix/payment-crash or equivalent urgent-fix branch with fix commit rather than hotfix commit type",
+        "Uses release/v1.2.0 with an appropriate existing commit type rather than release commit type",
+        "Keeps all proposed branches and complete commit examples lowercase without lowercasing product copy or source paths"
+      ]
+    },
+    {
+      "id": "git-conflicting-repository-rule",
+      "mode": "audit",
+      "request": "Audit only: a PRD requires lowercase commits and branches, but the repository enforces feature/PROJ-42-description with an uppercase ticket and a required Signed-off-by trailer with exact capitalization. The agent proposes silently lowercasing the ticket and trailer and bypassing failing hooks. What should the PRD tell the implementing agent?",
+      "expect": [
+        "Names the exact enforced-rule conflicts and requires resolution before affected new Git mutations",
+        "Does not bypass hooks or silently alter required case-sensitive metadata",
+        "Continues independent planning and does not globally rewrite repository policy",
+        "Keeps audit separate from implementation or a permission grant"
+      ]
+    },
+    {
+      "id": "git-existing-history",
+      "mode": "revise",
+      "request": "Revise a PRD for lowercase naming. Existing branch Feature/Legacy-Login and historical commit subject Feat(Auth): Add Login must remain unchanged. Completed task AUTH-01 and ticket PROJ-42 retain their canonical spelling. Add a planned password-recovery slice, with PROJ-42 included in its new branch name, and suggested future commit text. No code or Git mutations.",
+      "expect": [
+        "Preserves supplied existing branch/commit/task identity as history without presenting it as a new compliant proposal",
+        "Uses lowercase new branch and commit text with canonical-to-lowercase ticket mapping",
+        "Does not rename branches, rewrite commits, or lowercase canonical task/ticket records"
+      ]
+    },
+    {
+      "id": "git-id-preference-unclear",
+      "mode": "create",
+      "request": "Draft a small PRD for adding CSV export to our task list. The source ticket is TASK-88, but I have not decided whether IDs should be included in branch names. Give me a draft now and identify the naming preference that remains to decide. Do not implement the feature.",
+      "expect": [
+        "Asks or records one concise optional naming question without blocking the requested draft",
+        "Uses a clearly provisional ID-free branch until ID inclusion is selected",
+        "Preserves TASK-88 and stable internal tasks rather than inventing or automatically concatenating IDs"
+      ]
     }
   ]
 }

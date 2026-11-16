@@ -35,6 +35,8 @@ Choose one small `PRD.md` when sufficient. Otherwise create a compact driver wit
 
 Every PRD has phases, each with multiple bounded tasks where the work permits and an observable exit gate. Do not manufacture extra tasks for a trivial change. Each task has a stable ID, checkbox, acceptance criteria, dependencies, required spec and resource links, implementation boundary, verification, and branch group. Phase order is not an implicit dependency. Separate feature scope, phase milestones, and branch boundaries.
 
+Include [the Git naming contract](assets/git-conventions.md) in every generated PRD. Insert the complete type guide, lowercase rules, branch formats, project ID choice/mappings, and conflict handling into the single-file PRD or central driver; resolve its authoring prompt. Do not leave a link to the installed skill in the handoff. Branches use `<type>/<short-description>` or, when selected and available, `<type>/<ticket-id>-<short-description>`. Commit messages use `type(optional-scope): short description`, entirely lowercase. Keep stable PRD IDs independent of optional branch ticket IDs and preserve original references. Check actual project rules; surface conflicts instead of silently substituting conventions. Existing history remains intact.
+
 Read [resource handoff](references/resource-handoff.md) whenever sources contain reusable code, examples, data, media, or links, or when auditing their completeness. Carry usable material into the handoff instead of instructing another agent to regenerate it. Embed short snippets, reference larger files, retain originals and provenance, and distinguish approved assets from illustrative or superseded versions. Never assume access to the source chat. Do not claim to have captured inaccessible content.
 
 ## Plan execution and completion
@@ -49,13 +51,13 @@ Write the completion and continuation rules into the delivered PRD; the implemen
 
 ## Revise and audit
 
-Trace changed requirements, resources, and contracts to affected tasks, dependencies, branch groups, test-level applicability, and evidence. Preserve IDs for the same work; assign new IDs to new work. Reopen affected completed tasks when their acceptance changes, retaining historical evidence as superseded. Retire removed scope explicitly. Check for cycles, missing prerequisites, conflicting ownership, and stale links. Regenerate the delivery ZIP after revisions so it matches the current files.
+Trace changed requirements, resources, and contracts to affected tasks, dependencies, branch groups, test-level applicability, and evidence. Preserve IDs for the same work; assign new IDs to new work. Reopen affected completed tasks when their acceptance changes, retaining historical evidence as superseded. Retire removed scope explicitly. Update proposed branch/commit names to the naming contract without renaming existing branches or rewriting historical commits. Check for cycles, missing prerequisites, conflicting ownership, and stale links. Regenerate the delivery ZIP after revisions so it matches the current files.
 
 For Audit, prioritize omissions that prevent implementation, reuse, integration, or verification. Report the affected requirement or task, evidence, consequence, and concrete correction. Separate blockers from quality improvements. Do not turn an audit request into implementation or an unsolicited rewrite.
 
 ## Verify and deliver
 
-Before delivery, trace every in-scope requirement to implementation and acceptance evidence requirements. Check all three test-level decisions and reasons, unresolved discovery, actual versus proposed commands, and the final scope-appropriate acceptance gate. Also check task IDs and dependencies, realistic parallelism, canonical status locations, branch scopes, and resource references. Reconcile contradictions rather than burying them in separate documents.
+Before delivery, trace every in-scope requirement to implementation and acceptance evidence requirements. Check all three test-level decisions and reasons, unresolved discovery, actual versus proposed commands, and the final scope-appropriate acceptance gate. Also check task IDs and dependencies, realistic parallelism, canonical status locations, branch scopes, and resource references. Check proposed branch names and complete authored commit examples for lowercase, supported types, and correct optional-ID mapping; distinguish existing history and unresolved policy conflicts. Reconcile contradictions rather than burying them in separate documents.
 
 Read [packaging](references/packaging.md) when delivering or revising files. **Deliver the complete PRD set as one downloadable ZIP whenever it contains multiple files, including companion assets.** Only a single small self-contained Markdown file may be delivered alone. Keep the editable sources too when supported. A ZIP of the skill itself does not satisfy delivery of a generated PRD set.
 

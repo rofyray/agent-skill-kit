@@ -1,6 +1,6 @@
 # Parallel delivery and Git plan
 
-Write these rules into the generated driver's execution contract, adapting them to actual project conventions and host capabilities. They govern later implementation, not PRD authoring.
+Write these rules into the generated driver's execution contract, accounting for actual project rules and host capabilities. Include the complete lowercase Git naming contract in that driver; surface any conflict with enforced rules rather than silently replacing it. These rules govern later implementation, not PRD authoring.
 
 ## Schedule independent ready work
 
@@ -16,11 +16,13 @@ Integrate worker output, inspect compatibility, and rerun affected checks on the
 
 ## Branch and commit mapping
 
-Group tasks into coherent features or independently reviewable slices. Record each branch group's scope, task IDs, base, dependencies, and review gate. A feature can span phases. Split large features only when the slices have meaningful integration boundaries.
+Group tasks into coherent features or independently reviewable slices. Record each branch group's lowercase proposed name, purpose/type, scope, canonical task/ticket mapping, base, dependencies, and review gate. A feature can span phases and include commits of different types. Split large features only when the slices have meaningful integration boundaries.
 
-Independent feature branches may proceed concurrently. Dependent branches wait for their prerequisite integration or use an explicit stacked plan when project policy permits it. Determine default branch and remote from the repository; do not guess. Follow repository naming conventions, otherwise propose `codex/<feature-slug>`.
+Independent feature branches may proceed concurrently. Dependent branches wait for their prerequisite integration or use an explicit stacked plan when project policy permits it. Determine default branch and remote from the repository; do not guess. New branches use `<type>/<short-description>` or `<type>/<ticket-id>-<short-description>` when ID inclusion is selected and an actual ID exists. All branch text is lowercase; the PRD retains canonical source IDs. Internal task IDs do not automatically become branch IDs. Prefer an ID-free feature name for a group without one applicable ticket; never concatenate its task IDs. Clarify a material ID preference when needed without blocking independent planning.
 
-Commit each completed, verified task, or tightly coupled group that cannot be verified separately. Include its code, tests, and relevant tracking changes; keep unrelated and unfinished changes out. In parallel work, workers commit in their isolated branches and the coordinator integrates into the designated feature branch. Record commit references after creation rather than requiring a commit to contain its own hash.
+Commit each completed, verified task, or tightly coupled group that cannot be verified separately. Include its code, tests, and relevant tracking changes; keep unrelated and unfinished changes out. Use `type(optional-scope): short description`, with lowercase type, scope, description, and any authored body/footer. Choose the type by primary intent, not by the branch prefix or presence of tests. In parallel work, workers commit in their isolated branches and the coordinator integrates into the designated feature branch. Record commit references after creation rather than requiring a commit to contain its own hash.
+
+Copy enough naming guidance into the delivered driver for workers without this skill: all eleven commit types with their meanings, formatting-only `style`, specific types before `chore`, optional scope, lowercase branch examples, optional ticket mapping, and the distinction between `hotfix`/`release` branch categories and commit types. Check conflicts with existing enforced naming or required case-sensitive metadata before new Git mutations. Do not lowercase canonical source references or rewrite existing Git history to satisfy the new policy.
 
 Distinguish saving a commit, pushing a branch, opening a PR, and merging. State the project's delivery policy and honor existing authorization. The PRD itself grants no new permission. Do not make unrelated work wait on publication unless policy or a dependency requires it. Reuse existing branches and PRs on resume; never recreate completed work merely because publication was unavailable.
 

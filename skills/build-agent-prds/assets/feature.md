@@ -10,6 +10,8 @@
 
 {{Short available code/data blocks, with language, purpose, status, and source. Direct relative links to larger code, images, and other original assets. Identify inputs that cannot yet be accessed.}}
 
+Branch mapping: {{lowercase proposed branch name and purpose, canonical task/ticket associations, and direct link to the central driver's Git naming contract. Omit the branch ID segment unless inclusion is selected and an actual applicable ID exists. Preserve any existing branch name as historical/current state, separately from new naming proposals.}}
+
 ## Test applicability and coverage
 
 {{Link the canonical unit/integration/E2E applicability decisions. Record any feature-specific differences with scope/impact reasons, requirement references, and an owner/task for pending discovery. Map each requirement to concrete checks and existing coverage to reuse or new tests to add. Missing access blocks required checks; it does not make them not applicable.}}
@@ -24,7 +26,7 @@ Entry: {{dependencies}}. Exit: {{integrated observable outcome}}.
   - Depends on: {{task IDs or none; external blockers}}
   - Reads/reuses: {{specification and resource links}}
   - Owns: {{scope, shared-file owner, conflict notes}}
-  - Branch group: {{feature or reviewable slice}}
+  - Branch group: {{feature or reviewable slice; lowercase proposed name from the map}}
   - Verify: {{selected levels, checks, fixtures, and expected outcomes; link shared policy and applicable feature acceptance gates}}
   - Evidence: pending
 

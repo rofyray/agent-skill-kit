@@ -26,7 +26,7 @@ project-prd/
   examples/
 ```
 
-The driver contains product context, global constraints, the phase and feature map, dependencies, branch groups, execution and completion rules, and a reading map. Details live in the document that owns them. Each link names its trigger, such as “Read the session contract before changing any session producer or consumer.” Link directly to needed content rather than through chains of indexes.
+The driver contains product context, global constraints, the phase and feature map, dependencies, branch groups, the lowercase Git naming contract, execution and completion rules, and a reading map. Details live in the document that owns them. Each link names its trigger, such as “Read the session contract before changing any session producer or consumer.” Link directly to needed content rather than through chains of indexes.
 
 Detailed feature files own their requirements, phases, task checkboxes, and specific tests. Shared contracts define producer and consumer expectations once. For a single document, use linked sections with the same responsibilities. Keep receipts and lengthy logs out of the driver.
 
@@ -44,6 +44,8 @@ Use stable IDs such as `AC-03`, independent of phase numbering. Every task inclu
 - state and evidence location, initially pending.
 
 Use compact records for small tasks and more detail when ambiguity warrants it. File ownership may be provisional until repository discovery. Verification may be manual when that is the appropriate observable check; do not manufacture unit tests for prose edits.
+
+Stable internal task IDs remain required for planning even when branch names omit IDs. Preserve existing task and ticket spelling in their canonical records; map to a lowercase branch form only when ID inclusion is selected. A feature branch can map to several tasks without putting every ID in its name. Proposed commit examples follow the central naming contract; exact case-sensitive references belong in the task/progress record rather than being corrupted to fit a lowercase message.
 
 Use one canonical checkbox and state per task. READY means dependencies and required inputs are satisfied; ACTIVE means claimed by a worker; BLOCKED names the missing condition; DONE requires passing acceptance and integration into its designated feature branch. TODO can represent work whose prerequisites are not yet satisfied. Preserve equivalent project vocabulary where it is clear.
 

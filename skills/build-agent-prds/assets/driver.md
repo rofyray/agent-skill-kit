@@ -20,7 +20,7 @@ Status: {{reviewable draft or implementation-ready; blockers}}
 
 ## Feature, phase, and branch map
 
-| Feature/branch group | Phases and canonical task links | Base and dependencies | Parallel ownership | Integrated exit gate |
+| Feature/branch group and lowercase proposed name | Phases and canonical task/ticket links | Base and dependencies | Parallel ownership | Integrated exit gate |
 | --- | --- | --- | --- | --- |
 | {{group}} | {{links}} | {{base and prerequisites}} | {{owners or scope}} | {{observable result}} |
 
@@ -37,7 +37,9 @@ Status: {{reviewable draft or implementation-ready; blockers}}
 7. Continue ready authorized work until complete or all remaining work is blocked. Record exact blockers and preserve unfinished work in isolation. Do not require repeated next-task prompts.
 8. On resume, read this driver and compact progress record, compare with actual repository state, reuse valid results, and load only the specs needed for eligible work. Reopen evidence affected by changed requirements, resources, or integrations.
 
-Branch policy: {{repository conventions, feature groups, base discovery, dependent/stacked branch rules, integration owner, and existing publication authorization. Use codex/<feature-slug> only as a fallback.}}
+Branch delivery policy: {{feature groups, base discovery, dependent/stacked branch rules, integration owner, and existing publication authorization. Record any naming conflict with existing rules explicitly rather than overriding the lowercase contract below.}}
+
+{{Insert the complete assets/git-conventions.md output block from the skill here, resolving its project-specific prompt. Include all eleven commit types and meanings, lowercase complete messages and branch names, optional scope, optional branch IDs with canonical mappings, hotfix/release distinctions, and examples. Keep the contract inside this driver, not as an installed-skill link.}}
 
 ## Test selection and complete acceptance
 
